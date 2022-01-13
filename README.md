@@ -2,13 +2,14 @@
 
 This is long assignment LAB221 - OOP with Java: **Login system of the Tien Phong Bank’s Ebank**
 
-Author:
+Members:
 
-1. Nguyen Tuan Ngoc
+1. Nguyen Tuan Ngoc (Leader)
 2. Mai Nguyen Anh Quan
 3. Le Tran Hong Duc
-4. Nguyyen Cong Hoai Linh
+4. Nguyyen Cong Hoai Linh (Sidechick)
 5. Pham Ngoc Nhan
+6. Nguyen Phuoc Tung
 
 ## Folder Structure
 
