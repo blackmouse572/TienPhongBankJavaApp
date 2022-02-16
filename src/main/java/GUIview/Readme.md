@@ -5,3 +5,6 @@
 
 // Change log: 28/1/2022
 1. Added multilingual to GUI (vi+en), synchronize language between main (JFrame) and others JPanel.
+
+// Change log: 16/2/2022
+1. Added .form files
