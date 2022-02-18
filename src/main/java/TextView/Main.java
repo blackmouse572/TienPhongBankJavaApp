@@ -37,28 +37,31 @@ class Menu0 extends  Menu{
 //--------------------------------------------
 class Menu1 extends  Menu{
     public void run(Text text){
-        boolean logFlag =false;
-        switch(excute(text.menu1)){
+        User curentUser = null;
+        while (true) {            
+            switch(excute(text.menu1)){
             case 1:
+                //TODO: LOG IN and assign value for curent user
                 break;
             case 2:
                 //TODO: REGISTER
+                //TODO: if register success, do log in
                 break;
             case 3:
                 return;
         }
-        //TODO: LOG IN and assign value to logFlag
-        // check for login status
-        if (logFlag){
-            Menu2 menu2 = new Menu2();
-            menu2.run(text);
-        }
+            if (curentUser!=null){
+                Menu2 menu2 = new Menu2();
+                menu2.run(text);
+            }
+        } 
     }
 }
 
 class Menu2 extends Menu{
     public void run(Text text){
-        switch(excute(text.menu2)){
+        while (true) {            
+            switch(excute(text.menu2)){
             case 1:
                 //TODO: show account info
                 break;
@@ -78,8 +81,9 @@ class Menu2 extends Menu{
                 //TODO: Change password
                 break;
             case 7:
-                break;
+                return;
+            }
         }
-    }
+    }      
 }
 
