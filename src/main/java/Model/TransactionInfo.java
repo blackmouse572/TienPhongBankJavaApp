@@ -1,4 +1,6 @@
-public record TransferInformation(String action, String note ) {
+package main.java.Model;
+
+public record TransactionInfo(String action, String note ) {
 
     // TODO: time variable
 
