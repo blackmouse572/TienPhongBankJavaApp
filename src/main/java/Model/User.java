@@ -1,4 +1,4 @@
-package main.java.Model;
+package Model;
 
 import java.util.Stack;
 
@@ -28,7 +28,75 @@ public class User {
         this.emailAddress = emailAddress;
         this.streetAddress = streetAddress;
     }
-    // TODO get and set
+
+
+    public String getAccountID() {
+        return accountID;
+    }
+
+    public void setAccountID(String accountID) {
+        this.accountID = accountID;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public float getAccountBalance() {
+        return accountBalance;
+    }
+
+    public void setAccountBalance(float accountBalance) {
+        this.accountBalance = accountBalance;
+    }
+
+    public String getCitizenID() {
+        return citizenID;
+    }
+
+    public void setCitizenID(String citizenID) {
+        this.citizenID = citizenID;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public String getStreetAddress() {
+        return streetAddress;
+    }
+
+    public void setStreetAddress(String streetAddress) {
+        this.streetAddress = streetAddress;
+    }
+
+    public Stack<Transaction> getTH() {
+        return TH;
+    }
+
+    public void setTH(Stack<Transaction> TH) {
+        this.TH = TH;
+    }
 
     public void updateInformation() {
         System.out.print("Input name: ");
