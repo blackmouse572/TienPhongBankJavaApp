@@ -2,7 +2,7 @@ package main.java.Model;
 
 import java.sql.Time;
 
-public record Transaction(String action, String note, User receiver, User sender, Time time) {
+public record Transaction(User sender,  User receiver,Double moneyAmount ,String action, String note,  Time time) {
 
     public User getReceiver(){
         return receiver;
@@ -10,6 +10,10 @@ public record Transaction(String action, String note, User receiver, User sender
 
     public User getSender(){
         return sender;
+    }
+
+    public Double getMoneyAmount(){
+        return moneyAmount;
     }
 
     public Time getTime(){
