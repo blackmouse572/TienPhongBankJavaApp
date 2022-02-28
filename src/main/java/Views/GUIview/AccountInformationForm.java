@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package GUIview;
+package Views.GUIview;
 
 import java.util.ResourceBundle;
 
@@ -79,7 +79,7 @@ public class AccountInformationForm extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("accountinformation/Bundle_vi_VN_accountinformation"); // NOI18N
-        jLabel1.setText(bundle.getString("AccountInformationForm.jLabel1.text")); // NOI18N
+        jLabel1.setText(bundle.getString("AccountInformationForm.jLabel1.text_1")); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 1, 10, 1));
         jPanel1.add(jLabel1, java.awt.BorderLayout.PAGE_START);
 
@@ -88,13 +88,13 @@ public class AccountInformationForm extends javax.swing.JPanel {
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel6.setText(bundle.getString("AccountInformationForm.jLabel6.text")); // NOI18N
+        jLabel6.setText(bundle.getString("AccountInformationForm.jLabel6.text_1")); // NOI18N
         jPanel3.add(jLabel6);
         jPanel3.add(descTxt3);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText(bundle.getString("AccountInformationForm.jLabel2.text")); // NOI18N
+        jLabel2.setText(bundle.getString("AccountInformationForm.jLabel2.text_1")); // NOI18N
         jPanel3.add(jLabel2);
 
         amountTxt.addActionListener(new java.awt.event.ActionListener() {
@@ -106,25 +106,25 @@ public class AccountInformationForm extends javax.swing.JPanel {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setText(bundle.getString("AccountInformationForm.jLabel3.text")); // NOI18N
+        jLabel3.setText(bundle.getString("AccountInformationForm.jLabel3.text_1")); // NOI18N
         jPanel3.add(jLabel3);
         jPanel3.add(descTxt);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel5.setText(bundle.getString("AccountInformationForm.jLabel5.text")); // NOI18N
+        jLabel5.setText(bundle.getString("AccountInformationForm.jLabel5.text_1")); // NOI18N
         jPanel3.add(jLabel5);
         jPanel3.add(descTxt2);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel7.setText(bundle.getString("AccountInformationForm.jLabel7.text")); // NOI18N
+        jLabel7.setText(bundle.getString("AccountInformationForm.jLabel7.text_1")); // NOI18N
         jPanel3.add(jLabel7);
         jPanel3.add(descTxt4);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel8.setText(bundle.getString("AccountInformationForm.jLabel8.text")); // NOI18N
+        jLabel8.setText(bundle.getString("AccountInformationForm.jLabel8.text_1")); // NOI18N
         jPanel3.add(jLabel8);
         jPanel3.add(descTxt5);
 
