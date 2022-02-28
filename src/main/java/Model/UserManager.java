@@ -1,4 +1,4 @@
-package Model ;
+package main.java.Model ;
 
 public class UserManager {
 
@@ -6,16 +6,16 @@ public class UserManager {
 
     public boolean createUser(){
 
-        // TODO: Validate main.java.Model.User by Phone number
+        // TODO: Validate main.java.main.java.Model.User by Phone number
 
         // TODO: call API add to database
         return true;
     }
 
     public boolean checkUser(){
-        // TODO: Get main.java.Model.User by Phone number
+        // TODO: Get main.java.main.java.Model.User by Phone number
 
-        // TODO: New main.java.Model.User that have the same information
+        // TODO: New main.java.main.java.Model.User that have the same information
 
         // TODO: check if password match
 
