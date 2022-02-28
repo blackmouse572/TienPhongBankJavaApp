@@ -1,6 +1,4 @@
-package main.java.Model;
-
-import java.util.Stack;
+package Model;
 
 public class User {
     private String accountID;
@@ -11,16 +9,15 @@ public class User {
     private String phoneNumber;
     private String emailAddress;
     private String streetAddress;
-    private Stack<TransactionInfo> TH;
 
     public User(){
         this.updateInformation();
-        // TODO: Random accountID
         this.setPassword();
     }
 
     public User(String accountID, String password, String name, float accountBalance, String citizenID, String phoneNumber, String emailAddress, String streetAddress){
         this.accountID = accountID;
+        this.name = name;
         this.password = password;
         this.accountBalance = accountBalance;
         this.citizenID = citizenID;
@@ -29,6 +26,67 @@ public class User {
         this.streetAddress = streetAddress;
     }
     // TODO get and set
+
+
+    public String getAccountID() {
+        return accountID;
+    }
+
+    public void setAccountID(String accountID) {
+        this.accountID = accountID;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public float getAccountBalance() {
+        return accountBalance;
+    }
+
+    public void setAccountBalance(float accountBalance) {
+        this.accountBalance = accountBalance;
+    }
+
+    public String getCitizenID() {
+        return citizenID;
+    }
+
+    public void setCitizenID(String citizenID) {
+        this.citizenID = citizenID;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public String getStreetAddress() {
+        return streetAddress;
+    }
+
+    public void setStreetAddress(String streetAddress) {
+        this.streetAddress = streetAddress;
+    }
 
     public void updateInformation() {
         System.out.print("Input name: ");
@@ -58,15 +116,6 @@ public class User {
         return this.password;
     }
 
-    public void addTransactionInfo(TransactionInfo TI){
-        this.TH.push(TI);
-    }
-
-    public void getTransactionHistory(){
-        for (TransactionInfo e : this.TH) {
-            System.out.println(e);
-        }
-    }
 
     public void display(){
         System.out.println("Account ID:" +this.accountID);
