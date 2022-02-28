@@ -1,20 +1,21 @@
+package main.java.Model;
+
 public class UserManager {
 
     User current = new User();
 
     public boolean createUser(){
 
-        // TODO: Validate User by Phone number
+        // TODO: Validate main.java.Model.User by Phone number
 
-        // TODO: call API add zo database
-        User u = new User();
+        // TODO: call API add to database
         return true;
     }
 
     public boolean checkUser(){
-        // TODO: Get User by Phone number
+        // TODO: Get main.java.Model.User by Phone number
 
-        // TODO: New User that have the same information
+        // TODO: New main.java.Model.User that have the same information
 
         // TODO: check if password match
 

@@ -1,3 +1,7 @@
+package main.java.Model;
+
+import java.util.Stack;
+
 public class User {
     private String accountID;
     private String password;
@@ -7,12 +11,12 @@ public class User {
     private String phoneNumber;
     private String emailAddress;
     private String streetAddress;
-    // TODO: Call Transfer History
+    private Stack<TransactionInfo> TH;
 
     public User(){
         this.updateInformation();
         // TODO: Random accountID
-        this.setPassWord();
+        this.setPassword();
     }
 
     public User(String accountID, String password, String name, float accountBalance, String citizenID, String phoneNumber, String emailAddress, String streetAddress){
@@ -44,7 +48,7 @@ public class User {
         // TODO: Have user choose to do with accountBalance
     }
 
-    public boolean setPassWord(){
+    public boolean setPassword(){
         System.out.print("Input password");
         // TODO: Check valid password
         // TODO: Check if password was the same
@@ -52,6 +56,16 @@ public class User {
     }
     public String getPassword(){
         return this.password;
+    }
+
+    public void addTransactionInfo(TransactionInfo TI){
+        this.TH.push(TI);
+    }
+
+    public void getTransactionHistory(){
+        for (TransactionInfo e : this.TH) {
+            System.out.println(e);
+        }
     }
 
     public void display(){
