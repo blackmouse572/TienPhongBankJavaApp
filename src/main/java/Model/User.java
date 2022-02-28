@@ -28,7 +28,7 @@ public class User {
         this.emailAddress = emailAddress;
         this.streetAddress = streetAddress;
     }
-    // TODO get and set
+
 
     public String getAccountID() {
         return accountID;
