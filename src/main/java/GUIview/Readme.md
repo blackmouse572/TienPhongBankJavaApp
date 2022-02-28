@@ -8,3 +8,7 @@
 
 // Change log: 16/2/2022
 1. Added .form files
+
+// Change log: 28/2/2022
+1. Updated and add multilingual to AccountInformationForm.
+2. Remove and reupdate form files, except AccountInformationForm
