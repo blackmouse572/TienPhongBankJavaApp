@@ -1,6 +1,4 @@
-package main.java.Model ;
-
-import main.java.Models.Database.*;
+package main.java.Models.UserManagment;
 
 public class UserManager {
 

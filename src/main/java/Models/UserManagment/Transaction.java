@@ -1,8 +1,10 @@
-package main.java.Model;
+package main.java.Models.UserManagment;
+
+import main.java.Models.UserManagment.User;
 
 import java.sql.Time;
 
-public record Transaction(User sender,  User receiver,float moneyAmount ,String action, String note,  Time time) {
+public record Transaction(User sender, User receiver, float moneyAmount , String action, String note, Time time) {
 
     public User getReceiver(){
         return receiver;
