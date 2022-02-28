@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "longassignmentlab221",
+  "private_key_id": "0b2ae308233285adc8be2c848a21e6ef883043e9",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDvdLPAhfMvX20Z\nLp9Ih1XBje4EYz7fYQJ7ijI8BgnuuZS5qBbjjXpNifnw3t/OsRqWRW1Fl1wpDBtY\nl+MhRmkYUmjucaYMIUPbhvrVNh+GDISkyi3DsfS/bFK0AigplFhvB7sNUtww7VtS\nBway/lLoHVbEiP++hX2hMDSkpkX8B1CO+3Q0rWZMItJqKxuH/EQjqDGClyDDKV4c\nFTxVqAQk9R/DXSLXDpMnHkqZVzelCqflN3XAyNx8VH2bwA7H2ohJT4lPp6DlUhEm\ngrpPGBFQET8D0dKV9jFlAABK+7IZ/3P4U1QO9W+XxNDodahH6RVWSuBdbSpuQX2F\nNeoC9kKdAgMBAAECggEAUjSrXSXfRd0p1CJYVor3mtpB40m7FO717jmUY1zjXgxi\nDZayPO6eFS6QGuw4w3mzmfE9wU1kO0dHwBNsy0ij3dC0618i1Tk6VYwyYq4RBnEX\nvIcYTP2z+1+RyPCQny2panyp77oJk9Z4qmF1IFAFYGBqIFC0E9E6PvMQr5HRpuKl\n+VBvsQWTAzu5b6cU7S7mEkglU2DJQc51FrCAbJsU659D+X5of9XmgY9hUED0F/Af\nfosHzQIEfvsrZxgpOr7Zq8g90KpN2pQx+kioIwqQ5Wlv8hNgN/m+XBcvVzqBWu13\nqCaOAeom2rcDoeuWmIm+RYueycUixGdkuORNYcbHNQKBgQD5jPPL209QEM1PCAY3\nwI1dnPizwbWMtQc8rNk/lBvNYeEw0PP/vZ1/kShhRh+VyZqCxHCtlxC+xsclDqwO\nnbiPONmUWcYaLzmuq65VpLccqQioO5AdZ+E01TomIiAP9y2kDUE9qcyDrb7o9ZUm\n4m5IzDrwTdQSxG2nwlJD1nR0vwKBgQD1pPZW/TkhObLUjUAiWF8sPSJBzoLV5QP0\n4wkoxBohFvqtnZTLsEpaMbU0XnenZk67xNhqEGp819DiDfzXlzckpbXxCTkCB81Z\nloF8e9Vj7q3GXEMAYu89sVr4l4CLJZ7jQRl1dJNbTDUws8U/o85aFPVMISq9Xt2S\nyRQpuopTowKBgQDo1pbyciHCdqrZPodupX5BBiEWt3qJWq7x8eSR6cM3Ekhmn8/J\nokW9rNacTC1UONKtiFQJ45WAKz/MV7A5wvdcypJYVJr9+2o6i30R86nWV/D35vtE\nNJRwEzM6OUTpIJu5IZTpz/A+PHKQMfOEYGi+C7BCXputFxGpISpYmVP3SQKBgH8R\nJzCWarAKNbyHmK5rgkfTE95wofNdNS+/JaTF1DJbva6Dfk3jUoLXhcGiQEkCviWZ\nTM2I0lzkErRswecP3MGDStt1htzLBmmaVj77m8XG2HNslGglxVXnYYSIckEIY+lw\namf8tqEaicU4qQcjiAHHJ6CK453z7bAZfemcCiP7AoGBAJFk8qAq0wdSyveiNTus\nkSQxmdXT5nELnr96VKKGsVVXQpaqGIAeTMYGXcDLaRUffmkkvz3yWMozw6rt1fzW\ny7DAFKh9e2PNotFrl2k8r4WiSXVIQRoOti+d9HXyZdiih35HSpEWnFLeWJgeE/9A\n1fRKSnvGyY0q92p7WoDZoWM/\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-mpbc7@longassignmentlab221.iam.gserviceaccount.com",
+  "client_id": "114204595580695761450",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-mpbc7%40longassignmentlab221.iam.gserviceaccount.com"
+}
