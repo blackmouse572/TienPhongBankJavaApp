@@ -13,9 +13,9 @@ Members:
 
 ## Folder Structure
 
-The workspace contains two folders by default, where:
+The workspace contains two folders by default, where _(in `./src/java` folder)_:
 
-- `src`: the folder to maintain sources.
+- `View`: the folder contain GUI and Text views.
 - `lib`: the folder to maintain dependencies.
 - `ultis`: the folder contain tools, ultilities help to code faster like `Validation.js`.
 - `models`: the folder contains Class models (Abstract class, Interface class).

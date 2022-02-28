@@ -11,10 +11,11 @@ public class User {
     private String phoneNumber;
     private String emailAddress;
     private String streetAddress;
-    private Stack<Transaction> TH;
+    private Stack<TransactionInfo> TH;
 
     public User(){
         this.updateInformation();
+        // TODO: Random accountID
         this.setPassword();
     }
 
@@ -27,7 +28,7 @@ public class User {
         this.emailAddress = emailAddress;
         this.streetAddress = streetAddress;
     }
-    // TODO get and set (@lil_ink)
+    // TODO get and set
 
     public void updateInformation() {
         System.out.print("Input name: ");
@@ -57,12 +58,12 @@ public class User {
         return this.password;
     }
 
-    public void addTransactionInfo(Transaction TI){
+    public void addTransactionInfo(TransactionInfo TI){
         this.TH.push(TI);
     }
 
     public void getTransactionHistory(){
-        for (Transaction e : this.TH) {
+        for (TransactionInfo e : this.TH) {
             System.out.println(e);
         }
     }
