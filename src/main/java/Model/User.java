@@ -1,26 +1,22 @@
-package Model;
+package main.java.Model;
 
 import java.util.Stack;
 
 public class User {
-    private String accountID;
+    private String phoneNumber;
     private String password;
     private String name;
     private float accountBalance;
     private String citizenID;
-    private String phoneNumber;
     private String emailAddress;
     private String streetAddress;
     private Stack<Transaction> TH;
 
     public User(){
-        this.updateInformation();
-        // TODO: Random accountID
-        this.setPassword();
+
     }
 
-    public User(String accountID, String password, String name, float accountBalance, String citizenID, String phoneNumber, String emailAddress, String streetAddress){
-        this.accountID = accountID;
+    public User(String password, String name, float accountBalance, String citizenID, String phoneNumber, String emailAddress, String streetAddress){
         this.password = password;
         this.accountBalance = accountBalance;
         this.citizenID = citizenID;
@@ -29,14 +25,6 @@ public class User {
         this.streetAddress = streetAddress;
     }
 
-
-    public String getAccountID() {
-        return accountID;
-    }
-
-    public void setAccountID(String accountID) {
-        this.accountID = accountID;
-    }
 
     public void setPassword(String password) {
         this.password = password;
@@ -70,6 +58,11 @@ public class User {
         return phoneNumber;
     }
 
+    public void setPhoneNumber(){
+        // TODO validate number
+        this.phoneNumber = "";
+    }
+
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
@@ -99,12 +92,12 @@ public class User {
     }
 
     public void updateInformation() {
+        System.out.print("Input phone number ");
+        // TODO: Check Valid Phone number
         System.out.print("Input name: ");
         // TODO: Check Valid name
         System.out.print("Input Citizen ID ");
         // TODO: Check Valid Citizen ID
-        System.out.print("Input phone number ");
-        // TODO: Check Valid Phone number
         System.out.print("Input email");
         // TODO: Check valid Email
         System.out.print("Input Address(Optional)");
@@ -130,6 +123,7 @@ public class User {
         this.TH.push(TI);
     }
 
+
     public void getTransactionHistory(){
         for (Transaction e : this.TH) {
             System.out.println(e);
@@ -137,11 +131,10 @@ public class User {
     }
 
     public void display(){
-        System.out.println("Account ID:" +this.accountID);
+        System.out.println("Phone Number:" +this.phoneNumber);
         System.out.println("Name:" +this.name);
         System.out.println("Account Balance:" +this.accountBalance);
         System.out.println("Citizen ID:" +this.citizenID);
-        System.out.println("Phone Number:" +this.phoneNumber);
         System.out.println("Email:" +this.emailAddress);
         System.out.println("Street Address:" +this.streetAddress);
     }
