@@ -112,6 +112,9 @@
               <ResourceString bundle="gui/Bundle_vi_VN_gui.properties" key="BankGUI.jMenu3.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
+          </AuxValues>
           <SubComponents>
             <Menu class="javax.swing.JMenu" name="jMenuLanguage">
               <Properties>
