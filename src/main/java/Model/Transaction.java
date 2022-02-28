@@ -1,8 +1,8 @@
-package main.java.Model;
+package Model;
 
 import java.sql.Time;
 
-public record Transaction(User sender,  User receiver,Double moneyAmount ,String action, String note,  Time time) {
+public record Transaction(User sender,  User receiver,float moneyAmount ,String action, String note,  Time time) {
 
     public User getReceiver(){
         return receiver;
@@ -12,7 +12,7 @@ public record Transaction(User sender,  User receiver,Double moneyAmount ,String
         return sender;
     }
 
-    public Double getMoneyAmount(){
+    public float getMoneyAmount(){
         return moneyAmount;
     }
 
