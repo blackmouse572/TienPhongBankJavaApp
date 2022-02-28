@@ -1,4 +1,4 @@
-package main.java.Models.UserManagment;
+package main.java.Models.UserManagement;
 
 public class UserManager {
 

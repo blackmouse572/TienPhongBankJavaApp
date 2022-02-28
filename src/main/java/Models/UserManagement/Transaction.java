@@ -1,6 +1,4 @@
-package main.java.Models.UserManagment;
-
-import main.java.Models.UserManagment.User;
+package main.java.Models.UserManagement;
 
 import java.sql.Time;
 
