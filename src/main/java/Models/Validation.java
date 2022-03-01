@@ -18,6 +18,18 @@ public class Validation {
                 }
             }
         }
+    public static String checkInputAddress(){
+        //loop until user input correct
+        while (true) {
+            String result = in.nextLine().trim();
+            if (result.isEmpty()) {
+                System.err.println("Not empty");
+                System.out.print("Enter again: ");
+            } else {
+                return result;
+            }
+        }
+    }
     public static String checkInputPhone(){
         while (true) {
             String result = in.nextLine().trim();
