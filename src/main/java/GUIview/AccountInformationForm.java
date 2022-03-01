@@ -71,6 +71,8 @@ public class AccountInformationForm extends javax.swing.JPanel {
         descTxt2 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         descTxt4 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        descTxt6 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         descTxt5 = new javax.swing.JTextField();
 
@@ -122,6 +124,12 @@ public class AccountInformationForm extends javax.swing.JPanel {
         jPanel3.add(jLabel7);
         jPanel3.add(descTxt4);
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel9.setText(bundle.getString("AccountInformationForm.jLabel9.text")); // NOI18N
+        jPanel3.add(jLabel9);
+        jPanel3.add(descTxt6);
+
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText(bundle.getString("AccountInformationForm.jLabel8.text_1")); // NOI18N
@@ -164,6 +172,7 @@ public class AccountInformationForm extends javax.swing.JPanel {
     private javax.swing.JTextField descTxt3;
     private javax.swing.JTextField descTxt4;
     private javax.swing.JTextField descTxt5;
+    private javax.swing.JTextField descTxt6;
     public static javax.swing.JLabel jLabel1;
     public static javax.swing.JLabel jLabel2;
     public static javax.swing.JLabel jLabel3;
@@ -171,6 +180,7 @@ public class AccountInformationForm extends javax.swing.JPanel {
     public static javax.swing.JLabel jLabel6;
     public static javax.swing.JLabel jLabel7;
     public static javax.swing.JLabel jLabel8;
+    public static javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
