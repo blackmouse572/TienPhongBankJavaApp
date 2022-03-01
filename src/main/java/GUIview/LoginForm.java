@@ -62,7 +62,7 @@ public class LoginForm extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jPasswordField1 = new javax.swing.JPasswordField();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -117,7 +117,13 @@ public class LoginForm extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel4.setText(bundle.getString("LoginForm.jLabel4.text")); // NOI18N
         jPanel2.add(jLabel4);
-        jPanel2.add(jTextField2);
+
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jPasswordField1);
 
         add(jPanel2, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -127,7 +133,7 @@ public class LoginForm extends javax.swing.JPanel {
         
         // code cua ho
         int accNo=Integer.parseInt(jTextField1.getText());
-//        String pass=new String(passTxt.getPassword());
+        String pass=new String( jPasswordField1.getPassword());
 //        BankGUI.curAcc=BankGUI.bank.doLogin(accNo, pass);
 //        BankGUI.transMenu.setEnabled(true);
 //        JOptionPane.showMessageDialog(this, "Welcome customer "+BankGUI.curAcc.getAccName());
@@ -149,6 +155,10 @@ public class LoginForm extends javax.swing.JPanel {
         BankGUI.bank.pack();
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton jButton1;
@@ -159,7 +169,7 @@ public class LoginForm extends javax.swing.JPanel {
     public static javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
