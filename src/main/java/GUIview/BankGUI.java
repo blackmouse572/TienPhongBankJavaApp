@@ -16,6 +16,7 @@ public class BankGUI extends javax.swing.JFrame {
     /**
      * Creates new form BankGUI
      */
+    public static BankGUI bank = new BankGUI();
     public BankGUI() {
         initComponents();
         mainPane.setBottomComponent(new LoginForm());
@@ -555,7 +556,7 @@ public class BankGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemWithdrawal;
     private javax.swing.JMenu jMenuLanguage;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JSplitPane mainPane;
+    public static javax.swing.JSplitPane mainPane;
     public static javax.swing.JMenu transMenu;
     // End of variables declaration//GEN-END:variables
 }
