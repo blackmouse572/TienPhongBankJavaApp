@@ -1,63 +1,70 @@
+package Models;
+import TextView.Text;
 import java.util.Scanner;
+
 
 public class Validation {
     private final static Scanner in = new Scanner (System.in);
 
-        public static String checkInputName(){
+        public static String checkInputName(Text text){
             while (true) {
                 String result = in.nextLine().trim();
                 if (result.isEmpty()) {
                     //if name contain nothing then the program will tell you to type again
-                    System.err.println("Name not empty");
-                    System.out.print("Enter again: ");
+                    System.err.println(text.notEmpty);
+                    System.out.print(text.enterAgain);
                 } else if(result.matches("[a-zA-Z ]+")){
                     return result;
                     //Name must be words not a number
-                } else {System.err.println("Alphabet only");
-                    System.out.print("Enter name again: ");
+                } else {System.err.println(text.anphabetOnly);
+                    System.out.print(text.enterAgain);
                 }
             }
         }
-    public static String checkInputPhone(){
+        
+        
+    public static String checkInputPhone(Text text){
         while (true) {
             String result = in.nextLine().trim();
             if (result.isEmpty()) {
-                System.err.println("Phone not empty(10 digits)");
-                System.out.print("Enter again: ");
+                System.err.println(text.notEmpty);
+                System.out.print(text.enterAgain);
                 // input number limit is 10 and start with 0 as a phone number (Ex:0234543545)
             } else if(result.matches("(0[3|5|7|8|9])+([0-9]{8})\b")){
                 return result;
-            } else {System.err.println("Number only(10 digits)");
-                System.out.print("Enter phone again: ");
+            } else {System.err.println(text.numberOnly10);
+                System.out.print(text.enterAgain);
             }
         }
     }
-    public static String checkInputEmail() {
+    
+    
+    public static String checkInputEmail(Text text) {
         while(true){
             String email = in.nextLine().trim();
             if (email.isEmpty()) {
-                System.err.println("Email not empty");
-                System.out.print("Enter again: ");
+                System.err.println(text.notEmpty);
+                System.out.print(text.enterAgain);
                 //email does not specialized case
             } else if(email.matches("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$")){
                 return email;
-            } else {System.err.println("Wrong format!!!");
-                System.out.print("Enter email again: ");
+            } else {System.err.println(text.wrongFomat);
+                System.out.print(text.enterAgain);
                 //email always end up with .com to be valid to create and check
             }
         }
     }
-    public static String checkInputID(){
+    public static String checkInputID(Text text){
         while (true) {
             String result = in.nextLine().trim();
             if (result.isEmpty()) {
-                System.err.println("ID not empty(10 digits)");
-                System.out.print("Enter again: ");
+                System.err.println(text.notEmpty);
+                System.out.print(text.enterAgain);
             } else if(result.matches("(0)+([0-9]{11})\b")){
                 //ID must be 12 max
                 return result;
-            } else {System.err.println("Number only(12 digits, start with 0)");
-                System.out.print("Enter ID again: ");
+            } else {System.err.println(text.numberOnly12);
+                System.out.print(text.enterAgain);
             }
         }
     }
@@ -66,19 +73,19 @@ public class Validation {
         if(balance > 30000) return true;
         else return false;
     }
-    public static String checkInputPassword(){
+    public static String checkInputPassword(Text text){
         while (true) {
             String result = in.nextLine().trim();
             if (result.isEmpty()) {
-                System.err.println("Password empty");
+                System.err.println(text.notEmpty);
                 //if password is empty, it will make the program to run again
-                System.out.print("Enter again: ");
+                System.out.print(text.enterAgain);
                 //Password must contain more then 8 to 22 max
             } else if(result.matches("([0-9a-zA-Z])(?=\\S+$).{7,20}$")){
                 //Password do not contain space or special letter case
                 return result;
-            } else {System.err.println("Alphabet and number only");
-                System.out.print("Enter again: ");
+            } else {System.err.println(text.anphabetAndNumberOnly);
+                System.out.print(text.enterAgain);
             }
         }
     }
@@ -87,3 +94,21 @@ public class Validation {
             //If new password is the same as the old password then it will fail to change to the new one
         else return true;
     }
+    
+     public static int checkInputIntLimit(Text text,int min, int max) {
+        //loop until user input correct
+        while (true) {
+            try {
+                int result = Integer.parseInt(in.nextLine().trim());
+                if (result < min || result > max) {
+                    throw new NumberFormatException();
+
+                }
+                return result;
+            } catch (NumberFormatException e) {
+                System.err.println(text.numberInRange+"[" + min + ", " + max + "]");
+                System.out.print(text.enterAgain);
+            }
+        }
+    }
+}

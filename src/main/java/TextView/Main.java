@@ -4,7 +4,8 @@
  */
 package TextView;
 
-import Database.FirebaseInit;
+import Models.Database.FirebaseInit;
+import main.java.Models.UserManagement.User;
 
 public class Main {
     
@@ -18,7 +19,6 @@ public class Main {
             Text text = new Text(langFlag);
             
             Menu1 menu1 = new Menu1();
-            //if in menu1 user choose 3, menu1 return false 
             menu1.run(text);
         }
     }    

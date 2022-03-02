@@ -6,10 +6,12 @@ package TextView;
 
 
 public class Text {
-    String loginTitle,turnBackText,loginSuccessText,getPhoneText, getPassText, CapchaText, getCapchaText,
+    public String loginTitle,turnBackText,loginSuccessText,getPhoneText, getPassText, CapchaText, getCapchaText,
             regesterTitle,userNameText, idNumText, emailText = "Email: " , addressText, passConfirmText, regesterSuccessText,
             accNumText,AccInFoTitle;
-    String [] menu1,menu2  ; 
+    //validation:
+    public String notEmpty,enterAgain,anphabetOnly,numberOnly10,wrongFomat,numberOnly12,anphabetAndNumberOnly,numberInRange;
+    public String [] menu1,menu2  ; 
 
     public Text(String lang) {
         switch(lang){
@@ -31,6 +33,15 @@ public class Text {
                 this.addressText= "Dia Chi: ";
                 this.accNumText="So tai khoan: ";
                 this.AccInFoTitle="-------THONG TIN TAI KHOAN-------";
+                this.notEmpty = "Khong duoc bo trong";
+                this.enterAgain = "Nhap lai: ";
+                this.anphabetOnly="Chi nhap chu cai";
+                this.numberOnly10 = "Chi nhap so(10 chu so)";
+                this.wrongFomat = "Sai dinh dang!!!";
+                this.numberOnly12="Chi nhap so(12 chu so, bat dau bang 0)";
+                this.anphabetAndNumberOnly = "Chi nhap chu cai va so";
+                this.numberInRange = "Nhap so trong khoang ";
+                
                 break;
             case "EN":
                 String[] enMenu1 = {"TIEN PHONG BANK","Log in","Regester","Turn back (Quay lai)"};
@@ -50,6 +61,14 @@ public class Text {
                 this.addressText= "Adress: ";
                 this.accNumText="Acount number: ";
                 this.AccInFoTitle="-------ACCOUNT INFORMATON-------";
+                this.notEmpty = "Not empty";
+                this.enterAgain = "Enter again: ";
+                this.anphabetOnly = "Alphabet only";
+                this.numberOnly10 = "Number only(10 digits)";
+                this.wrongFomat="Wrong format!!!";
+                this.numberOnly12="Number only(12 digits, start with 0)";
+                this.anphabetAndNumberOnly = "Alphabet and number only";
+                this.numberInRange = "Please input number in rage ";
                 break;            
         }
     }  
