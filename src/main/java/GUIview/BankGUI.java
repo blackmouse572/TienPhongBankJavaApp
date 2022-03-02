@@ -53,6 +53,7 @@ public class BankGUI extends javax.swing.JFrame {
         jMenuItemChangePass = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(400, 500));
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
         mainPane.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
