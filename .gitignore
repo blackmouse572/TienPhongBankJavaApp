@@ -1,2 +1,3 @@
 .vscode
 .idea
+target/classes/Models/Database/FirebaseInit.class
