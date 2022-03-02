@@ -75,7 +75,6 @@ public class ChangePasswordForm extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         passTxt3 = new javax.swing.JPasswordField();
 
-        setPreferredSize(new java.awt.Dimension(369, 254));
         setLayout(new java.awt.BorderLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
