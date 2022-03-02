@@ -4,9 +4,13 @@
  */
 package TextView;
 
+import Database.FirebaseInit;
+
 public class Main {
     
     public static void main(String[] args) {
+        new FirebaseInit().initialize();
+        
         Menu0 menu0 = new Menu0();
         while (true) {            
             String langFlag = menu0.run();
@@ -53,11 +57,12 @@ class Menu1 extends  Menu{
             if (curentUser!=null){
                 Menu2 menu2 = new Menu2();
                 menu2.run(text);
+                curentUser = null;
             }
         } 
     }
 }
-
+//--------------------------------------------
 class Menu2 extends Menu{
     public void run(Text text){
         while (true) {            
