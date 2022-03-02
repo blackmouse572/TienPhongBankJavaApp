@@ -3,9 +3,10 @@ package main.java.Models.UserManagement;
 import java.util.Stack;
 
 public class User {
-    private String phoneNumber;
+    private String accountID;
     private String password;
     private String name;
+    private String phoneNumber;
     private float accountBalance;
     private String citizenID;
     private String emailAddress;
@@ -16,7 +17,8 @@ public class User {
 
     }
 
-    public User(String password, String name, float accountBalance, String citizenID, String phoneNumber, String emailAddress, String streetAddress){
+    public User(String accountID ,String password, String name, float accountBalance, String citizenID, String phoneNumber, String emailAddress, String streetAddress){
+        this.accountID = accountID;
         this.password = password;
         this.accountBalance = accountBalance;
         this.citizenID = citizenID;

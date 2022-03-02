@@ -8,35 +8,25 @@ public class UserManager {
 
         currentUser.updateInformation();
         currentUser.setPassword();
-        try {
-            Models.Database.UserFirebaseService.signUp(currentUser);
-        }
-        catch (Exception e){
-            System.out.println(e.getMessage());
-        }
+        // TODO: @Bin Call API to signUp
 
         return true;
     }
 
     public boolean checkUser(){
-        // TODO: Use validation
+        // TODO: @Duc Use validation
         String phoneNumber = "";
         String password = "";
 
         // TODO: New User that have the same information
-        try {
-            Models.Database.UserFirebaseService.signIn(phoneNumber, password);
-        }
-        catch (Exception e){
-            System.out.println(e.getMessage());
-        }
+        // TODO: @Bin Call API To SignIn
 
         return true;
     }
 
     public void transferMoney(){
         // TODO: valid to check float
-        float moneyToTransfer = 50000;
+        float moneyToTransfer = 500;
 
         // Money to transfer must less than money in account
         // And Account must have at least 50000 in balance after transfer
@@ -45,18 +35,12 @@ public class UserManager {
             System.out.println("Money in account is not enough");
         }
         else if (moneyToTransfer > 30000){
-
-            try {
-                Models.Database.UserFirebaseService.updateUserAccountBalance(currentUser.getPhoneNumber(), moneyToTransfer);
-            }
-            catch (Exception e){
-                System.out.println(e.getMessage());
-            }
-
-            // TODO: API retrieve USER phone number if Existed, except if false
+            // TODO: @Bin API retrieve RECEIVER ID return ID if Existed, except if false
             String receiver = "";
 
+            // TODO: @Bin Call API to Update User Account Balance
 
+            // TODO: @Bin call API to update Transaction
         }
 
     }
