@@ -87,3 +87,19 @@ public class Validation {
             //If new password is the same as the old password then it will fail to change to the new one
         else return true;
     }
+    public static int checkInputIntLimit(int min, int max) {
+        //loop until user input correct
+        while (true) {
+            try {
+                int result = Integer.parseInt(in.nextLine().trim());
+                if (result < min || result > max) {
+                    throw new NumberFormatException();
+
+                }
+                return result;
+            } catch (NumberFormatException e) {
+                System.err.println("Please input number in rage [" + min + ", " + max + "]");
+                System.out.print("Enter again: ");
+            }
+        }
+    }
