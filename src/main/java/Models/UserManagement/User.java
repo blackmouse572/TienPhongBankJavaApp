@@ -1,6 +1,5 @@
 package main.java.Models.UserManagement;
 
-import java.util.Stack;
 
 public class User {
     private String accountID;
@@ -11,7 +10,6 @@ public class User {
     private String citizenID;
     private String emailAddress;
     private String streetAddress;
-    private Stack<Transaction> TH;
 
     public User(){
 
@@ -27,6 +25,13 @@ public class User {
         this.streetAddress = streetAddress;
     }
 
+    public void setAccountID(String accountID) {
+        this.accountID = accountID;
+    }
+
+    public String getAccountID(){
+        return this.accountID;
+    }
 
     public void setPassword(String password) {
         this.password = password;
@@ -85,14 +90,6 @@ public class User {
         this.streetAddress = streetAddress;
     }
 
-    public Stack<Transaction> getTH() {
-        return TH;
-    }
-
-    public void setTH(Stack<Transaction> TH) {
-        this.TH = TH;
-    }
-
     public void updateInformation() {
         System.out.print("Input phone number ");
         phoneNumber = Validation.checkInputPhone();
@@ -114,7 +111,7 @@ public class User {
     public boolean setPassword(){
         System.out.print("Input password");
         String newPassword = Validation.checkInputPassword();
-        if(Validation.checkSamePassword(this.password,newPassword)
+        if(Validation.checkSamePassword(this.password,newPassword))
         return true;
         else return false;
     }
@@ -122,18 +119,9 @@ public class User {
         return this.password;
     }
 
-    public void addTransactionInfo(Transaction TI){
-        this.TH.push(TI);
-    }
-
-
-    public void getTransactionHistory(){
-        for (Transaction e : this.TH) {
-            System.out.println(e);
-        }
-    }
 
     public void display(){
+        System.out.println("Account ID: " + this.accountID);
         System.out.println("Phone Number:" +this.phoneNumber);
         System.out.println("Name:" +this.name);
         System.out.println("Account Balance:" +this.accountBalance);
