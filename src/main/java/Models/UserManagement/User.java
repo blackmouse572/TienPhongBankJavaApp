@@ -95,15 +95,15 @@ public class User {
 
     public void updateInformation() {
         System.out.print("Input phone number ");
-        // TODO: Check Valid Phone number
+        phoneNumber = Validation.checkInputPhone();
         System.out.print("Input name: ");
-        // TODO: Check Valid name
+        name = Validation.checkInputName();
         System.out.print("Input Citizen ID ");
-        // TODO: Check Valid Citizen ID
+        citizenID = Validation.checkInputID();
         System.out.print("Input email");
-        // TODO: Check valid Email
+        emailAddress = Validation.checkInputEmail();
         System.out.print("Input Address(Optional)");
-        // TODO: Set Address
+        streetAddress = Validation.checkInputAddress();
     }
 
     public void setBalance(float balance){
@@ -113,9 +113,10 @@ public class User {
 
     public boolean setPassword(){
         System.out.print("Input password");
-        // TODO: Check valid password
-        // TODO: Check if password was the same
+        String newPassword = Validation.checkInputPassword();
+        if(Validation.checkSamePassword(this.password,newPassword)
         return true;
+        else return false;
     }
     public String getPassword(){
         return this.password;

@@ -58,7 +58,6 @@ public class AccountInformationForm extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -71,17 +70,19 @@ public class AccountInformationForm extends javax.swing.JPanel {
         descTxt2 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         descTxt4 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        descTxt6 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         descTxt5 = new javax.swing.JTextField();
 
-        jPanel1.setLayout(new java.awt.BorderLayout());
+        setLayout(new java.awt.BorderLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("accountinformation/Bundle_vi_VN_accountinformation"); // NOI18N
         jLabel1.setText(bundle.getString("AccountInformationForm.jLabel1.text")); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 1, 10, 1));
-        jPanel1.add(jLabel1, java.awt.BorderLayout.PAGE_START);
+        add(jLabel1, java.awt.BorderLayout.PAGE_START);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 20, 10, 20));
         jPanel3.setLayout(new java.awt.GridLayout(0, 2, 5, 5));
@@ -122,34 +123,19 @@ public class AccountInformationForm extends javax.swing.JPanel {
         jPanel3.add(jLabel7);
         jPanel3.add(descTxt4);
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel9.setText(bundle.getString("AccountInformationForm.jLabel9.text")); // NOI18N
+        jPanel3.add(jLabel9);
+        jPanel3.add(descTxt6);
+
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText(bundle.getString("AccountInformationForm.jLabel8.text")); // NOI18N
         jPanel3.add(jLabel8);
         jPanel3.add(descTxt5);
 
-        jPanel1.add(jPanel3, java.awt.BorderLayout.CENTER);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        add(jPanel3, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
     private void amountTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountTxtActionPerformed
@@ -164,6 +150,7 @@ public class AccountInformationForm extends javax.swing.JPanel {
     private javax.swing.JTextField descTxt3;
     private javax.swing.JTextField descTxt4;
     private javax.swing.JTextField descTxt5;
+    private javax.swing.JTextField descTxt6;
     public static javax.swing.JLabel jLabel1;
     public static javax.swing.JLabel jLabel2;
     public static javax.swing.JLabel jLabel3;
@@ -171,7 +158,7 @@ public class AccountInformationForm extends javax.swing.JPanel {
     public static javax.swing.JLabel jLabel6;
     public static javax.swing.JLabel jLabel7;
     public static javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 }

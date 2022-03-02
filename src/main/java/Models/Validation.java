@@ -39,7 +39,7 @@ public class Validation {
                 System.err.println("Email not empty");
                 System.out.print("Enter again: ");
                 //email does not specialized case
-            } else if(email.matches("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$")){
+            } else if(email.matches("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$")){
                 return email;
             } else {System.err.println("Wrong format!!!");
                 System.out.print("Enter email again: ");
@@ -74,7 +74,7 @@ public class Validation {
                 //if password is empty, it will make the program to run again
                 System.out.print("Enter again: ");
                 //Password must contain more then 8 to 22 max
-            } else if(result.matches("([0-9a-zA-Z])(?=\S+$).{7,20}$")){
+            } else if(result.matches("([0-9a-zA-Z])(?=\\S+$).{7,20}$")){
                 //Password do not contain space or special letter case
                 return result;
             } else {System.err.println("Alphabet and number only");
@@ -82,9 +82,8 @@ public class Validation {
             }
         }
     }
-    public static boolean checkSamePassword(String oldP, String newP){
-        if(oldP.equals(newP)) return false;
-        //If new password is the same as the old password then it will fail to change to the new one
+    public static boolean checkSamePassword(String oldP, String newP) {
+        if (oldP.equals(newP)) return false;
+            //If new password is the same as the old password then it will fail to change to the new one
         else return true;
     }
-}
