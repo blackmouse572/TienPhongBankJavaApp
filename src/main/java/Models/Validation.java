@@ -87,7 +87,7 @@ public class Validation {
             //If new password is the same as the old password then it will fail to change to the new one
         else return true;
     }
-    public static String checkInputAddress() {
+    public static String checkInputString() {
         //loop until user input correct
         while (true) {
             String result = in.nextLine().trim();
