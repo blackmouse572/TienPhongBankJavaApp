@@ -1,6 +1,7 @@
 package Models.Database;
 
-import Model.User;
+
+import Models.UserManagement.User;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
@@ -27,8 +28,8 @@ public class UserFirebaseService {
         }
         //Push new user info to database
         ApiFuture<DocumentReference> future = db.collection("Account").add(newUser);
-        System.out.println("Added user with ID: " + future.get().getId());
-        future.get().getId();
+
+        System.out.println("User created: " + newUser);
         System.out.println("Sign up successful");
         return newUser;
     }
@@ -56,17 +57,9 @@ public class UserFirebaseService {
      * @param accountID: ID of user.
      * @return true if account ID already exists, false if not.
      */
-    private static boolean checkIfAccountIDExists(String accountID) {
-        try {
-            User user = retrieveUser(accountID);
-            if (user.getAccountID() != null) {
-                System.out.println("Account ID exists");
-                return true;
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return false;
+    private static boolean checkIfAccountIDExists(String accountID) throws InterruptedException, ExecutionException {
+        User user = retrieveUser(accountID);
+        return user.getAccountID() != null;
     }
 
     /**
@@ -75,18 +68,16 @@ public class UserFirebaseService {
      * @param accountID: ID of user.
      * @return User object if user exists, null if not.
      */
-    public static @Nullable User retrieveUser(String accountID) {
-        try {
-            account = db.collection("Account");
-            Query query = account.whereEqualTo("accountID", accountID);
-            ApiFuture<QuerySnapshot> future = query.get();
-            return future.get().getDocuments().get(0).toObject(User.class);
+    public static @Nullable User retrieveUser(String accountID) throws InterruptedException, ExecutionException {
 
-        } catch (Exception e) {
-            System.out.println("Retrieve user failed");
-            System.out.println(e.getMessage());
+        account = db.collection("Account");
+        Query query = account.whereEqualTo("accountID", accountID);
+        ApiFuture<QuerySnapshot> future = query.get();
+        QuerySnapshot querySnapshot = future.get();
+        if (querySnapshot.isEmpty()) {
+            throw new IllegalStateException("User does not exist");
         }
-        return null;
+        return querySnapshot.toObjects(User.class).get(0);
     }
 
     /**
@@ -124,7 +115,6 @@ public class UserFirebaseService {
 
     /**
      * Used to change user's password. <B>Assumed</B> that the user exists.
-     *
      * @param accountID   current account ID.
      * @param oldPassword current password.
      * @param newPassword new password.
@@ -149,22 +139,20 @@ public class UserFirebaseService {
 
     /**
      * Used to change user's account balance. <B>Assumed</B> that the user exists.
-     * @param accountID current account ID.
+     *
+     * @param accountID      current account ID.
      * @param accountBalance new account balance.
-     * @return true if account balance change successful, false if not.
      */
-    public static boolean updateUserAccountBalance(String accountID, float accountBalance) throws  InterruptedException, ExecutionException {
+    public static void updateUserAccountBalance(String accountID, float accountBalance) throws InterruptedException, ExecutionException {
         try {
             User user = retrieveUser(accountID);
             if (user != null) {
                 user.setBalance(accountBalance);
                 account.document(accountID).set(user);
                 System.out.println("Update user account balance successful");
-                return true;
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return false;
     }
 }
