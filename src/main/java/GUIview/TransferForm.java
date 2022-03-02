@@ -58,7 +58,6 @@ public class TransferForm extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
@@ -74,14 +73,14 @@ public class TransferForm extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         descTxt4 = new javax.swing.JTextField();
 
-        jPanel1.setLayout(new java.awt.BorderLayout());
+        setLayout(new java.awt.BorderLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("transfer/Bundle_vi_VN_transfer"); // NOI18N
         jLabel1.setText(bundle.getString("TransferForm.jLabel1.text")); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 1, 10, 1));
-        jPanel1.add(jLabel1, java.awt.BorderLayout.PAGE_START);
+        add(jLabel1, java.awt.BorderLayout.PAGE_START);
 
         jButton2.setText(bundle.getString("TransferForm.jButton2.text")); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -91,7 +90,7 @@ public class TransferForm extends javax.swing.JPanel {
         });
         jPanel2.add(jButton2);
 
-        jPanel1.add(jPanel2, java.awt.BorderLayout.PAGE_END);
+        add(jPanel2, java.awt.BorderLayout.PAGE_END);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 20, 10, 20));
         jPanel3.setLayout(new java.awt.GridLayout(0, 2, 5, 5));
@@ -132,28 +131,7 @@ public class TransferForm extends javax.swing.JPanel {
         jPanel3.add(jLabel7);
         jPanel3.add(descTxt4);
 
-        jPanel1.add(jPanel3, java.awt.BorderLayout.CENTER);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        add(jPanel3, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -184,7 +162,6 @@ public class TransferForm extends javax.swing.JPanel {
     public static javax.swing.JLabel jLabel5;
     public static javax.swing.JLabel jLabel6;
     public static javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables

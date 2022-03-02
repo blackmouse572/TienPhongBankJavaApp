@@ -95,6 +95,19 @@ public class Validation {
         else return true;
     }
     
+    public static String checkInputString(Text text) {
+        //loop until user input correct
+        while (true) {
+            String result = in.nextLine().trim();
+            if (result.isEmpty()) {
+                System.err.println(text.notEmpty);
+                System.out.print(text.enterAgain);
+            } else {
+                return result;
+            }
+        }
+    }
+    
      public static int checkInputIntLimit(Text text,int min, int max) {
         //loop until user input correct
         while (true) {

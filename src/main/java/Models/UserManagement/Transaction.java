@@ -32,7 +32,7 @@ public record Transaction(User sender, User receiver, float moneyAmount , String
     public String toString() {
         return "Transfer Information{" +
                 "action = " + action + '\'' +
-                ", note = " + note + '\'' +
+                "note = " + note + '\'' +
                 "sender = " + sender + '\'' +
                 "receiver = " + receiver + '\'' +
                 "time = " + time + '\'' +
