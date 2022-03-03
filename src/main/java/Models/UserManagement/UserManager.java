@@ -51,7 +51,7 @@ public class UserManager {
         // Money to transfer must less than money in account
         // And Account must have at least 50000 in balance after transfer
         if (currentUser.getAccountBalance() < moneyToTransfer + 50000) {
-            System.out.println("Money in account is not enough");
+            System.out.println(text.notEnoughMoney);
         }
         // The money to transfer must greater ot equal to 30000
         else if (moneyToTransfer > 30000) {
@@ -87,7 +87,7 @@ public class UserManager {
         // And Account must have at least 50000 in balance after transfer
 
         if (currentUser.getAccountBalance() < moneyToWithdraw + 50000) {
-            System.out.println("Money in account is not enough");
+            System.out.println(text.notEnoughMoney);
         }
         // The money to transfer must greater ot equal to 30000
         else if (moneyToWithdraw > 30000) {
@@ -112,12 +112,11 @@ public class UserManager {
         float moneyToDeposit = 10000;
 
         if (moneyToDeposit < 10000) {
-            System.out.println("The Amount of Money is too low. Must be greater than 10,000");
+            System.out.println(text.lowAmountMoney);
         } else {
             String action = "Add money to account";
 
             try {
-                // TODO: @Bin Call API to Update User Account Balance
                 //Create new transaction
                 Transaction newTransaction = new Transaction(currentUser, moneyToDeposit, action);
                 TransactionFirebaseService.depositTransaction(newTransaction);

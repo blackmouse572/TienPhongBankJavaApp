@@ -1,7 +1,4 @@
-/**
- *
- * @NguyenPhuocTung
- */
+
 package TextView;
 
 import java.util.ArrayList;

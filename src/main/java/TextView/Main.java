@@ -1,20 +1,18 @@
-/**
- *
- * @NguyenPhuocTung
- */
+
 package TextView;
 
 import Models.Database.FirebaseInit;
-import main.java.Models.UserManagement.User;
+import Models.UserManagement.UserManager;
+
 
 public class Main {
     
     public static void main(String[] args) {
         new FirebaseInit().initialize();
         
-        Menu0 menu0 = new Menu0();
+        LangMenu langMenu = new LangMenu();
         while (true) {            
-            String langFlag = menu0.run();
+            String langFlag = langMenu.run();
             //define value for all atribute in Text
             Text text = new Text(langFlag);
             
@@ -24,10 +22,10 @@ public class Main {
     }    
 }
 // ----------------------------------------------
-class Menu0 extends  Menu{
+class LangMenu extends  Menu{ //alow user to choose a language for the program
      public String run(){
-         String[] menu0 = {"TIEN PHONG BANK","English","Vietnamese","Exit"};
-         switch(excute(menu0)){
+         String[] menu = {"TIEN PHONG BANK","English","Vietnamese","Exit"};
+         switch(excute(menu)){
             case 1:
                 return "EN";
             case 2:
@@ -39,48 +37,54 @@ class Menu0 extends  Menu{
     }
 }
 //--------------------------------------------
-class Menu1 extends  Menu{
+class Menu1 extends  Menu{ // user choose to log in or sign up
     public void run(Text text){
-        User curentUser = null;
-        while (true) {            
+        UserManager userManager = new UserManager(text);
+        while (true) {       
+            boolean logFlag = false;
+            
             switch(excute(text.menu1)){
-            case 1:
-                //TODO: LOG IN and assign value for curent user
-                break;
             case 2:
-                //TODO: REGISTER
-                //TODO: if register success, do log in
+                System.out.println(text.regesterTitle); //print title
+                if(!userManager.signUp()) break; // if sign up success, do not break, and go to case 1 to do log in
+            case 1:
+                System.out.println(text.loginTitle); //print title
+                logFlag = userManager.logIn();
                 break;
             case 3:
                 return;
         }
-            if (curentUser!=null){
+            if (logFlag = true){
                 Menu2 menu2 = new Menu2();
-                menu2.run(text);
-                curentUser = null;
+                menu2.run(text,userManager);
             }
         } 
     }
 }
 //--------------------------------------------
 class Menu2 extends Menu{
-    public void run(Text text){
+    public void run(Text text, UserManager userManager){
         while (true) {            
             switch(excute(text.menu2)){
             case 1:
-                //TODO: show account info
+                System.out.println(text.AccInFoTitle); //print title
+                userManager.displayInfo();
                 break;
             case 2:
-                //TODO: Deposit
+                System.out.println(text.depositeTiTle); //print title
+                userManager.deposit();
                 break;
             case 3:
-                //TODO: Withdraw
+                System.out.println(text.withdrawTitle); //print title
+                userManager.withdraw();
                 break;  
             case 4:
-                //TODO: Transfers
+                System.out.println(text.transferTitle); //print title
+                userManager.transferMoney();
                 break;  
             case 5:
-                //TODO: Show history
+                System.out.println(text.transactionHistoryTitle); //print title
+                userManager.displayTransactions();
                 break;
             case 6:
                 //TODO: Change password

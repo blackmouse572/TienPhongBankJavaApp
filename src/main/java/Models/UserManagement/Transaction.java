@@ -16,7 +16,7 @@ public class Transaction {
         this.moneyAmount = moneyAmount;
         this.action = action;
         this.note = note;
-        this.time = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());;
+        this.time = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
     }
     //Deposit, Withdraw Constructor
     public Transaction(User sender, float moneyAmount, String action) {
