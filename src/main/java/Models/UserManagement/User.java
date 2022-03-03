@@ -1,5 +1,8 @@
 package main.java.Models.UserManagement;
 
+import Models.Validation;
+import TextView.Text;
+
 
 public class User {
     private String accountID;
@@ -10,11 +13,17 @@ public class User {
     private String citizenID;
     private String emailAddress;
     private String streetAddress;
+    
+    private Text text;
 
-    public User(){
-
+    public User(Text text){
+        this.text =text;
     }
 
+    public void setText(Text text) {
+        this.text = text;
+    }
+    
     public User(String accountID ,String password, String name, float accountBalance, String citizenID, String phoneNumber, String emailAddress, String streetAddress){
         this.accountID = accountID;
         this.password = password;
@@ -91,16 +100,16 @@ public class User {
     }
 
     public void updateInformation() {
-        System.out.print("Input phone number ");
-        phoneNumber = Validation.checkInputPhone();
-        System.out.print("Input name: ");
-        name = Validation.checkInputName();
-        System.out.print("Input Citizen ID ");
-        citizenID = Validation.checkInputID();
-        System.out.print("Input email");
-        emailAddress = Validation.checkInputEmail();
-        System.out.print("Input Address(Optional)");
-        streetAddress = Validation.checkInputAddress();
+        System.out.print(text.phoneNumber);
+        phoneNumber = Validation.checkInputPhone(text);
+        System.out.print(text.userName);
+        name = Validation.checkInputName(text);
+        System.out.print(text.citizenID);
+        citizenID = Validation.checkInputID(text);
+        System.out.print(text.email);
+        emailAddress = Validation.checkInputEmail(text);
+        System.out.print(text.address);
+        streetAddress = Validation.checkInputString(text);
     }
 
     public void setBalance(float balance){
@@ -109,8 +118,8 @@ public class User {
     }
 
     public boolean setPassword(){
-        System.out.print("Input password");
-        String newPassword = Validation.checkInputPassword();
+        System.out.print(text.passWord);
+        String newPassword = Validation.checkInputPassword(text);
         if(Validation.checkSamePassword(this.password,newPassword))
         return true;
         else return false;
@@ -121,12 +130,12 @@ public class User {
 
 
     public void display(){
-        System.out.println("Account ID: " + this.accountID);
-        System.out.println("Phone Number:" +this.phoneNumber);
-        System.out.println("Name:" +this.name);
-        System.out.println("Account Balance:" +this.accountBalance);
-        System.out.println("Citizen ID:" +this.citizenID);
-        System.out.println("Email:" +this.emailAddress);
-        System.out.println("Street Address:" +this.streetAddress);
+        System.out.println(text.accountID + this.accountID);
+        System.out.println(text.phoneNumber +this.phoneNumber);
+        System.out.println(text.userName +this.name);
+        System.out.println(text.accountBalance +this.accountBalance);
+        System.out.println(text.citizenID +this.citizenID);
+        System.out.println(text.email +this.emailAddress);
+        System.out.println(text.address +this.streetAddress);
     }
 }

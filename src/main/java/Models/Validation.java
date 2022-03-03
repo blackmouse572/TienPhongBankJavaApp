@@ -29,7 +29,7 @@ public class Validation {
             if (result.isEmpty()) {
                 System.err.println(text.notEmpty);
                 System.out.print(text.enterAgain);
-                // input number limit is 10 and start with 0 as a phone number (Ex:0234543545)
+                // input number limit is 10 and start with 0 as a inputPhone number (Ex:0234543545)
             } else if(result.matches("(0[3|5|7|8|9])+([0-9]{8})\b")){
                 return result;
             } else {System.err.println(text.numberOnly10);

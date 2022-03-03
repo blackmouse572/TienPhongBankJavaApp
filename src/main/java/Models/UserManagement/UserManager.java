@@ -1,12 +1,19 @@
 package main.java.Models.UserManagement;
 
+import TextView.Text;
 import java.util.Stack;
 
 public class UserManager {
+    Text text;
+    User currentUser;
 
-    User currentUser = new User();
+    public UserManager(Text text) {
+        this.text = text;
+    }
+    
+    
 
-    public boolean createUser(){
+    public boolean signUp(){
 
         currentUser.updateInformation();
         currentUser.setPassword();
@@ -15,13 +22,13 @@ public class UserManager {
         return true;
     }
 
-    public boolean checkUser(){
+    public boolean logIn(){
         // TODO: @Duc Use validation
         String phoneNumber = "";
         String password = "";
 
         // TODO: @Bin Call API To SignIn
-
+        currentUser.setText(text);
         return true;
     }
 
