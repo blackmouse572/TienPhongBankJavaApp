@@ -1,13 +1,35 @@
-package main.java.Models.UserManagement;
+package Models.UserManagement;
 
-import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
-public record Transaction(User sender, User receiver, float moneyAmount , String action, String note, Time time) {
+public class Transaction {
+    User sender, receiver;
+    float moneyAmount ;
+    String action;
+    String note;
+    String time;
+    //Transfer Constructor
+    public Transaction(User sender, User receiver, float moneyAmount, String action, String note) {
+        this.sender = sender;
+        this.receiver = receiver;
+        this.moneyAmount = moneyAmount;
+        this.action = action;
+        this.note = note;
+        this.time = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());;
+    }
+    //Deposit, Withdraw Constructor
+    public Transaction(User sender, float moneyAmount, String action) {
+        this.sender = sender;
+        this.moneyAmount = moneyAmount;
+        this.action = action;
+        this.note = note;
+        this.time = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+    }
 
     public User getReceiver(){
         return receiver;
     }
-
     public User getSender(){
         return sender;
     }
@@ -16,7 +38,7 @@ public record Transaction(User sender, User receiver, float moneyAmount , String
         return moneyAmount;
     }
 
-    public Time getTime(){
+    public String getTime(){
         return time;
     }
 
