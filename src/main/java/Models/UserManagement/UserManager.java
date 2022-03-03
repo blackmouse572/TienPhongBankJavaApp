@@ -24,6 +24,7 @@ public class UserManager {
             UserFirebaseService.signUp(currentUser);
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
+            return false;
         }
         return true;
     }
@@ -38,8 +39,8 @@ public class UserManager {
             currentUser.setText(text);
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
+            return false;
         }
->>>>>>> 0a802c5d59d5752dc052f1bb956a6475e3a06c07
         return true;
     }
 
