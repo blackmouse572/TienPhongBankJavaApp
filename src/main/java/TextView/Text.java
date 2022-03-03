@@ -5,7 +5,7 @@ package TextView;
 public class Text {
     public String loginTitle,turnBack,loginSuccessText,phoneNumber, passWord, CapchaText, getCapchaText,
             regesterTitle,userName, citizenID, email = "Email: " , address,accountBalance, passConfirmText, regesterSuccessText,
-            accountID,AccInFoTitle, notEnoughMoney, lowAmountMoney, depositeTiTle;
+            accountID,AccInFoTitle, notEnoughMoney, lowAmountMoney, depositeTiTle, withdrawTitle, transferTitle,transactionHistoryTitle;
     //validation:
     public String notEmpty,enterAgain,anphabetOnly,numberOnly10,wrongFomat,numberOnly12,anphabetAndNumberOnly,numberInRange;
     public String [] menu1,menu2  ; 
@@ -21,6 +21,9 @@ public class Text {
                 this.regesterTitle="-----------DANG KY-----------";
                 this.AccInFoTitle="-------THONG TIN TAI KHOAN-------";
                 this.depositeTiTle = "-----------NAP TIEN----------";
+                this.withdrawTitle = "----------RUT TIEN----------";
+                this.transferTitle = "-----------CHUYEN TIEN---------";
+                this.transactionHistoryTitle = "---------LICH SU GIAO DICH-----------";
                 this.turnBack = "(Nhap == de quay lai)";
                 this.phoneNumber = "So dien thoai: ";
                 this.passWord = "Mat khau: ";
@@ -52,6 +55,9 @@ public class Text {
                 this.regesterTitle="-----------REGESTER-----------";
                 this.AccInFoTitle="-------ACCOUNT INFORMATON-------";
                 this.depositeTiTle = "----------DEPOSITE---------";
+                this.withdrawTitle = "----------WITHDRAW---------";
+                this.transferTitle = "------------TRANSFER---------";
+                this.transactionHistoryTitle= "-----------TRANSACTION HISTORY---------";
                 this.turnBack = "(Enter == to turn back)";
                 this.phoneNumber = "Phone number: ";
                 this.passWord = "Password: ";
