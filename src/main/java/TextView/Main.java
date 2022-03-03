@@ -25,7 +25,7 @@ public class Main {
 class LangMenu extends  Menu{ //alow user to choose a language for the program
      public String run(){
          String[] menu = {"TIEN PHONG BANK","English","Vietnamese","Exit"};
-         switch(excute(menu)){
+         switch(excute(menu, new Text())){
             case 1:
                 return "EN";
             case 2:
@@ -43,7 +43,7 @@ class Menu1 extends  Menu{ // user choose to log in or sign up
         while (true) {       
             boolean logFlag = false;
             
-            switch(excute(text.menu1)){
+            switch(excute(text.menu1,text)){
             case 2:
                 System.out.println(text.regesterTitle); //print title
                 if(!userManager.signUp()) break; // if sign up success, do not break, and go to case 1 to do log in
@@ -65,7 +65,7 @@ class Menu1 extends  Menu{ // user choose to log in or sign up
 class Menu2 extends Menu{
     public void run(Text text, UserManager userManager){
         while (true) {            
-            switch(excute(text.menu2)){
+            switch(excute(text.menu2,text)){
             case 1:
                 System.out.println(text.AccInFoTitle); //print title
                 userManager.displayInfo();

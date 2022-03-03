@@ -1,14 +1,12 @@
 
 package TextView;
 
+import Models.Validation;
 import java.util.ArrayList;
-import java.util.Scanner;
-
 
 public abstract class  Menu {
     private int userChoice;
     private ArrayList<String> menuText = new ArrayList<>();
-    private Scanner scanner = new Scanner(System.in);
 
     public Menu() { 
     }   
@@ -22,17 +20,16 @@ public abstract class  Menu {
         }
     }
  
-    public int getUserChoice(){
-                userChoice = scanner.nextInt();
-           
-
+    public int getUserChoice(Text text){
+        System.out.println(text.yourChoice);
+        userChoice = Validation.checkInputIntLimit(text, 1, menuText.size());
         return userChoice; 
     }
 
-    public int excute(String[] options){
+    public int excute(String[] options, Text text){
         menuText.clear();
         for(String s:options) menuText.add(s);
         display();
-        return getUserChoice();        
+        return getUserChoice(text);        
         }
 }
