@@ -1,4 +1,4 @@
-package main.java.Models.UserManagement;
+package Models.UserManagement;
 
 import Models.Validation;
 import TextView.Text;

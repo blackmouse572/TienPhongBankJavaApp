@@ -57,7 +57,7 @@ public class UserFirebaseService {
      * @param accountID: ID of user.
      * @return true if account ID already exists, false if not.
      */
-    private static boolean checkIfAccountIDExists(String accountID) throws InterruptedException, ExecutionException {
+    public static boolean checkIfAccountIDExists(String accountID) throws InterruptedException, ExecutionException {
         User user = retrieveUser(accountID);
         return user.getAccountID() != null;
     }

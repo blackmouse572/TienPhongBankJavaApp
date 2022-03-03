@@ -1,6 +1,6 @@
 package Models.Database;
 
-import Model.Transaction;
+import Models.UserManagement.Transaction;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.CollectionReference;
 import com.google.cloud.firestore.Firestore;
@@ -21,7 +21,7 @@ public class TransactionFirebaseService {
      * It is <B>assumed</B> that Sender and Receiver are <B>already in the database</B>.
      * @param transaction: transaction object
      * ***/
-    public static void addNewTransaction(Transaction transaction) throws ExecutionException, InterruptedException {
+    public static void transferTransaction(Transaction transaction) throws ExecutionException, InterruptedException {
         //Add new transaction to database
         transactions = db.collection("transactions");
         transactions.add(transaction);
@@ -45,6 +45,26 @@ public class TransactionFirebaseService {
         //Update sender and receiver's balance in database
         UserFirebaseService.updateUserAccountBalance(SenderId, senderBalance);
         UserFirebaseService.updateUserAccountBalance(ReceiverId, receiverBalance);
+    }
+    //API to withdraw money from account
+    public static void withdrawTransaction(Transaction transaction) throws ExecutionException, InterruptedException {
+        //Get current balance of sender and receiver
+        //Get amount of transaction
+        float amount = transaction.getMoneyAmount();
+        //Change balance of sender and receiver
+        float senderBalance = transaction.getSender().getAccountBalance() - amount;
+        //Update sender and receiver's balance in database
+        UserFirebaseService.updateUserAccountBalance(transaction.getSender().getAccountID(), senderBalance);
+    }
+    //API to deposit money to account
+    //API to withdraw money from account
+    public static void depositTransaction(Transaction transaction) throws ExecutionException, InterruptedException {
+        //Get current balance of sender and receiver
+        float amount = transaction.getMoneyAmount();
+        //Change balance of sender and receiver
+        float senderBalance = transaction.getSender().getAccountBalance() + amount;
+        //Update sender and receiver's balance in database
+        UserFirebaseService.updateUserAccountBalance(transaction.getSender().getAccountID(), senderBalance);
     }
 
     /***
