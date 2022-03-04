@@ -21,7 +21,7 @@ public class Text {
                     passWord ,
                     CapchaText ,
                     getCapchaText,
-                    loginSuccessText,
+                    signInSuccess,
                     userName,
                     citizenID,
                     address,
@@ -38,7 +38,15 @@ public class Text {
                     notEnoughMoney,
                     lowAmountMoney,
                     yourChoice="Your Choice: ",
-                    negativeBalance;
+                    negativeBalance,
+                    accountIDExisted,
+                    signUpSuccess,
+                    signInFail,
+                    userNotExist,
+                    updateInfoSuccess,
+                    updatePassSuccess,
+                    updatePassFail,
+                    updateBalanceSuccess;
 
     public static void formatText(String lang) {
         switch (lang){
@@ -59,7 +67,9 @@ public class Text {
                 passWord = "Mat khau: ";
                 CapchaText = "Captcha: ";
                 getCapchaText = "Nhap lai captcha: ";
-                loginSuccessText = "Dang nhap thanh cong!";
+                signInSuccess = "Dang nhap thanh cong!";
+                signInFail = "Dang nhap that bai";
+                signUpSuccess = "Dang ky thanh cong";
                 userName="Chu tai khoan: ";
                 citizenID="So CCCD/CMND: ";
                 address= "Dia Chi: ";
@@ -77,6 +87,12 @@ public class Text {
                 lowAmountMoney = "So tien qua nho, phai lon hon 10000";
                 yourChoice = "Lua chon cua ban: ";
                 negativeBalance = "So du khong khong duoc am";
+                accountIDExisted= "So tai khoan da ton tai";
+                userNotExist = "Nguoi dung khong ton tai";
+                updateInfoSuccess = "Cap nhat thong tin thanh cong";
+                updatePassSuccess = "Cap nhat mat khau thanh cong";
+                updatePassFail = "Cap nhat mat khau that bai";
+                updateBalanceSuccess = "Cap nhat so du tai khoan thanh cong";
                 break;
                 
             case "EN":
@@ -97,7 +113,9 @@ public class Text {
                 passWord = "Password: ";
                 CapchaText = "Captcha: ";
                 getCapchaText = "Enter captcha: ";
-                loginSuccessText = "Log in success!";
+                signInSuccess = "Sign in successful";
+                signInFail = "Sign in failed";
+                signUpSuccess = "Sign up successful";
                 userName="Owner's name: ";
                 citizenID="Citizen ID: ";
                 address= "Adress: ";
@@ -114,7 +132,13 @@ public class Text {
                 notEnoughMoney = "Money in account is not enough";
                 lowAmountMoney ="The Amount of Money is too low. Must be greater than 10,000";
                 yourChoice="Your Choice: ";
-                negativeBalance ="So du khong khong duoc am";
+                negativeBalance ="Balance must not be negative";
+                accountIDExisted ="Account ID already exists";
+                userNotExist = "User does not exist";
+                updateInfoSuccess = "Update user's information successful";
+                updatePassSuccess = "Update password successful";
+                updatePassFail = "Update password failed";
+                updateBalanceSuccess = "Update user account balance successful";
                 break;
         }
     }

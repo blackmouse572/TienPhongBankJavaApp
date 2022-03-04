@@ -1,13 +1,16 @@
 package Models.UserManagement;
 
-import TextView.Text;
+
 import Models.Database.TransactionFirebaseService;
 import Models.Database.UserFirebaseService;
+import Models.Validation;
+import TextView.Text;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Stack;
 import java.util.concurrent.ExecutionException;
-import Models.Validation;
+
 
 public class UserManager {
     User currentUser;    

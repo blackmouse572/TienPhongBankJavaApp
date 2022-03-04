@@ -11,11 +11,14 @@ public class Main {
         new FirebaseInit().initialize();
         
         LangMenu langMenu = new LangMenu();
-        while (true) {            
+        while (true) {       
+            //run langMenu to choose language
             String langFlag = langMenu.run();
+            
             //define value for all atribute in Text
             Text.formatText(langFlag);
             
+            //Let user choose to sign up or sign in
             Menu1 menu1 = new Menu1();
             menu1.run();
         }
@@ -40,7 +43,8 @@ class LangMenu extends  Menu{ //alow user to choose a language for the program
 class Menu1 extends  Menu{ // user choose to log in or sign up
     public void run(){
         UserManager userManager = new UserManager();
-        while (true) {       
+        while (true) {   
+            // to mark login status
             boolean logFlag = false;
             
             switch(excute(Text.menu1)){

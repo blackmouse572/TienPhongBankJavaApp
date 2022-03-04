@@ -2,6 +2,8 @@ package Models.Database;
 
 
 import Models.UserManagement.User;
+import TextView.Text;
+
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
@@ -24,13 +26,13 @@ public class UserFirebaseService {
     public static User signUp(User newUser) throws InterruptedException, ExecutionException {
         //check if user already exists
         if (checkIfAccountIDExists(newUser.getAccountID())) {
-            throw new IllegalStateException("Account ID already exists");
+            throw new IllegalStateException(Text.accountIDExisted);
         }
         //Push new user info to database
         ApiFuture<DocumentReference> future = db.collection("Account").add(newUser);
-
-        System.out.println("User created: " + newUser);
-        System.out.println("Sign up successful");
+        
+        System.out.println(Text.signUpSuccess);
+        System.out.println(Text.accountID + newUser.getAccountID());
         return newUser;
     }
 
@@ -44,10 +46,10 @@ public class UserFirebaseService {
     public static User signIn(String accountID, String password) throws InterruptedException, ExecutionException {
         User user = retrieveUser(accountID);
         if (user.getPassword().equals(password)) {
-            System.out.println("Sign in successful");
+            System.out.println(Text.signInSuccess);
             return user;
         } else {
-            throw new IllegalStateException("Sign in failed");
+            throw new IllegalStateException(Text.signInFail);
         }
     }
 
@@ -75,7 +77,7 @@ public class UserFirebaseService {
         ApiFuture<QuerySnapshot> future = query.get();
         QuerySnapshot querySnapshot = future.get();
         if (querySnapshot.isEmpty()) {
-            throw new IllegalStateException("User does not exist");
+            throw new IllegalStateException(Text.userNotExist);
         }
         return querySnapshot.toObjects(User.class).get(0);
     }
@@ -107,7 +109,7 @@ public class UserFirebaseService {
             user.setEmailAddress(emailAddress);
             user.setStreetAddress(streetAddress);
             account.document(accountID).set(user);
-            System.out.println("Update user info successful");
+            System.out.println(Text.updateInfoSuccess);
             return true;
         }
         return false;
@@ -127,10 +129,10 @@ public class UserFirebaseService {
             if (user.getPassword().equals(oldPassword)) {
                 user.setPassword(newPassword);
                 account.document(accountID).set(user);
-                System.out.println("Update user password successful");
+                System.out.println(Text.updatePassSuccess);
                 return true;
             } else {
-                throw new IllegalStateException("Update user password failed");
+                throw new IllegalStateException(Text.updatePassFail);
             }
 
         }
@@ -149,7 +151,7 @@ public class UserFirebaseService {
             if (user != null) {
                 user.setBalance(accountBalance);
                 account.document(accountID).set(user);
-                System.out.println("Update user account balance successful");
+                System.out.println(Text.updateBalanceSuccess);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
