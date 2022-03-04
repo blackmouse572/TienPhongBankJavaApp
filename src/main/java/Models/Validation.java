@@ -47,7 +47,7 @@ public class Validation {
                 //email does not specialized case
             } else if(email.matches("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$")){
                 return email;
-            } else {System.err.println(Text.wrongFomat);
+            } else {System.err.println(Text.wrongEmailFomat);
                 System.out.print(Text.enterAgain);
                 //email always end up with .com to be valid to create and check
             }
@@ -134,6 +134,19 @@ public class Validation {
                 return result;
             } catch (NumberFormatException e) {
                 System.err.println(Text.numberInRange+"[" + min + ", " + max + "]");
+                System.out.print(Text.enterAgain);
+            }
+        }
+    }
+     
+     public static float checkInputfloat() {
+        //loop until user input correct
+        while (true) {
+            try {
+                float result = Float.parseFloat(in.nextLine());
+                return result;
+            } catch (Exception e) {
+                System.err.println(Text.numberOnly);
                 System.out.print(Text.enterAgain);
             }
         }
