@@ -5,6 +5,8 @@
 package GUIview;
 
 import java.util.ResourceBundle;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -18,6 +20,13 @@ public class ChangePasswordForm extends javax.swing.JPanel {
     public ChangePasswordForm() {
         initComponents();
         createFormLanguage();
+        if (BankGUI.currentUser != null ) {
+            jTextField1.setText( BankGUI.currentUser.getAccountID() );
+        }
+        
+        // them 1 cai check captcha 
+        captchaTxt.setText("pikachu");
+        captchaTxt.setHorizontalAlignment( JTextField.CENTER );
     }
     
     // return default = ?
@@ -71,10 +80,11 @@ public class ChangePasswordForm extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jPasswordField3 = new javax.swing.JPasswordField();
         jLabel9 = new javax.swing.JLabel();
-        passTxt2 = new javax.swing.JPasswordField();
+        captchaTxt = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        passTxt3 = new javax.swing.JPasswordField();
+        recaptchaTxt = new javax.swing.JTextField();
 
+        setPreferredSize(new java.awt.Dimension(369, 254));
         setLayout(new java.awt.BorderLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -85,6 +95,11 @@ public class ChangePasswordForm extends javax.swing.JPanel {
         add(jLabel1, java.awt.BorderLayout.PAGE_START);
 
         jButton2.setText(bundle.getString("ChangePasswordForm.jButton2.text")); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton2);
 
         add(jPanel1, java.awt.BorderLayout.PAGE_END);
@@ -126,13 +141,18 @@ public class ChangePasswordForm extends javax.swing.JPanel {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel9.setText(bundle.getString("ChangePasswordForm.jLabel9.text")); // NOI18N
         jPanel2.add(jLabel9);
-        jPanel2.add(passTxt2);
+
+        captchaTxt.setText(bundle.getString("ChangePasswordForm.captchaTxt.text")); // NOI18N
+        captchaTxt.setEnabled(false);
+        jPanel2.add(captchaTxt);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel10.setText(bundle.getString("ChangePasswordForm.jLabel10.text")); // NOI18N
         jPanel2.add(jLabel10);
-        jPanel2.add(passTxt3);
+
+        recaptchaTxt.setText(bundle.getString("ChangePasswordForm.recaptchaTxt.text")); // NOI18N
+        jPanel2.add(recaptchaTxt);
 
         add(jPanel2, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -141,8 +161,31 @@ public class ChangePasswordForm extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        
+        if (BankGUI.currentUser != null ) {
+            String accountID = BankGUI.currentUser.getAccountID();
+            
+            // check empty
+            if ( String.valueOf(jPasswordField1.getPassword()).trim().equals("") 
+                 || String.valueOf(jPasswordField2.getPassword()).trim().equals("")
+                 || String.valueOf(jPasswordField3.getPassword()).trim().equals("")
+                 || recaptchaTxt.getText().trim().isEmpty() ) {
+                JOptionPane.showMessageDialog(this, "Password or captcha cannot be null!", "Show message", JOptionPane.ERROR_MESSAGE );
+            }
+            // TODO: check recaptcha match
+            // TODO: check new password match old password => false
+            // check reinput pass match with new password
+            // update
+        }
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField captchaTxt;
     public static javax.swing.JButton jButton2;
     public static javax.swing.JLabel jLabel1;
     public static javax.swing.JLabel jLabel10;
@@ -157,7 +200,6 @@ public class ChangePasswordForm extends javax.swing.JPanel {
     private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JPasswordField jPasswordField3;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JPasswordField passTxt2;
-    private javax.swing.JPasswordField passTxt3;
+    private javax.swing.JTextField recaptchaTxt;
     // End of variables declaration//GEN-END:variables
 }
