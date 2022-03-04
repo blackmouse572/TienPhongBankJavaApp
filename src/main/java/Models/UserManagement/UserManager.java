@@ -29,8 +29,9 @@ public class UserManager {
 
     public boolean logIn() {
         try {
-
+            System.out.print(Text.phoneNumber);
             String accountID = Validation.checkInputPhone();
+            System.out.print(Text.passWord);
             String password = Validation.checkInputPassword();
 
             currentUser = UserFirebaseService.signIn(accountID, password);

@@ -5,7 +5,7 @@ package TextView;
 public class Text { 
     
     //defaut languae : English
-    public static String [] menu1 = {"TIEN PHONG BANK","Log in","Regester","Turn back (Quay lai)"},
+    public static String [] menu1 = {"TIEN PHONG BANK","Log in","Register","Turn back (Quay lai)"},
            menu2 = {"TIEN PHONG BANK","Account information","Deposit","Withdraw","Transfers","Transaction history","Change password","Log out"}; 
     
     public static String loginTitle,
