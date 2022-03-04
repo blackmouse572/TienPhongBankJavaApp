@@ -68,11 +68,20 @@ public class Validation {
             }
         }
     }
-    public static boolean checkValidBalance(int balance){
-    // balance need to be more or equal than 30000 to use, if not then account could not be tranfer money
-        if(balance > 30000) return true;
-        else return false;
-    }
+    public static float checkInputBalance() {
+        //loop until user input correct
+        while (true) {
+            try {
+                float result = Float.parseFloat(in.nextLine().trim());
+                if (result < 0 ) {
+                    throw new NumberFormatException();
+                }
+                return result;
+            } catch (NumberFormatException e) {
+                System.err.println("Balancecan't be negetive");
+                System.out.print("Enter again: ");
+            }
+        }
     public static String checkInputPassword(Text text){
         while (true) {
             String result = in.nextLine().trim();
