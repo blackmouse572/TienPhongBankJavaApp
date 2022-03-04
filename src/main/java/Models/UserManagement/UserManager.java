@@ -35,8 +35,8 @@ public class UserManager {
             String password = Validation.checkInputPassword();
 
             currentUser = UserFirebaseService.signIn(accountID, password);
-        } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
+        } catch (IllegalStateException e) {
+            System.err.println(e.getMessage());;
             return false;
         }
         return true;
@@ -44,7 +44,7 @@ public class UserManager {
 
     public void transferMoney() {
         // TODO: @Duc valid to check float
-        float moneyToTransfer = 500;
+        float moneyToTransfer = 51000;
 
         // Money to transfer must less than money in account
         // And Account must have at least 50000 in balance after transfer
@@ -53,13 +53,12 @@ public class UserManager {
         }
         // The money to transfer must greater ot equal to 30000
         else if (moneyToTransfer > 30000) {
-
-            String receiver = Validation.checkInputID();
+            System.out.print(Text.phoneNumber);
+            String receiver = Validation.checkInputPhone();
             String action = "Transfer money";
             String note = Validation.checkInputString();
             //get current time
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
-
 
             try {
                 //Check if receiver is existed, will throw exception if not
@@ -78,7 +77,7 @@ public class UserManager {
 
     public void withdraw() {
         // TODO: @Duc valid to check float
-        float moneyToWithdraw = 500;
+        float moneyToWithdraw = 30000;
 
         // Money to transfer must less than money in account
         // And Account must have at least 50000 in balance after transfer
@@ -86,8 +85,8 @@ public class UserManager {
         if (currentUser.getAccountBalance() < moneyToWithdraw + 50000) {
             System.out.println(Text.notEnoughMoney);
         }
-        // The money to transfer must greater ot equal to 30000
-        else if (moneyToWithdraw > 30000) {
+        // The money to transfer must greater or equal to 30000
+        else if (moneyToWithdraw >= 30000) {
             String action = "Withdraw money";
             try {
             // TODO: @Bin Call API to Update User Account Balance
@@ -96,10 +95,14 @@ public class UserManager {
                 TransactionFirebaseService.withdrawTransaction(newTransaction);
                 //Update current user account balance
                 currentUser.setAccountBalance(currentUser.getAccountBalance() - moneyToWithdraw);
+                System.out.println("Withdraw successfully" + moneyToWithdraw);
+                System.out.println("Your balance is " + currentUser.getAccountBalance());
             } catch (ExecutionException | InterruptedException e) {
                 e.printStackTrace();
             }
             // TODO: @Bin call API to update Transaction
+        }else{
+            System.out.println("Money to withdraw must greater than 30000");
         }
 
     }
