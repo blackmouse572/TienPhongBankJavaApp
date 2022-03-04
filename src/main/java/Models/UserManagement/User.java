@@ -118,7 +118,9 @@ public class User {
         if (this.password != null) {
             if (Validation.checkSamePassword(this.password, newPassword)) ;
             return true;
-        } else return false;
+        }
+        this.password = newPassword;
+        return false;
     }
 
     public String getPassword() {
