@@ -82,6 +82,11 @@ public class Validation {
                 System.out.print("Enter again: ");
             }
         }
+     public static boolean checkValidBalance(int balance){
+    // balance need to be more or equal than 30000 to use, if not then account could not be tranfer money
+        if(balance > 30000) return true;
+        else return false;
+    }
     public static String checkInputPassword(Text text){
         while (true) {
             String result = in.nextLine().trim();
