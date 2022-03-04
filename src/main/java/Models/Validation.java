@@ -21,8 +21,7 @@ public class Validation {
                 }
             }
         }
-        
-        
+
     public static String checkInputPhone(){
         while (true) {
             String result = in.nextLine().trim();
@@ -105,9 +104,9 @@ public class Validation {
         }
     }
     public static boolean checkSamePassword(String oldP, String newP) {
-        if (oldP.equals(newP)) return false;
+        if (oldP.equals(newP)) return true;
             //If new password is the same as the old password then it will fail to change to the new one
-        else return true;
+        else return false;
     }
     
     public static String checkInputString() {
