@@ -13,11 +13,11 @@ import java.util.concurrent.ExecutionException;
 
 
 public class UserManager {
-    User currentUser;    
+    User currentUser = new User();
     
     public boolean signUp() {
-        try {
-            currentUser.updateInformation();
+        try
+        {   currentUser.updateInformation();
             currentUser.setPassword();
             UserFirebaseService.signUp(currentUser);
         } catch (InterruptedException | ExecutionException e) {
@@ -29,7 +29,8 @@ public class UserManager {
 
     public boolean logIn() {
         try {
-            String accountID = Validation.checkInputID();
+
+            String accountID = Validation.checkInputPhone();
             String password = Validation.checkInputPassword();
 
             currentUser = UserFirebaseService.signIn(accountID, password);

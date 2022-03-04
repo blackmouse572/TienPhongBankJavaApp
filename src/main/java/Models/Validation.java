@@ -30,7 +30,7 @@ public class Validation {
                 System.err.println(Text.notEmpty);
                 System.out.print(Text.enterAgain);
                 // input number limit is 10 and start with 0 as a inputPhone number (Ex:0234543545)
-            } else if(result.matches("(0[3|5|7|8|9])+([0-9]{8})\b")){
+            } else if(result.matches("(0[3|5|7|8|9])+([0-9]{8})\\b")){
                 return result;
             } else {System.err.println(Text.numberOnly10);
                 System.out.print(Text.enterAgain);
@@ -60,7 +60,7 @@ public class Validation {
             if (result.isEmpty()) {
                 System.err.println(Text.notEmpty);
                 System.out.print(Text.enterAgain);
-            } else if(result.matches("(0)+([0-9]{11})\b")){
+            } else if(result.matches("(0)+([0-9]{11})\\b")){
                 //ID must be 12 max
                 return result;
             } else {System.err.println(Text.numberOnly12);
@@ -95,7 +95,7 @@ public class Validation {
                 System.err.println(Text.notEmpty);
                 //if password is empty, it will make the program to run again
                 System.out.print(Text.enterAgain);
-                //Password must contain more then 8 to 22 max
+                //Password must contain more than 8 to 22 max
             } else if(result.matches("([0-9a-zA-Z])(?=\\S+$).{7,20}$")){
                 //Password do not contain space or special letter case
                 return result;

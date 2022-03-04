@@ -13,8 +13,8 @@ public class User {
     private String citizenID;
     private String emailAddress;
     private String streetAddress;
-    
-    public User(String accountID ,String password, String name, float accountBalance, String citizenID, String phoneNumber, String emailAddress, String streetAddress){
+
+    public User(String accountID, String password, String name, float accountBalance, String citizenID, String phoneNumber, String emailAddress, String streetAddress) {
         this.accountID = accountID;
         this.password = password;
         this.accountBalance = accountBalance;
@@ -24,11 +24,16 @@ public class User {
         this.streetAddress = streetAddress;
     }
 
+    public User() {
+    }
+
+    ;
+
     public void setAccountID(String accountID) {
         this.accountID = accountID;
     }
 
-    public String getAccountID(){
+    public String getAccountID() {
         return this.accountID;
     }
 
@@ -64,7 +69,7 @@ public class User {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(){
+    public void setPhoneNumber() {
         // TODO validate number
         this.phoneNumber = "";
     }
@@ -102,30 +107,32 @@ public class User {
         streetAddress = Validation.checkInputString();
     }
 
-    public void setBalance(float balance){
+    public void setBalance(float balance) {
         this.accountBalance = balance;
         // TODO: Have user choose to do with accountBalance
     }
 
-    public boolean setPassword(){
+    public boolean setPassword() {
         System.out.print(Text.passWord);
         String newPassword = Validation.checkInputPassword();
-        if(Validation.checkSamePassword(this.password,newPassword))
-        return true;
-        else return false;
+        if (this.password != null) {
+            if (Validation.checkSamePassword(this.password, newPassword)) ;
+            return true;
+        } else return false;
     }
-    public String getPassword(){
+
+    public String getPassword() {
         return this.password;
     }
 
 
-    public void display(){
+    public void display() {
         System.out.println(Text.accountID + this.accountID);
-        System.out.println(Text.phoneNumber +this.phoneNumber);
-        System.out.println(Text.userName +this.name);
-        System.out.println(Text.accountBalance +this.accountBalance);
-        System.out.println(Text.citizenID +this.citizenID);
-        System.out.println(Text.email +this.emailAddress);
-        System.out.println(Text.address +this.streetAddress);
+        System.out.println(Text.phoneNumber + this.phoneNumber);
+        System.out.println(Text.userName + this.name);
+        System.out.println(Text.accountBalance + this.accountBalance);
+        System.out.println(Text.citizenID + this.citizenID);
+        System.out.println(Text.email + this.emailAddress);
+        System.out.println(Text.address + this.streetAddress);
     }
 }

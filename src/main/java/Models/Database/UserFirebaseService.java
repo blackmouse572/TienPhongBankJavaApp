@@ -24,7 +24,9 @@ public class UserFirebaseService {
      * @throws ExecutionException if something wrong with thread.
      */
     public static User signUp(User newUser) throws InterruptedException, ExecutionException {
+        System.out.println("Registering..... (Please wait!) ");
         //check if user already exists
+        newUser.setAccountID(newUser.getPhoneNumber());
         if (checkIfAccountIDExists(newUser.getAccountID())) {
             throw new IllegalStateException(Text.accountIDExisted);
         }
@@ -61,6 +63,7 @@ public class UserFirebaseService {
      */
     public static boolean checkIfAccountIDExists(String accountID) throws InterruptedException, ExecutionException {
         User user = retrieveUser(accountID);
+        if(user == null) return false;
         return user.getAccountID() != null;
     }
 
@@ -70,14 +73,21 @@ public class UserFirebaseService {
      * @param accountID: ID of user.
      * @return User object if user exists, null if not.
      */
-    public static @Nullable User retrieveUser(String accountID) throws InterruptedException, ExecutionException {
+    public static @Nullable User retrieveUser(String accountID) {
 
         account = db.collection("Account");
         Query query = account.whereEqualTo("accountID", accountID);
         ApiFuture<QuerySnapshot> future = query.get();
-        QuerySnapshot querySnapshot = future.get();
+        QuerySnapshot querySnapshot = null;
+        try {
+            querySnapshot = future.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
         if (querySnapshot.isEmpty()) {
-            throw new IllegalStateException(Text.userNotExist);
+            return null;
         }
         return querySnapshot.toObjects(User.class).get(0);
     }

@@ -11,7 +11,7 @@ public class FirebaseInit {
     @PostConstruct
     public static void initialize(){
         try{
-
+            System.out.println("Connect to Server");
             FileInputStream serviceAccount =
                     new FileInputStream("src/main/java/Models/Database/serviceAccountKey.json");
             
@@ -21,11 +21,11 @@ public class FirebaseInit {
             
             FirebaseApp.initializeApp(options);
             System.out.println("=================****================\n");
-            System.out.println("Connecting to Firebase successfully.!\n");
+            System.out.println("              CONNECTED!             \n");
             System.out.println("=================****================");
 
         }catch(Exception e){
-            System.err.println("Error initializing firebase");
+            System.err.println("Error initializing Firebase");
             System.err.print(e);
         }
     }
