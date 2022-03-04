@@ -6,6 +6,9 @@ package GUIview;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
+// test xem loi khong
+import Models.UserManagement.User;
+import Models.UserManagement.UserManager;
 
 /**
  *
@@ -17,6 +20,10 @@ public class BankGUI extends javax.swing.JFrame {
      * Creates new form BankGUI
      */
     public static BankGUI bank = new BankGUI();
+    // test xem loi khong
+    public static UserManager userManager = new UserManager();
+    public static User currentUser = null;
+    
     public BankGUI() {
         initComponents();
         mainPane.setBottomComponent(new LoginForm());
