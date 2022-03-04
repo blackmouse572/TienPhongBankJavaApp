@@ -139,4 +139,21 @@ public class Validation {
             }
         }
     }
+    
+    /**
+     * 
+     * @param s
+     * @return true if s is int,
+     * false if string
+     */
+    public static boolean isIntGUI(String s) {
+        try
+        {
+            Integer.parseInt(s);
+            return true;
+        } catch (NumberFormatException ex)
+        {
+            return false;
+        }
+    }
 }
