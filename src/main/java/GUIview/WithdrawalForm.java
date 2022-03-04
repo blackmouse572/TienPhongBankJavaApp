@@ -4,7 +4,12 @@
  */
 package GUIview;
 
+import Models.Database.TransactionFirebaseService;
+import Models.UserManagement.Transaction;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutionException;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -18,6 +23,13 @@ public class WithdrawalForm extends javax.swing.JPanel {
     public WithdrawalForm() {
         initComponents();
         createFormLanguage();
+        
+        // set remainer
+        descTxt1.setText( Float.toString(BankGUI.currentUser.getAccountBalance() ));
+        
+        // them 1 cai check captcha 
+        captchaTxt.setText("pikachu");
+        captchaTxt.setHorizontalAlignment( JTextField.CENTER );
     }
     
     // return default = ?
@@ -66,9 +78,9 @@ public class WithdrawalForm extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         descTxt1 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        descTxt2 = new javax.swing.JTextField();
+        captchaTxt = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        descTxt3 = new javax.swing.JTextField();
+        recaptchaTxt = new javax.swing.JTextField();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -108,19 +120,23 @@ public class WithdrawalForm extends javax.swing.JPanel {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText(bundle.getString("WithdrawalForm.jLabel4.text")); // NOI18N
         jPanel3.add(jLabel4);
+
+        descTxt1.setEnabled(false);
         jPanel3.add(descTxt1);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText(bundle.getString("WithdrawalForm.jLabel5.text")); // NOI18N
         jPanel3.add(jLabel5);
-        jPanel3.add(descTxt2);
+
+        captchaTxt.setEnabled(false);
+        jPanel3.add(captchaTxt);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText(bundle.getString("WithdrawalForm.jLabel6.text")); // NOI18N
         jPanel3.add(jLabel6);
-        jPanel3.add(descTxt3);
+        jPanel3.add(recaptchaTxt);
 
         add(jPanel3, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -128,11 +144,51 @@ public class WithdrawalForm extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
 
-        // code cua ho
-        //        double bal=Double.parseDouble(amountTxt.getText());
-        //        String desc=descTxt.getText();
-        //        BankGUI.bank.doDeposit(BankGUI.curAcc.getAccNo(), bal, desc);
-        //        JOptionPane.showMessageDialog(this,"Your new balance: "+BankGUI.curAcc.getBalance());
+        // check input empty
+        if ( amountTxt.getText().trim().isEmpty() || recaptchaTxt.getText().trim().isEmpty() ) {
+            JOptionPane.showMessageDialog(this, "Money, description or captcha cannot be null!", "Show message", JOptionPane.ERROR_MESSAGE );
+        } 
+        // check recaptcha
+        else if ( !recaptchaTxt.getText().equals( captchaTxt.getText() ) ) {
+            JOptionPane.showMessageDialog(this, "Captcha is not matched!", "Show message", JOptionPane.ERROR_MESSAGE );
+        } else {
+            try {
+                float moneyToWithdraw = Float.parseFloat(amountTxt.getText());
+                
+                // Money to transfer must less than money in account
+                // And Account must have at least 50000 in balance after transfer
+                if ( BankGUI.currentUser.getAccountBalance() < moneyToWithdraw + 50000 ) {
+                    JOptionPane.showMessageDialog(this, "Money in account is not enough", "Show message", JOptionPane.ERROR_MESSAGE );
+                } 
+                // If money to withdraw less than 30000
+                else if ( moneyToWithdraw <30000 ) {
+                    JOptionPane.showMessageDialog(this, "Money to withdraw must greater than 30000", "Show message", JOptionPane.ERROR_MESSAGE );
+                }
+                // The money to withdraw must greater or equal to 30000
+                else {
+                    
+                    String action = "Withdraw money";
+
+                    try {
+                        //Create new transaction
+                        Transaction newTransaction = new Transaction( BankGUI.currentUser, moneyToWithdraw, action);
+                        TransactionFirebaseService.withdrawTransaction(newTransaction);
+                        //Update current user account balance
+                        BankGUI.currentUser.setAccountBalance(BankGUI.currentUser.getAccountBalance() - moneyToWithdraw);
+                        // chay duoc thi bo dong nay
+                        System.out.println("Success!");
+                        
+                        JOptionPane.showMessageDialog(this, "Withdraw successfully " + moneyToWithdraw, "Show message", JOptionPane.ERROR_MESSAGE );
+                        JOptionPane.showMessageDialog(this, "Your balance is " + BankGUI.currentUser.getAccountBalance(), "Show message", JOptionPane.ERROR_MESSAGE );
+                    } catch (ExecutionException | InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            catch ( Exception err ) {
+                JOptionPane.showMessageDialog(this, "Money must be a number!", "Show message", JOptionPane.ERROR_MESSAGE );
+            }
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void amountTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountTxtActionPerformed
@@ -142,9 +198,8 @@ public class WithdrawalForm extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField amountTxt;
+    private javax.swing.JTextField captchaTxt;
     private javax.swing.JTextField descTxt1;
-    private javax.swing.JTextField descTxt2;
-    private javax.swing.JTextField descTxt3;
     public static javax.swing.JButton jButton2;
     public static javax.swing.JLabel jLabel1;
     public static javax.swing.JLabel jLabel2;
@@ -153,5 +208,6 @@ public class WithdrawalForm extends javax.swing.JPanel {
     public static javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JTextField recaptchaTxt;
     // End of variables declaration//GEN-END:variables
 }
