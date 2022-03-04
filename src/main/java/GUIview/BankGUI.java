@@ -4,6 +4,7 @@
  */
 package GUIview;
 
+import Models.Database.FirebaseInit;
 import java.util.Locale;
 import java.util.ResourceBundle;
 // test xem loi khong
@@ -538,6 +539,9 @@ public class BankGUI extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
 
+        // test xem co loi khong
+        new FirebaseInit().initialize();
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
