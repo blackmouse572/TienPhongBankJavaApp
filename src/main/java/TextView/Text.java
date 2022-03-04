@@ -114,7 +114,7 @@ public class Text {
                 CapchaText = "Captcha: ";
                 getCapchaText = "Enter captcha: ";
                 signInSuccess = "Sign in successful";
-                signInFail = "Sign in failed";
+                signInFail = "Password or Account ID is wrong";
                 signUpSuccess = "Sign up successful";
                 userName="Owner's name: ";
                 citizenID="Citizen ID: ";
