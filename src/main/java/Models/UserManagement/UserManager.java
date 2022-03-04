@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Stack;
 import java.util.concurrent.ExecutionException;
+import Models.Validation;
 
 public class UserManager {
     Text text;
@@ -31,9 +32,8 @@ public class UserManager {
 
     public boolean logIn() {
         try {
-            // TODO: @Duc Use validation
-            String accountID = "";
-            String password = "";
+            String accountID = Validation.checkInputID(text);
+            String password = Validation.checkInputPassword(text);
 
             currentUser = UserFirebaseService.signIn(accountID, password);
             currentUser.setText(text);
@@ -56,10 +56,9 @@ public class UserManager {
         // The money to transfer must greater ot equal to 30000
         else if (moneyToTransfer > 30000) {
 
-            String receiver = "";
+            String receiver = Validation.checkInputID(text);
             String action = "Transfer money";
-            // TODO: @Duc check input String;
-            String note = "";
+            String note = Validation.checkInputString(text);
             //get current time
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
 
