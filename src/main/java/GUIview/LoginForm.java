@@ -4,7 +4,9 @@
  */
 package GUIview;
 
+import Models.Validation;
 import java.util.ResourceBundle;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -131,9 +133,15 @@ public class LoginForm extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         
-        // code cua ho
-        int accNo=Integer.parseInt(jTextField1.getText());
-        String pass=new String( jPasswordField1.getPassword());
+        // if account is not existed => showMessage: account or pass not existed
+        if ( jTextField1.getText().isEmpty() || jPasswordField1.getPassword().equals("") 
+                || !Validation.isIntGUI(jTextField1.getText()) ) {
+            JOptionPane.showMessageDialog(this, "Account or password is not valid!", "Show message", JOptionPane.ERROR_MESSAGE );
+        }
+        else {
+            int accNo=Integer.parseInt(jTextField1.getText());
+            String pass=new String( jPasswordField1.getPassword());
+        }
 //        BankGUI.curAcc=BankGUI.bank.doLogin(accNo, pass);
 //        BankGUI.transMenu.setEnabled(true);
 //        JOptionPane.showMessageDialog(this, "Welcome customer "+BankGUI.curAcc.getAccName());
