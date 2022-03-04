@@ -45,8 +45,12 @@ public class UserFirebaseService {
      * @param password:  Password user has entered.
      * @return User object if sign in successful, null if not.
      */
-    public static User signIn(String accountID, String password) throws InterruptedException, ExecutionException {
+    public static User signIn(String accountID, String password) throws IllegalStateException{
+        System.out.println("Signing In...(Please wait)");
         User user = retrieveUser(accountID);
+        if (user == null) {
+            throw new IllegalStateException(Text.signInFail);
+        }
         if (user.getPassword().equals(password)) {
             System.out.println(Text.signInSuccess);
             return user;
@@ -166,5 +170,20 @@ public class UserFirebaseService {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    /**
+     * Method to retrieve User Citizen ID.
+     * @param accountID
+     * @return  User Citizen ID.
+     * @throws InterruptedException
+     * @throws ExecutionException
+     */
+    public static String getCitizenID(String accountID) throws InterruptedException, ExecutionException {
+        User user = retrieveUser(accountID);
+        if (user != null) {
+            return user.getCitizenID();
+        }
+        return null;
     }
 }
