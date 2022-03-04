@@ -18,6 +18,16 @@ public class AccountInformationForm extends javax.swing.JPanel {
     public AccountInformationForm() {
         initComponents();
         createFormLanguage();
+        
+        // print out account information
+        // set enable of all field => false
+        descTxt3.setText(BankGUI.currentUser.getName()); descTxt.setEnabled(false);
+        amountTxt.setText( BankGUI.currentUser.getAccountID() ); amountTxt.setEnabled(false);
+        descTxt.setText( Float.toString(BankGUI.currentUser.getAccountBalance() ) ); descTxt.setEnabled(false);
+        descTxt2.setText( BankGUI.currentUser.getCitizenID() ); descTxt2.setEnabled(false);
+        descTxt4.setText( BankGUI.currentUser.getPhoneNumber() ); descTxt4.setEnabled(false);
+        descTxt6.setText(BankGUI.currentUser.getEmailAddress()); descTxt6.setEnabled(false);
+        descTxt5.setText(BankGUI.currentUser.getStreetAddress()); descTxt5.setEnabled(false);
     }
     
     // return default = ?
