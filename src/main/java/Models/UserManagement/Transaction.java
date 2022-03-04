@@ -10,21 +10,21 @@ public class Transaction {
     String note;
     String time;
     //Transfer Constructor
+    public Transaction(){};
     public Transaction(User sender, User receiver, float moneyAmount, String action, String note) {
         this.sender = sender;
         this.receiver = receiver;
         this.moneyAmount = moneyAmount;
         this.action = action;
         this.note = note;
-        this.time = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+        this.time = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
     }
     //Deposit, Withdraw Constructor
     public Transaction(User sender, float moneyAmount, String action) {
         this.sender = sender;
         this.moneyAmount = moneyAmount;
         this.action = action;
-        this.note = note;
-        this.time = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+        this.time = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
     }
 
     public User getReceiver(){
