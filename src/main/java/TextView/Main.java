@@ -14,10 +14,10 @@ public class Main {
         while (true) {            
             String langFlag = langMenu.run();
             //define value for all atribute in Text
-            Text text = new Text(langFlag);
+            Text.formatText(langFlag);
             
             Menu1 menu1 = new Menu1();
-            menu1.run(text);
+            menu1.run();
         }
     }    
 }
@@ -25,7 +25,7 @@ public class Main {
 class LangMenu extends  Menu{ //alow user to choose a language for the program
      public String run(){
          String[] menu = {"TIEN PHONG BANK","English","Vietnamese","Exit"};
-         switch(excute(menu, new Text())){
+         switch(excute(menu)){
             case 1:
                 return "EN";
             case 2:
@@ -38,17 +38,17 @@ class LangMenu extends  Menu{ //alow user to choose a language for the program
 }
 //--------------------------------------------
 class Menu1 extends  Menu{ // user choose to log in or sign up
-    public void run(Text text){
-        UserManager userManager = new UserManager(text);
+    public void run(){
+        UserManager userManager = new UserManager();
         while (true) {       
             boolean logFlag = false;
             
-            switch(excute(text.menu1,text)){
+            switch(excute(Text.menu1)){
             case 2:
-                System.out.println(text.regesterTitle); //print title
+                System.out.println(Text.regesterTitle); //print title
                 if(!userManager.signUp()) break; // if sign up success, do not break, and go to case 1 to do log in
             case 1:
-                System.out.println(text.loginTitle); //print title
+                System.out.println(Text.loginTitle); //print title
                 logFlag = userManager.logIn();
                 break;
             case 3:
@@ -56,34 +56,34 @@ class Menu1 extends  Menu{ // user choose to log in or sign up
         }
             if (logFlag = true){
                 Menu2 menu2 = new Menu2();
-                menu2.run(text,userManager);
+                menu2.run(userManager);
             }
         } 
     }
 }
 //--------------------------------------------
 class Menu2 extends Menu{
-    public void run(Text text, UserManager userManager){
+    public void run(UserManager userManager){
         while (true) {            
-            switch(excute(text.menu2,text)){
+            switch(excute(Text.menu2)){
             case 1:
-                System.out.println(text.AccInFoTitle); //print title
+                System.out.println(Text.AccInFoTitle); //print title
                 userManager.displayInfo();
                 break;
             case 2:
-                System.out.println(text.depositeTiTle); //print title
+                System.out.println(Text.depositeTiTle); //print title
                 userManager.deposit();
                 break;
             case 3:
-                System.out.println(text.withdrawTitle); //print title
+                System.out.println(Text.withdrawTitle); //print title
                 userManager.withdraw();
                 break;  
             case 4:
-                System.out.println(text.transferTitle); //print title
+                System.out.println(Text.transferTitle); //print title
                 userManager.transferMoney();
                 break;  
             case 5:
-                System.out.println(text.transactionHistoryTitle); //print title
+                System.out.println(Text.transactionHistoryTitle); //print title
                 userManager.displayTransactions();
                 break;
             case 6:

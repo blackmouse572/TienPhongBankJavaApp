@@ -20,16 +20,16 @@ public abstract class  Menu {
         }
     }
  
-    public int getUserChoice(Text text){
-        System.out.println(text.yourChoice);
-        userChoice = Validation.checkInputIntLimit(text, 1, menuText.size());
+    public int getUserChoice(){
+        System.out.println(Text.yourChoice);
+        userChoice = Validation.checkInputIntLimit( 1, menuText.size());
         return userChoice; 
     }
 
-    public int excute(String[] options, Text text){
+    public int excute(String[] options){
         menuText.clear();
         for(String s:options) menuText.add(s);
         display();
-        return getUserChoice(text);        
+        return getUserChoice();        
         }
 }

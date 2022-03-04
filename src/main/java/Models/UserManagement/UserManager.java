@@ -10,13 +10,7 @@ import java.util.concurrent.ExecutionException;
 import Models.Validation;
 
 public class UserManager {
-    Text text;
-    User currentUser;
-
-    public UserManager(Text text) {
-        this.text = text;
-    }
-    
+    User currentUser;    
     
     public boolean signUp() {
         try {
@@ -32,11 +26,10 @@ public class UserManager {
 
     public boolean logIn() {
         try {
-            String accountID = Validation.checkInputID(text);
-            String password = Validation.checkInputPassword(text);
+            String accountID = Validation.checkInputID();
+            String password = Validation.checkInputPassword();
 
             currentUser = UserFirebaseService.signIn(accountID, password);
-            currentUser.setText(text);
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
             return false;
@@ -51,14 +44,14 @@ public class UserManager {
         // Money to transfer must less than money in account
         // And Account must have at least 50000 in balance after transfer
         if (currentUser.getAccountBalance() < moneyToTransfer + 50000) {
-            System.out.println(text.notEnoughMoney);
+            System.out.println(Text.notEnoughMoney);
         }
         // The money to transfer must greater ot equal to 30000
         else if (moneyToTransfer > 30000) {
 
-            String receiver = Validation.checkInputID(text);
+            String receiver = Validation.checkInputID();
             String action = "Transfer money";
-            String note = Validation.checkInputString(text);
+            String note = Validation.checkInputString();
             //get current time
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
 
@@ -86,7 +79,7 @@ public class UserManager {
         // And Account must have at least 50000 in balance after transfer
 
         if (currentUser.getAccountBalance() < moneyToWithdraw + 50000) {
-            System.out.println(text.notEnoughMoney);
+            System.out.println(Text.notEnoughMoney);
         }
         // The money to transfer must greater ot equal to 30000
         else if (moneyToWithdraw > 30000) {
@@ -111,7 +104,7 @@ public class UserManager {
         float moneyToDeposit = 10000;
 
         if (moneyToDeposit < 10000) {
-            System.out.println(text.lowAmountMoney);
+            System.out.println(Text.lowAmountMoney);
         } else {
             String action = "Add money to account";
 

@@ -14,16 +14,6 @@ public class User {
     private String emailAddress;
     private String streetAddress;
     
-    private Text text;
-
-    public User(Text text){
-        this.text =text;
-    }
-
-    public void setText(Text text) {
-        this.text = text;
-    }
-    
     public User(String accountID ,String password, String name, float accountBalance, String citizenID, String phoneNumber, String emailAddress, String streetAddress){
         this.accountID = accountID;
         this.password = password;
@@ -100,16 +90,16 @@ public class User {
     }
 
     public void updateInformation() {
-        System.out.print(text.phoneNumber);
-        phoneNumber = Validation.checkInputPhone(text);
-        System.out.print(text.userName);
-        name = Validation.checkInputName(text);
-        System.out.print(text.citizenID);
-        citizenID = Validation.checkInputID(text);
-        System.out.print(text.email);
-        emailAddress = Validation.checkInputEmail(text);
-        System.out.print(text.address);
-        streetAddress = Validation.checkInputString(text);
+        System.out.print(Text.phoneNumber);
+        phoneNumber = Validation.checkInputPhone();
+        System.out.print(Text.userName);
+        name = Validation.checkInputName();
+        System.out.print(Text.citizenID);
+        citizenID = Validation.checkInputID();
+        System.out.print(Text.email);
+        emailAddress = Validation.checkInputEmail();
+        System.out.print(Text.address);
+        streetAddress = Validation.checkInputString();
     }
 
     public void setBalance(float balance){
@@ -118,8 +108,8 @@ public class User {
     }
 
     public boolean setPassword(){
-        System.out.print(text.passWord);
-        String newPassword = Validation.checkInputPassword(text);
+        System.out.print(Text.passWord);
+        String newPassword = Validation.checkInputPassword();
         if(Validation.checkSamePassword(this.password,newPassword))
         return true;
         else return false;
@@ -130,12 +120,12 @@ public class User {
 
 
     public void display(){
-        System.out.println(text.accountID + this.accountID);
-        System.out.println(text.phoneNumber +this.phoneNumber);
-        System.out.println(text.userName +this.name);
-        System.out.println(text.accountBalance +this.accountBalance);
-        System.out.println(text.citizenID +this.citizenID);
-        System.out.println(text.email +this.emailAddress);
-        System.out.println(text.address +this.streetAddress);
+        System.out.println(Text.accountID + this.accountID);
+        System.out.println(Text.phoneNumber +this.phoneNumber);
+        System.out.println(Text.userName +this.name);
+        System.out.println(Text.accountBalance +this.accountBalance);
+        System.out.println(Text.citizenID +this.citizenID);
+        System.out.println(Text.email +this.emailAddress);
+        System.out.println(Text.address +this.streetAddress);
     }
 }
