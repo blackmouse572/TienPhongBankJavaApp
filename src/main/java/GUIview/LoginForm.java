@@ -4,9 +4,10 @@
  */
 package GUIview;
 
-import Models.Validation;
 import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
+// test xem co loi khong
+import Models.Database.UserFirebaseService;
 
 /**
  *
@@ -134,17 +135,24 @@ public class LoginForm extends javax.swing.JPanel {
         // TODO add your handling code here:
         
         // if account is not existed => showMessage: account or pass not existed
-        if ( jTextField1.getText().isEmpty() || jPasswordField1.getPassword().equals("") 
-                || !Validation.isIntGUI(jTextField1.getText()) ) {
+        // check account or password null
+        if ( jTextField1.getText().isEmpty() || String.valueOf(jPasswordField1.getPassword()).trim().equals("") ) {
             JOptionPane.showMessageDialog(this, "Account or password is not valid!", "Show message", JOptionPane.ERROR_MESSAGE );
         }
         else {
-            int accNo=Integer.parseInt(jTextField1.getText());
+            String accNo = jTextField1.getText();
             String pass=new String( jPasswordField1.getPassword());
+            System.out.println("Success!");
+            
+            try {
+                BankGUI.currentUser = UserFirebaseService.signIn(accNo, pass);
+                BankGUI.transMenu.setEnabled(true);
+                JOptionPane.showMessageDialog(this, "Welcome customer "+BankGUI.currentUser.getName());
+            }
+            catch ( Exception err) {
+                JOptionPane.showMessageDialog(this, "Account or password is not valid!", "Show message", JOptionPane.ERROR_MESSAGE );
+            }
         }
-//        BankGUI.curAcc=BankGUI.bank.doLogin(accNo, pass);
-//        BankGUI.transMenu.setEnabled(true);
-//        JOptionPane.showMessageDialog(this, "Welcome customer "+BankGUI.curAcc.getAccName());
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed

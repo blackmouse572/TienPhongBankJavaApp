@@ -12,3 +12,6 @@
 // Change log: 28/2/2022
 1. Updated and add multilingual to AccountInformationForm.
 2. Remove and reupdate form files, except AccountInformationForm
+
+// Change log: 4/3/2022
+1. Updated BankGUI, LoginForm
