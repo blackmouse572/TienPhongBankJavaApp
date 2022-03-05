@@ -164,13 +164,17 @@ public class TopUpForm extends javax.swing.JPanel {
                     String action = "Add money to account";
 
                     try {
-                        //Create new transaction
-                        Transaction newTransaction = new Transaction( BankGUI.currentUser, moneyToDeposit, action);
-                        TransactionFirebaseService.depositTransaction(newTransaction);
                         //Update current user account balance
                         BankGUI.currentUser.setAccountBalance(BankGUI.currentUser.getAccountBalance() + moneyToDeposit);
+
+                        //Create new transaction
+                        Transaction newTransaction = new Transaction(BankGUI.currentUser, moneyToDeposit, action);
+                        TransactionFirebaseService.depositTransaction(newTransaction);
+                        
                         // chay duoc thi bo dong nay
                         System.out.println("Success!");
+                        
+                        JOptionPane.showMessageDialog(this, "Deposit successfully " + moneyToDeposit, "Show message", JOptionPane.INFORMATION_MESSAGE );
                     } catch (ExecutionException | InterruptedException e) {
                         e.printStackTrace();
                     }

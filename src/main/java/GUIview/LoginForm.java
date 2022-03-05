@@ -146,7 +146,12 @@ public class LoginForm extends javax.swing.JPanel {
             
             try {
                 BankGUI.currentUser = UserFirebaseService.signIn(accNo, pass);
+                // disable and enable
                 BankGUI.transMenu.setEnabled(true);
+                BankGUI.jMenuItemChangePass.setEnabled(true);
+                BankGUI.jMenuItemLogOut.setEnabled(true);
+                BankGUI.jMenuItemLogin.setEnabled(false);
+                
                 JOptionPane.showMessageDialog(this, "Welcome customer "+BankGUI.currentUser.getName());
             }
             catch ( Exception err) {

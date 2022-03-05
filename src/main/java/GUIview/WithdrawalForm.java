@@ -170,16 +170,17 @@ public class WithdrawalForm extends javax.swing.JPanel {
                     String action = "Withdraw money";
 
                     try {
-                        //Create new transaction
-                        Transaction newTransaction = new Transaction( BankGUI.currentUser, moneyToWithdraw, action);
-                        TransactionFirebaseService.withdrawTransaction(newTransaction);
                         //Update current user account balance
                         BankGUI.currentUser.setAccountBalance(BankGUI.currentUser.getAccountBalance() - moneyToWithdraw);
+
+                        //Create new transaction
+                        Transaction newTransaction = new Transaction(BankGUI.currentUser, moneyToWithdraw, action);
+                        TransactionFirebaseService.withdrawTransaction(newTransaction);
                         // chay duoc thi bo dong nay
                         System.out.println("Success!");
                         
-                        JOptionPane.showMessageDialog(this, "Withdraw successfully " + moneyToWithdraw, "Show message", JOptionPane.ERROR_MESSAGE );
-                        JOptionPane.showMessageDialog(this, "Your balance is " + BankGUI.currentUser.getAccountBalance(), "Show message", JOptionPane.ERROR_MESSAGE );
+                        JOptionPane.showMessageDialog(this, "Withdraw successfully " + moneyToWithdraw, "Show message", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "Your balance is " + BankGUI.currentUser.getAccountBalance(), "Show message", JOptionPane.INFORMATION_MESSAGE );
                     } catch (ExecutionException | InterruptedException e) {
                         e.printStackTrace();
                     }

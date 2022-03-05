@@ -106,6 +106,7 @@ public class BankGUI extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         transMenu.setText(bundle.getString("BankGUI.transMenu.text")); // NOI18N
+        transMenu.setEnabled(false);
 
         jMenuItemAccountInformation.setText(bundle.getString("BankGUI.jMenuItemAccountInformation.text")); // NOI18N
         jMenuItemAccountInformation.addActionListener(new java.awt.event.ActionListener() {
@@ -173,6 +174,7 @@ public class BankGUI extends javax.swing.JFrame {
         jMenu3.add(jMenuLanguage);
 
         jMenuItemChangePass.setText(bundle.getString("BankGUI.jMenuItemChangePass.text")); // NOI18N
+        jMenuItemChangePass.setEnabled(false);
         jMenuItemChangePass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemChangePassActionPerformed(evt);
@@ -558,9 +560,9 @@ public class BankGUI extends javax.swing.JFrame {
     private static javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItemAccountInformation;
-    private javax.swing.JMenuItem jMenuItemChangePass;
-    private javax.swing.JMenuItem jMenuItemLogOut;
-    private javax.swing.JMenuItem jMenuItemLogin;
+    public static javax.swing.JMenuItem jMenuItemChangePass;
+    public static javax.swing.JMenuItem jMenuItemLogOut;
+    public static javax.swing.JMenuItem jMenuItemLogin;
     private javax.swing.JMenuItem jMenuItemSignUp;
     private javax.swing.JMenuItem jMenuItemTopUp;
     private javax.swing.JMenuItem jMenuItemTransfer;

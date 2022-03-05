@@ -21,7 +21,7 @@ public class AccountInformationForm extends javax.swing.JPanel {
         
         // print out account information
         // set enable of all field => false
-        descTxt3.setText(BankGUI.currentUser.getName()); descTxt.setEnabled(false);
+        descTxt3.setText(BankGUI.currentUser.getName()); descTxt3.setEnabled(false);
         amountTxt.setText( BankGUI.currentUser.getAccountID() ); amountTxt.setEnabled(false);
         descTxt.setText( Float.toString(BankGUI.currentUser.getAccountBalance() ) ); descTxt.setEnabled(false);
         descTxt2.setText( BankGUI.currentUser.getCitizenID() ); descTxt2.setEnabled(false);

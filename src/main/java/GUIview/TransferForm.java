@@ -188,11 +188,30 @@ public class TransferForm extends javax.swing.JPanel {
                     try {
                         //Check if receiver is existed, will throw exception if not
                         User receiverUser = UserFirebaseService.retrieveUser(receiver);
+                        
+                        //Check if receiver is exited ?
+                        if (receiverUser == null ){
+                            JOptionPane.showMessageDialog(this, "Receiver does not existed", "Show message", JOptionPane.ERROR_MESSAGE );
+                        }
+
+                        //Check if receiver is the same as sender
+                        if (BankGUI.currentUser.getAccountID().equals(receiverUser.getAccountID())) {
+                            JOptionPane.showMessageDialog(this, "You cannot transfer to yourself!", "Show message", JOptionPane.ERROR_MESSAGE );
+                        }
+
+                        //update sender balance
+                        BankGUI.currentUser.setAccountBalance(BankGUI.currentUser.getAccountBalance()-moneyToTransfer);
+                        //update receiver balance
+                        receiverUser.setAccountBalance(receiverUser.getAccountBalance()+moneyToTransfer);
+
                         //Then create new transaction
                         Transaction newTransaction = new Transaction(BankGUI.currentUser, receiverUser, moneyToTransfer, action, note);
                         TransactionFirebaseService.transferTransaction(newTransaction);
-                        //Update current user account balance
-                        BankGUI.currentUser.setAccountBalance(BankGUI.currentUser.getAccountBalance() - moneyToTransfer);
+                        
+                        // chay duoc thi bo dong nay
+                        System.out.println("Success!");
+                        
+                        JOptionPane.showMessageDialog(this, "Transfer successfully " + moneyToTransfer, "Show message", JOptionPane.INFORMATION_MESSAGE );
                     } catch (InterruptedException | ExecutionException e) {
                         e.printStackTrace();
                     }
