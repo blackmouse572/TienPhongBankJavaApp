@@ -41,11 +41,6 @@ public class TransactionFirebaseService {
         float senderBalance = transaction.getSender().getAccountBalance();
         float receiverBalance = transaction.getReceiver().getAccountBalance();
 
-        //Get amount of transaction
-        float amount = transaction.getMoneyAmount();
-        //Change balance of sender and receiver
-        senderBalance -= amount;
-        receiverBalance += amount;
         //Update sender and receiver's balance in database
         UserFirebaseService.updateUserAccountBalance(SenderId, senderBalance);
         UserFirebaseService.updateUserAccountBalance(ReceiverId, receiverBalance);
@@ -54,10 +49,7 @@ public class TransactionFirebaseService {
     //API to withdraw money from account
     public static void withdrawTransaction(Transaction transaction) throws ExecutionException, InterruptedException {
         //Get current balance of sender and receiver
-        //Get amount of transaction
-        float amount = transaction.getMoneyAmount();
-        //Change balance of sender and receiver
-        float senderBalance = transaction.getSender().getAccountBalance() - amount;
+        float senderBalance = transaction.getSender().getAccountBalance();
         //Update sender and receiver's balance in database
         System.out.println(Text.withdrawWait);
         UserFirebaseService.updateUserAccountBalance(transaction.getSender().getAccountID(), senderBalance);
@@ -70,10 +62,8 @@ public class TransactionFirebaseService {
     //API to deposit money to account
     //API to withdraw money from account
     public static void depositTransaction(Transaction transaction) throws ExecutionException, InterruptedException {
-        //Get current balance of sender and receiver
-        float amount = transaction.getMoneyAmount();
-        //Change balance of sender and receiver
-        float senderBalance = transaction.getSender().getAccountBalance() + amount;
+        //Get current balance of sender
+        float senderBalance = transaction.getSender().getAccountBalance();
         //Update sender and receiver's balance in database
         System.out.println(Text.depositWait);
         UserFirebaseService.updateUserAccountBalance(transaction.getSender().getAccountID(), senderBalance);

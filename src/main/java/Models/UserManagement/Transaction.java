@@ -1,10 +1,14 @@
 package Models.UserManagement;
 
 import TextView.Text;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class Transaction {
+public class Transaction implements Comparable<Transaction>{
     User sender, receiver;
     float moneyAmount ;
     String action;
@@ -56,18 +60,18 @@ public class Transaction {
         switch (action){
             case "Transfer money":
                 return time + ":\n"
-                        + Text.transferMoney + moneyAmount +"\n"
+                        + Text.transferMoney + (int) moneyAmount +"\n"
                         + Text.receiverAccountID + receiver.getAccountID()+"\n"
                         + Text.note + note+"\n"
-                        + Text.balance + sender.getAccountBalance();
+                        + Text.balance + (int)sender.getAccountBalance();
             case "Withdraw money":
                 return time + ":\n"
-                        + Text.withdraw + moneyAmount +"\n"
-                        + Text.balance + sender.getAccountBalance();
+                        + Text.withdraw + (int) moneyAmount +"\n"
+                        + Text.balance + (int)sender.getAccountBalance();
             case "Add money to account":
                 return time + ":\n"
-                        + Text.deposit + moneyAmount +"\n"
-                        + Text.balance + sender.getAccountBalance();
+                        + Text.deposit + (int) moneyAmount +"\n"
+                        + Text.balance + (int)sender.getAccountBalance();
             default:
                 return "Transfer Information{" +
                 "action = " + action + '\'' +
@@ -77,5 +81,21 @@ public class Transaction {
                 "time = " + time + '\'' +
                 '}';
         }  
+    }
+
+    @Override
+    public int compareTo(Transaction o) {
+        Date thisDate = null;
+        Date oDate = null;
+        
+        try {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            
+             thisDate = format.parse(this.getTime());
+             oDate = format.parse(o.getTime());
+        } catch (ParseException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return thisDate.compareTo(oDate);
     }
 }

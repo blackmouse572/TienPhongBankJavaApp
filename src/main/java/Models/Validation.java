@@ -167,11 +167,16 @@ public class Validation {
             System.out.println(" ------");
             for(int i = 0; i <= 2; i++){
             System.out.print(Text.Capcha);
-            int result = Integer.parseInt(in.nextLine().trim());
-            if(result == cap) return true;
-            else {
-                System.out.println(Text.wrongCapcha+"!!("+(2-i)+Text.moreTime+")");
-            }
+                try {
+                    int result = Integer.parseInt(in.nextLine().trim());
+                    if(result == cap) return true;
+                    else {
+                        throw new Exception();
+                    }
+                } catch (Exception e) {
+                    System.out.println(Text.wrongCapcha+"!!("+(2-i)+Text.moreTime+")");
+                }
+            
             }
             return false;
         }

@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Stack;
 import java.util.concurrent.ExecutionException;
+import java.util.Collections;
 
 
 public class UserManager {
@@ -89,11 +90,17 @@ public class UserManager {
                     return;
                 }
                 
+                //update sender balance
+                currentUser.setAccountBalance(currentUser.getAccountBalance()-moneyToTransfer);
+                //update receiver balance
+                receiverUser.setAccountBalance(receiverUser.getAccountBalance()+moneyToTransfer);
+                
                 //Then create new transaction
                 Transaction newTransaction = new Transaction(currentUser, receiverUser, moneyToTransfer, action, note);
                 TransactionFirebaseService.transferTransaction(newTransaction);
-                //Update current user account balance
-                currentUser.setAccountBalance(currentUser.getAccountBalance() - moneyToTransfer);
+                
+                //print current user account balance
+                System.out.println(Text.balance + (int) currentUser.getAccountBalance());
             } catch (InterruptedException | ExecutionException e) {
                 System.err.println(e.getMessage());
             }
@@ -124,13 +131,15 @@ public class UserManager {
             
             String action = "Withdraw money";
             try {
-            //Create new transaction
-                Transaction newTransaction = new Transaction(currentUser, moneyToWithdraw, action);
-                TransactionFirebaseService.withdrawTransaction(newTransaction);
                 //Update current user account balance
                 currentUser.setAccountBalance(currentUser.getAccountBalance() - moneyToWithdraw);
-                System.out.println(Text.withdrawSuccess );
-                System.out.println(Text.balance + currentUser.getAccountBalance());
+                
+                //Create new transaction
+                Transaction newTransaction = new Transaction(currentUser, moneyToWithdraw, action);
+                TransactionFirebaseService.withdrawTransaction(newTransaction);
+                
+                //print current user account balance
+                System.out.println(Text.balance + (int) currentUser.getAccountBalance());
             } catch (ExecutionException | InterruptedException e) {
                 System.err.println(e.getMessage());
             }
@@ -157,11 +166,16 @@ public class UserManager {
             String action = "Add money to account";
 
             try {
+                //Update current user account balance
+                currentUser.setAccountBalance(currentUser.getAccountBalance() + moneyToDeposit);
+                
                 //Create new transaction
                 Transaction newTransaction = new Transaction(currentUser, moneyToDeposit, action);
                 TransactionFirebaseService.depositTransaction(newTransaction);
-                //Update current user account balance
-                currentUser.setAccountBalance(currentUser.getAccountBalance() + moneyToDeposit);
+                
+                //print current user account balance
+                System.out.println(Text.balance + (int) currentUser.getAccountBalance());
+                
             } catch (ExecutionException | InterruptedException e) {
                 System.err.println(e.getMessage());
             }
@@ -202,8 +216,10 @@ public class UserManager {
         Stack<Transaction> history ;
         try {
             history = TransactionFirebaseService.getAllTransactionsByUserId(currentUser.getAccountID());
+            Collections.sort(history);
             for (Transaction x : history) {
                 System.out.println(x);
+                System.out.println("-----------------");
             }
         } catch (ExecutionException | InterruptedException e) {
             System.err.println(e.getMessage());

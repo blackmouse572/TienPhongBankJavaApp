@@ -143,7 +143,7 @@ public class Text {
                 receiverAccountID = "So tai khoan nguoi nhan: ";
                 withdraw ="Rut tien: ";
                 deposit = "Nap tien: ";
-                wrongCapcha = "Capcha sai";
+                wrongCapcha = "Captcha sai";
                 moreTime = " Lan nhap nua";
                 capchaFail = "Nhap Capcha that bai";
                 receiverNotExist = "Nguoi nhan khong ton tai";
@@ -219,7 +219,7 @@ public class Text {
                 receiverAccountID = "Receiver's account ID: ";
                 withdraw = "Withdraw: ";
                 deposit ="Deposit: ";
-                wrongCapcha = "Wrong Capcha";
+                wrongCapcha = "Wrong Captcha";
                 moreTime = " More time";
                 capchaFail = "Failed to confirm Capcha";
                 receiverNotExist ="Receiver does not existed";
