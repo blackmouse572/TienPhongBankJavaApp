@@ -23,8 +23,9 @@ public class TransactionFirebaseService {
      * ***/
     public static void transferTransaction(Transaction transaction) throws ExecutionException, InterruptedException {
         //Add new transaction to database
-        transactions = db.collection("transactions");
+        transactions = db.collection("Transactions");
         transactions.add(transaction);
+        System.out.println("TRANSFERRING...(Please wait !)");
 
         /* Change the balance of the account that the transaction is made to
         *  and the balance of the account that the transaction is made from
@@ -37,6 +38,17 @@ public class TransactionFirebaseService {
         //Get current balance of sender and receiver
         float senderBalance = transaction.getSender().getAccountBalance();
         float receiverBalance = transaction.getReceiver().getAccountBalance();
+        //Check if receiver is the same as sender
+        if (SenderId.equals(ReceiverId)) {
+            System.out.println("You cannot transfer to yourself!");
+            return;
+        }
+        //Check if receiver is exited ?
+        if(UserFirebaseService.retrieveUser(ReceiverId) == null){
+            System.out.println("Receiver is not existed!");
+            return;
+        }
+
         //Get amount of transaction
         float amount = transaction.getMoneyAmount();
         //Change balance of sender and receiver
@@ -45,6 +57,7 @@ public class TransactionFirebaseService {
         //Update sender and receiver's balance in database
         UserFirebaseService.updateUserAccountBalance(SenderId, senderBalance);
         UserFirebaseService.updateUserAccountBalance(ReceiverId, receiverBalance);
+        System.out.println("Transfer Successful!");
     }
     //API to withdraw money from account
     public static void withdrawTransaction(Transaction transaction) throws ExecutionException, InterruptedException {
@@ -54,7 +67,13 @@ public class TransactionFirebaseService {
         //Change balance of sender and receiver
         float senderBalance = transaction.getSender().getAccountBalance() - amount;
         //Update sender and receiver's balance in database
+        System.out.println("WITHDRAWING...(Please wait!)");
         UserFirebaseService.updateUserAccountBalance(transaction.getSender().getAccountID(), senderBalance);
+        //Add new transaction to database
+        transactions = db.collection("Transactions");
+        transactions.add(transaction);
+        System.out.println("Withdraw Successful!");
+
     }
     //API to deposit money to account
     //API to withdraw money from account
@@ -64,7 +83,12 @@ public class TransactionFirebaseService {
         //Change balance of sender and receiver
         float senderBalance = transaction.getSender().getAccountBalance() + amount;
         //Update sender and receiver's balance in database
+        System.out.println("DEPOSITING...(Please wait!)");
         UserFirebaseService.updateUserAccountBalance(transaction.getSender().getAccountID(), senderBalance);
+        //Add new transaction to database
+        transactions = db.collection("Transactions");
+        transactions.add(transaction);
+        System.out.println("Deposit Successful");
     }
 
     /***
@@ -76,13 +100,12 @@ public class TransactionFirebaseService {
      */
     public static Stack<Transaction> getAllTransactionsByUserId(String userId) throws ExecutionException, InterruptedException {
         //Get all transactions by user id
-        transactions = db.collection("transactions");
+        transactions = db.collection("Transactions");
         ApiFuture<QuerySnapshot> future = transactions.whereEqualTo("sender.accountID", userId).get();
         List<QueryDocumentSnapshot> documents = future.get().getDocuments();
         Stack<Transaction> transactions = new Stack<>();
         for (QueryDocumentSnapshot document : documents) {
             transactions.push(document.toObject(Transaction.class));
-
         }
         return transactions;
     }
