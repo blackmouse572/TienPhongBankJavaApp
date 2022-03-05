@@ -37,6 +37,10 @@ public class Validation {
         }
     }
     
+    public static String checkInputAccountID(){
+        return checkInputPhone();
+    }
+    
     
     public static String checkInputEmail() {
         while(true){
@@ -53,7 +57,7 @@ public class Validation {
             }
         }
     }
-    public static String checkInputID(){
+    public static String checkInputCitizenID(){
         while (true) {
             String result = in.nextLine().trim();
             if (result.isEmpty()) {
@@ -151,4 +155,24 @@ public class Validation {
             }
         }
     }
+    
+    public static int generateCapcha(){
+        return (int)(Math.random()*(9999-1000+1)+1000);
+    } 
+     
+    public static boolean checkCapcha(){
+            int cap = generateCapcha();
+            System.out.println(Text.Capcha+"\n ------");
+            System.out.println("| "+cap+" |");
+            System.out.println(" ------");
+            for(int i = 0; i <= 2; i++){
+            System.out.print(Text.Capcha);
+            int result = Integer.parseInt(in.nextLine().trim());
+            if(result == cap) return true;
+            else {
+                System.out.println(Text.wrongCapcha+"!!("+(2-i)+Text.moreTime+")");
+            }
+            }
+            return false;
+        }
 }

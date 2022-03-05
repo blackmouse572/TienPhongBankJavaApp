@@ -10,8 +10,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Stack;
 import java.util.concurrent.ExecutionException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 public class UserManager {
@@ -21,6 +19,11 @@ public class UserManager {
         try
         {   currentUser.updateInformation();
             currentUser.setPassword();
+            //do capcha
+            if (!Validation.checkCapcha()){
+                System.out.println(Text.capchaFail);
+                return false;
+            }
             UserFirebaseService.signUp(currentUser);
         } catch (InterruptedException | ExecutionException e) {
             System.err.println(e.getMessage());
@@ -32,7 +35,7 @@ public class UserManager {
     public boolean logIn() {
         try {
             System.out.print(Text.accountID);
-            String accountID = Validation.checkInputPhone();
+            String accountID = Validation.checkInputAccountID();
             System.out.print(Text.passWord);
             String password = Validation.checkInputPassword();
 
@@ -56,10 +59,17 @@ public class UserManager {
         // The money to transfer must greater ot equal to 30000
         else if (moneyToTransfer > 30000) {
             System.out.print(Text.accountID);
-            String receiver = Validation.checkInputPhone();
-            String action = "Transfer money";
+            String receiver = Validation.checkInputAccountID();
             System.out.print(Text.note);
             String note = Validation.checkInputString();
+            
+            //do capcha
+            if (!Validation.checkCapcha()){
+                System.out.println(Text.capchaFail);
+                return;
+            }
+            
+            String action = "Transfer money";
             //get current time
             String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
 
@@ -92,6 +102,13 @@ public class UserManager {
         }
         // The money to transfer must greater or equal to 30000
         else if (moneyToWithdraw >= 30000) {
+            
+            //do capcha
+            if (!Validation.checkCapcha()){
+                System.out.println(Text.capchaFail);
+                return;
+            }
+            
             String action = "Withdraw money";
             try {
             //Create new transaction
@@ -117,6 +134,13 @@ public class UserManager {
         if (moneyToDeposit < 10000) {
             System.out.println(Text.lowAmountMoney);
         } else {
+            
+            //do capcha
+            if (!Validation.checkCapcha()){
+                System.out.println(Text.capchaFail);
+                return;
+            }
+            
             String action = "Add money to account";
 
             try {
@@ -137,11 +161,23 @@ public class UserManager {
         if (oldpass.equals(currentUser.getPassword())){
             System.out.print(Text.newpass);
             String newpass = Validation.checkInputPassword();
-            try {
-                UserFirebaseService.updateUserPassword(currentUser.getAccountID(), oldpass, newpass);
-            } catch (InterruptedException | ExecutionException e) {
-                System.err.println(e.getMessage());
-            }
+            System.err.print(Text.confirmpass);
+            String confirmpass = Validation.checkInputPassword();
+            if (confirmpass.equals(newpass)){
+                
+                //do capcha
+                if (!Validation.checkCapcha()){
+                    System.out.println(Text.capchaFail);
+                    return;
+                }
+                
+                try {
+                    UserFirebaseService.updateUserPassword(currentUser.getAccountID(), oldpass, newpass);
+                } catch (InterruptedException | ExecutionException e) {
+                    System.err.println(e.getMessage());
+                }
+                
+            }else System.out.println(Text.confirmpassWrong);
         }else System.out.println(Text.wrongpass);
     }
 

@@ -137,7 +137,7 @@ public class UserFirebaseService {
      * @return true if password change successful, false if not.
      */
     public static boolean updateUserPassword(String accountID, String oldPassword, String newPassword) throws InterruptedException, ExecutionException {
-        System.out.println(Text.signInWait);
+        System.out.println(Text.changePassWait);
         User user = retrieveUser(accountID);
         if (user != null) {
             if (user.getPassword().equals(oldPassword)) {

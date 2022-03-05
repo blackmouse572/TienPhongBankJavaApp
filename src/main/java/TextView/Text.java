@@ -20,7 +20,7 @@ public class Text {
                     phoneNumber,
                     email = "Email: ",
                     passWord ,
-                    CapchaText ,
+                    Capcha ,
                     getCapchaText,
                     signInSuccess,
                     userName,
@@ -55,6 +55,8 @@ public class Text {
                     withdrawSuccess,
                     oldpass,
                     newpass,
+                    confirmpass,
+                    confirmpassWrong,
                     wrongpass,
                     registerWait,
                     signInWait,
@@ -63,6 +65,9 @@ public class Text {
                     receiverAccountID,
                     withdraw,
                     deposit,
+                    wrongCapcha,
+                    moreTime,
+                    capchaFail,
                     note;
 
     public static void formatText(String lang) {
@@ -83,7 +88,7 @@ public class Text {
                 turnBack = "(Nhan Enter de quay lai)";
                 phoneNumber = "So dien thoai : ";
                 passWord = "Mat khau: ";
-                CapchaText = "Captcha: ";
+                Capcha = "Captcha: ";
                 getCapchaText = "Nhap lai captcha: ";
                 signInSuccess = "Dang nhap thanh cong!";
                 signInFail = "Dang nhap that bai";
@@ -119,6 +124,8 @@ public class Text {
                 withdrawSuccess = "Rut tien thanh cong";
                 oldpass = "Mat khau cu: ";
                 newpass = "Mat khau moi: ";
+                confirmpass ="Xac nhan mat khau: ";
+                confirmpassWrong = "Mat khau xac nhan khong dung voi mat khau moi";
                 wrongpass = "Sai mat khau";
                 registerWait ="Dang dang ky tai khoan... (xin cho)";
                 signInWait = "Dang dang nhap... (xin cho)";
@@ -127,6 +134,10 @@ public class Text {
                 receiverAccountID = "So tai khoan nguoi nhan: ";
                 withdraw ="Rut tien: ";
                 deposit = "Nap tien: ";
+                wrongCapcha = "Capcha sai";
+                moreTime = "Lan nhap nua";
+                capchaFail = "Nhap Capcha that bai";
+                
                 break;
                 
             case "EN":
@@ -146,7 +157,7 @@ public class Text {
                 phoneNumber = "Phone number: ";
                 email = "Email: ";
                 passWord = "Password: ";
-                CapchaText = "Captcha: ";
+                Capcha = "Captcha: ";
                 getCapchaText = "Enter captcha: ";
                 signInSuccess = "Sign in successful";
                 signInFail = "Password or Account ID is wrong";
@@ -182,6 +193,8 @@ public class Text {
                 withdrawSuccess = "Withdraw successful";
                 oldpass ="Old Password: ";
                 newpass ="New Password: ";
+                confirmpass = "Confirm password: ";
+                confirmpassWrong = "Confirm password is not the same with new password";
                 wrongpass = "Wrong password";
                 registerWait = "Registering..... (Please wait!) ";
                 signInWait = "Signing In...(Please wait)";
@@ -190,6 +203,9 @@ public class Text {
                 receiverAccountID = "Receiver's account ID: ";
                 withdraw = "Withdraw: ";
                 deposit ="Deposit: ";
+                wrongCapcha = "Wrong Capcha";
+                moreTime = "More time";
+                capchaFail = "Failed to confirm Capcha";
                 break;
         }
     }
