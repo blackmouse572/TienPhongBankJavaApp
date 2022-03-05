@@ -12,6 +12,7 @@ import java.util.concurrent.ExecutionException;
 import Models.Validation;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import Models.Validation;
 
 /**
  *
@@ -27,8 +28,8 @@ public class SignupForm extends javax.swing.JPanel {
         initComponents();
         createFormLanguage();
         
-        // them 1 cai check captcha 
-        captchaTxt.setText("pikachu");
+        // generate captcha
+        captchaTxt.setText( Integer.toString(Validation.generateCapcha()) );
         captchaTxt.setHorizontalAlignment( JTextField.CENTER );
         BankGUI.currentUser = new User();
     }

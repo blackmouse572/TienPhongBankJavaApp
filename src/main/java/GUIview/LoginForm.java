@@ -156,6 +156,7 @@ public class LoginForm extends javax.swing.JPanel {
                 BankGUI.jMenuItemLogin.setEnabled(false);
                 BankGUI.jMenuItemSignUp.setEnabled(false);
                 jButton3.setEnabled(false);
+                jButton2.setEnabled(false);
                 
                 // code chay duoc thi bo
                 System.out.println("Success!");

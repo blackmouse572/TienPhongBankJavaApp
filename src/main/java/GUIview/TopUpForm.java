@@ -7,6 +7,7 @@ package GUIview;
 
 import Models.Database.TransactionFirebaseService;
 import Models.UserManagement.Transaction;
+import Models.Validation;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
 import javax.swing.JOptionPane;
@@ -25,8 +26,8 @@ public class TopUpForm extends javax.swing.JPanel {
         initComponents();
         createFormLanguage();
         
-        // them 1 cai check captcha 
-        captchaTxt.setText("pikachu");
+        // generate captcha
+        captchaTxt.setText(Integer.toString(Validation.generateCapcha()));
         captchaTxt.setHorizontalAlignment( JTextField.CENTER );
     }
     

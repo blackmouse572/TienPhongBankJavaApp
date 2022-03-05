@@ -29,8 +29,8 @@ public class ChangePasswordForm extends javax.swing.JPanel {
             jTextField1.setEnabled(false);
         }
         
-        // them 1 cai check captcha 
-        captchaTxt.setText("pikachu");
+        // generate captcha
+        captchaTxt.setText(Integer.toString(Validation.generateCapcha()));
         captchaTxt.setHorizontalAlignment( JTextField.CENTER );
     }
     

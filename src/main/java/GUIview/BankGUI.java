@@ -204,6 +204,16 @@ public class BankGUI extends javax.swing.JFrame {
 
     private void jMenuItemLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLogOutActionPerformed
         // TODO add your handling code here:
+        currentUser = null;
+        
+        LoginForm.jButton2.setEnabled(true);
+        LoginForm.jButton3.setEnabled(true);
+        jMenuItemSignUp.setEnabled(true);
+        jMenuItemLogOut.setEnabled(false);
+        jMenuItemLogin.setEnabled(true);
+        transMenu.setEnabled(false);
+        jMenuItemChangePass.setEnabled(false);
+        
     }//GEN-LAST:event_jMenuItemLogOutActionPerformed
 
     private void jMenuItemAccountInformationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAccountInformationActionPerformed

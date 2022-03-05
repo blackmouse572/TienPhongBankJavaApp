@@ -8,6 +8,7 @@ import Models.Database.TransactionFirebaseService;
 import Models.Database.UserFirebaseService;
 import Models.UserManagement.Transaction;
 import Models.UserManagement.User;
+import Models.Validation;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.ResourceBundle;
@@ -28,8 +29,8 @@ public class TransferForm extends javax.swing.JPanel {
         initComponents();
         createFormLanguage();
         
-        // them 1 cai check captcha 
-        captchaTxt.setText("pikachu");
+        // generate captcha 
+        captchaTxt.setText(Integer.toString(Validation.generateCapcha()));
         captchaTxt.setHorizontalAlignment( JTextField.CENTER );
     }
     
