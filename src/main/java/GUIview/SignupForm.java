@@ -4,9 +4,13 @@
  */
 package GUIview;
 
+import Models.Database.UserFirebaseService;
 import Models.UserManagement.User;
 import java.util.Arrays;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -82,6 +86,8 @@ public class SignupForm extends javax.swing.JPanel {
         telTxt = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         addressTxt = new javax.swing.JTextField();
+        jLabelEmail = new javax.swing.JLabel();
+        emailTxt = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         passTxt = new javax.swing.JPasswordField();
         jLabel7 = new javax.swing.JLabel();
@@ -142,7 +148,26 @@ public class SignupForm extends javax.swing.JPanel {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText(bundle.getString("SignupForm.jLabel5.text")); // NOI18N
         jPanel2.add(jLabel5);
+
+        addressTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addressTxtActionPerformed(evt);
+            }
+        });
         jPanel2.add(addressTxt);
+
+        jLabelEmail.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabelEmail.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        java.util.ResourceBundle bundle1 = java.util.ResourceBundle.getBundle("signup/Bundle"); // NOI18N
+        jLabelEmail.setText(bundle1.getString("SignupForm.jLabelEmail.text")); // NOI18N
+        jPanel2.add(jLabelEmail);
+
+        emailTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailTxtActionPerformed(evt);
+            }
+        });
+        jPanel2.add(emailTxt);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -161,7 +186,6 @@ public class SignupForm extends javax.swing.JPanel {
         jLabel8.setText(bundle.getString("SignupForm.jLabel8.text")); // NOI18N
         jPanel2.add(jLabel8);
 
-        java.util.ResourceBundle bundle1 = java.util.ResourceBundle.getBundle("signup/Bundle"); // NOI18N
         captchaTxt.setText(bundle1.getString("SignupForm.captchaTxt.text")); // NOI18N
         captchaTxt.setEnabled(false);
         jPanel2.add(captchaTxt);
@@ -179,12 +203,13 @@ public class SignupForm extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        
+
         // check empty
         if ( accNameTxt.getText().trim().isEmpty()
              || citizenIDTxt.getText().trim().isEmpty()
              || telTxt.getText().trim().isEmpty()
              || addressTxt.getText().trim().isEmpty()
+             || emailTxt.getText().trim().isEmpty()
              || String.valueOf(passTxt.getPassword()).trim().equals("") 
              || String.valueOf(passTxt1.getPassword()).trim().equals("")
              || recaptchaTxt.getText().trim().isEmpty() ) {
@@ -198,25 +223,40 @@ public class SignupForm extends javax.swing.JPanel {
         else if ( !Arrays.equals( passTxt.getPassword(), passTxt1.getPassword()) ) {
             JOptionPane.showMessageDialog(this, "Re-input password is not matched with new password!", "Show message", JOptionPane.ERROR_MESSAGE );
         }
-        
-        
-        
-        
-        
-        // code cua ho
-//        String name=accNameTxt.getText();
-//        String addr=addrTxt.getText();
-//        String tel=telTxt.getText();
-//        double bal=Double.parseDouble(balanceTxt.getText());
-//        String pass=new String(passTxt.getPassword());
-//        Account a= new Account(name,addr,tel,bal,pass);
-//        BankGUI.bank.createAccount(a);
-//        JOptionPane.showMessageDialog(this,"Your account No is "+a.getAccNo());
+        else {
+            String phoneNumber = telTxt.getText();
+            String name = accNameTxt.getText();
+            String citizenID = citizenIDTxt.getText();
+            String emailAddress = emailTxt.getText();
+            String streetAddress = addressTxt.getText();
+            
+            BankGUI.currentUser.setPhoneNumber(phoneNumber);
+            BankGUI.currentUser.setName(name);
+            BankGUI.currentUser.setCitizenID(citizenID);
+            BankGUI.currentUser.setEmailAddress(emailAddress);
+            BankGUI.currentUser.setStreetAddress(streetAddress);
+            BankGUI.currentUser.setPassword( new String(passTxt.getPassword()) );
+            
+            try {
+                UserFirebaseService.signUp(BankGUI.currentUser);
+                JOptionPane.showMessageDialog(this, "Success!", "Show message", JOptionPane.INFORMATION_MESSAGE );
+            } catch (InterruptedException | ExecutionException ex) {
+                JOptionPane.showMessageDialog(this, "Account existed!", "Show message", JOptionPane.ERROR_MESSAGE );
+            }
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void accNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accNameTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_accNameTxtActionPerformed
+
+    private void addressTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addressTxtActionPerformed
+
+    private void emailTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailTxtActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -224,6 +264,7 @@ public class SignupForm extends javax.swing.JPanel {
     private javax.swing.JTextField addressTxt;
     private javax.swing.JTextField captchaTxt;
     private javax.swing.JTextField citizenIDTxt;
+    private javax.swing.JTextField emailTxt;
     public static javax.swing.JButton jButton2;
     public static javax.swing.JLabel jLabel1;
     public static javax.swing.JLabel jLabel2;
@@ -234,6 +275,7 @@ public class SignupForm extends javax.swing.JPanel {
     public static javax.swing.JLabel jLabel7;
     public static javax.swing.JLabel jLabel8;
     public static javax.swing.JLabel jLabel9;
+    public static javax.swing.JLabel jLabelEmail;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField passTxt;
