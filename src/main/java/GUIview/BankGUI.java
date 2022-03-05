@@ -563,7 +563,7 @@ public class BankGUI extends javax.swing.JFrame {
     public static javax.swing.JMenuItem jMenuItemChangePass;
     public static javax.swing.JMenuItem jMenuItemLogOut;
     public static javax.swing.JMenuItem jMenuItemLogin;
-    private javax.swing.JMenuItem jMenuItemSignUp;
+    public static javax.swing.JMenuItem jMenuItemSignUp;
     private javax.swing.JMenuItem jMenuItemTopUp;
     private javax.swing.JMenuItem jMenuItemTransfer;
     private javax.swing.JMenuItem jMenuItemViewLog;
