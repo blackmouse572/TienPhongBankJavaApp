@@ -5,7 +5,9 @@
 package GUIview;
 
 import Models.UserManagement.User;
+import java.util.Arrays;
 import java.util.ResourceBundle;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -75,11 +77,11 @@ public class SignupForm extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         accNameTxt = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        addrTxt = new javax.swing.JTextField();
+        citizenIDTxt = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         telTxt = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        balanceTxt = new javax.swing.JTextField();
+        addressTxt = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         passTxt = new javax.swing.JPasswordField();
         jLabel7 = new javax.swing.JLabel();
@@ -128,7 +130,7 @@ public class SignupForm extends javax.swing.JPanel {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText(bundle.getString("SignupForm.jLabel3.text")); // NOI18N
         jPanel2.add(jLabel3);
-        jPanel2.add(addrTxt);
+        jPanel2.add(citizenIDTxt);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -140,7 +142,7 @@ public class SignupForm extends javax.swing.JPanel {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText(bundle.getString("SignupForm.jLabel5.text")); // NOI18N
         jPanel2.add(jLabel5);
-        jPanel2.add(balanceTxt);
+        jPanel2.add(addressTxt);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -178,6 +180,29 @@ public class SignupForm extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         
+        // check empty
+        if ( accNameTxt.getText().trim().isEmpty()
+             || citizenIDTxt.getText().trim().isEmpty()
+             || telTxt.getText().trim().isEmpty()
+             || addressTxt.getText().trim().isEmpty()
+             || String.valueOf(passTxt.getPassword()).trim().equals("") 
+             || String.valueOf(passTxt1.getPassword()).trim().equals("")
+             || recaptchaTxt.getText().trim().isEmpty() ) {
+            JOptionPane.showMessageDialog(this, "Password or captcha cannot be null!", "Show message", JOptionPane.ERROR_MESSAGE );
+        }
+        // check recaptcha
+        else if ( !recaptchaTxt.getText().equals( captchaTxt.getText() ) ) {
+            JOptionPane.showMessageDialog(this, "Captcha is not matched!", "Show message", JOptionPane.ERROR_MESSAGE );
+        } 
+        // check reinput pass match with new password
+        else if ( !Arrays.equals( passTxt.getPassword(), passTxt1.getPassword()) ) {
+            JOptionPane.showMessageDialog(this, "Re-input password is not matched with new password!", "Show message", JOptionPane.ERROR_MESSAGE );
+        }
+        
+        
+        
+        
+        
         // code cua ho
 //        String name=accNameTxt.getText();
 //        String addr=addrTxt.getText();
@@ -196,9 +221,9 @@ public class SignupForm extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField accNameTxt;
-    private javax.swing.JTextField addrTxt;
-    private javax.swing.JTextField balanceTxt;
+    private javax.swing.JTextField addressTxt;
     private javax.swing.JTextField captchaTxt;
+    private javax.swing.JTextField citizenIDTxt;
     public static javax.swing.JButton jButton2;
     public static javax.swing.JLabel jLabel1;
     public static javax.swing.JLabel jLabel2;
