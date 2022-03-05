@@ -4,7 +4,9 @@
  */
 package GUIview;
 
+import Models.UserManagement.User;
 import java.util.ResourceBundle;
+import javax.swing.JTextField;
 
 /**
  *
@@ -19,6 +21,11 @@ public class SignupForm extends javax.swing.JPanel {
     public SignupForm() {
         initComponents();
         createFormLanguage();
+        
+        // them 1 cai check captcha 
+        captchaTxt.setText("pikachu");
+        captchaTxt.setHorizontalAlignment( JTextField.CENTER );
+        BankGUI.currentUser = new User();
     }
     
     // return default = ?
@@ -78,9 +85,9 @@ public class SignupForm extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         passTxt1 = new javax.swing.JPasswordField();
         jLabel8 = new javax.swing.JLabel();
-        passTxt2 = new javax.swing.JPasswordField();
+        captchaTxt = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        passTxt3 = new javax.swing.JPasswordField();
+        recaptchaTxt = new javax.swing.JTextField();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -151,13 +158,19 @@ public class SignupForm extends javax.swing.JPanel {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText(bundle.getString("SignupForm.jLabel8.text")); // NOI18N
         jPanel2.add(jLabel8);
-        jPanel2.add(passTxt2);
+
+        java.util.ResourceBundle bundle1 = java.util.ResourceBundle.getBundle("signup/Bundle"); // NOI18N
+        captchaTxt.setText(bundle1.getString("SignupForm.captchaTxt.text")); // NOI18N
+        captchaTxt.setEnabled(false);
+        jPanel2.add(captchaTxt);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel9.setText(bundle.getString("SignupForm.jLabel9.text")); // NOI18N
         jPanel2.add(jLabel9);
-        jPanel2.add(passTxt3);
+
+        recaptchaTxt.setText(bundle1.getString("SignupForm.recaptchaTxt.text")); // NOI18N
+        jPanel2.add(recaptchaTxt);
 
         add(jPanel2, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -185,6 +198,7 @@ public class SignupForm extends javax.swing.JPanel {
     private javax.swing.JTextField accNameTxt;
     private javax.swing.JTextField addrTxt;
     private javax.swing.JTextField balanceTxt;
+    private javax.swing.JTextField captchaTxt;
     public static javax.swing.JButton jButton2;
     public static javax.swing.JLabel jLabel1;
     public static javax.swing.JLabel jLabel2;
@@ -199,8 +213,7 @@ public class SignupForm extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField passTxt;
     private javax.swing.JPasswordField passTxt1;
-    private javax.swing.JPasswordField passTxt2;
-    private javax.swing.JPasswordField passTxt3;
+    private javax.swing.JTextField recaptchaTxt;
     private javax.swing.JTextField telTxt;
     // End of variables declaration//GEN-END:variables
 }

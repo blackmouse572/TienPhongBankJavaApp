@@ -4,7 +4,10 @@
  */
 package GUIview;
 
+import Models.Database.UserFirebaseService;
+import java.util.Arrays;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutionException;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -174,13 +177,34 @@ public class ChangePasswordForm extends javax.swing.JPanel {
                  || recaptchaTxt.getText().trim().isEmpty() ) {
                 JOptionPane.showMessageDialog(this, "Password or captcha cannot be null!", "Show message", JOptionPane.ERROR_MESSAGE );
             }
-            // TODO: check recaptcha match
-            // TODO: check new password match old password => false
+            // check recaptcha
+            else if ( !recaptchaTxt.getText().equals( captchaTxt.getText() ) ) {
+                JOptionPane.showMessageDialog(this, "Captcha is not matched!", "Show message", JOptionPane.ERROR_MESSAGE );
+            } 
             // check reinput pass match with new password
+            else if ( !Arrays.equals(jPasswordField3.getPassword(), jPasswordField2.getPassword()) ) {
+                JOptionPane.showMessageDialog(this, "Re-input password is not matched with new password!", "Show message", JOptionPane.ERROR_MESSAGE );
+            }
+            // check jPasswordField1 equal existed password
+            else if ( !jPasswordField1.getPassword().equals(BankGUI.currentUser.getPassword()) ) {
+                JOptionPane.showMessageDialog(this, "Not matched with old password!", "Show message", JOptionPane.ERROR_MESSAGE );
+            }
+            // TODO: check new password match old password => false
+            else if ( jPasswordField2.getPassword().equals(BankGUI.currentUser.getPassword()) ) {
+                JOptionPane.showMessageDialog(this, "New password cannot matched with old password!", "Show message", JOptionPane.ERROR_MESSAGE );
+            }
             // update
+            else {
+                String oldpass = new String (jPasswordField1.getPassword());
+                String newpass = new String (jPasswordField2.getPassword());
+                try {
+                    UserFirebaseService.updateUserPassword(BankGUI.currentUser.getAccountID(), oldpass, newpass);
+                    JOptionPane.showMessageDialog(this, "Success!", "Show message", JOptionPane.INFORMATION_MESSAGE );
+                } catch (InterruptedException | ExecutionException e) {
+                    System.err.println(e.getMessage());
+                }
+            }
         }
-        
-        
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
