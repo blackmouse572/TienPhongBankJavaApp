@@ -86,21 +86,29 @@ public class TransactionFirebaseService {
         transactions = db.collection("Transactions");
         ApiFuture<QuerySnapshot> future = transactions.whereEqualTo("sender.accountID", userId).get();
         List<QueryDocumentSnapshot> documents = future.get().getDocuments();
-        Stack<Transaction> transactions = new Stack<>();
+        Stack<Transaction> transactions_stack = new Stack<>();
         for (QueryDocumentSnapshot document : documents) {
-            transactions.push(document.toObject(Transaction.class));
+            transactions_stack.push(document.toObject(Transaction.class));
         }
-        return transactions;
+        documents = transactions.whereEqualTo("receiver.accountID", userId).get().get().getDocuments();
+        for (QueryDocumentSnapshot document : documents) {
+            transactions_stack.push(document.toObject(Transaction.class));
+        }
+        return transactions_stack;
     }
     public static Vector<Transaction> getAllTransactionsByUserId_GUI(String userId) throws ExecutionException, InterruptedException {
         //Get all transactions by user id
         transactions = db.collection("Transactions");
         ApiFuture<QuerySnapshot> future = transactions.whereEqualTo("sender.accountID", userId).get();
         List<QueryDocumentSnapshot> documents = future.get().getDocuments();
-        Vector<Transaction> transactions = new Vector<>();
+        Vector<Transaction> transactions_Vector = new Vector<>();
         for (QueryDocumentSnapshot document : documents) {
-            transactions.add(document.toObject(Transaction.class));
+            transactions_Vector.add(document.toObject(Transaction.class));
         }
-        return transactions;
+        documents = transactions.whereEqualTo("receiver.accountID", userId).get().get().getDocuments();
+        for (QueryDocumentSnapshot document : documents) {
+            transactions_Vector.add(document.toObject(Transaction.class));
+        }
+        return transactions_Vector;
     }
 }
