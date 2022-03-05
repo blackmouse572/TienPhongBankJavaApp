@@ -60,9 +60,8 @@ public class UserManager {
             String action = "Transfer money";
             System.out.print(Text.note);
             String note = Validation.checkInputString();
-            //thua
             //get current time
-            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+            String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
 
             try {
                 //Check if receiver is existed, will throw exception if not
