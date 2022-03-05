@@ -1,6 +1,8 @@
 package Models.Database;
 
 import Models.UserManagement.Transaction;
+import TextView.Text;
+
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.CollectionReference;
 import com.google.cloud.firestore.Firestore;
@@ -25,7 +27,7 @@ public class TransactionFirebaseService {
         //Add new transaction to database
         transactions = db.collection("Transactions");
         transactions.add(transaction);
-        System.out.println("TRANSFERRING...(Please wait !)");
+        System.out.println(Text.transferWait);
 
         /* Change the balance of the account that the transaction is made to
         *  and the balance of the account that the transaction is made from
@@ -45,7 +47,7 @@ public class TransactionFirebaseService {
         }
         //Check if receiver is exited ?
         if(UserFirebaseService.retrieveUser(ReceiverId) == null){
-            System.out.println("Receiver is not existed!");
+            System.out.println(Text.receiverNotExist);
             return;
         }
 
@@ -57,7 +59,7 @@ public class TransactionFirebaseService {
         //Update sender and receiver's balance in database
         UserFirebaseService.updateUserAccountBalance(SenderId, senderBalance);
         UserFirebaseService.updateUserAccountBalance(ReceiverId, receiverBalance);
-        System.out.println("Transfer Successful!");
+        System.out.println(Text.transferSuccess);
     }
     //API to withdraw money from account
     public static void withdrawTransaction(Transaction transaction) throws ExecutionException, InterruptedException {
@@ -67,12 +69,12 @@ public class TransactionFirebaseService {
         //Change balance of sender and receiver
         float senderBalance = transaction.getSender().getAccountBalance() - amount;
         //Update sender and receiver's balance in database
-        System.out.println("WITHDRAWING...(Please wait!)");
+        System.out.println(Text.withdrawWait);
         UserFirebaseService.updateUserAccountBalance(transaction.getSender().getAccountID(), senderBalance);
         //Add new transaction to database
         transactions = db.collection("Transactions");
         transactions.add(transaction);
-        System.out.println("Withdraw Successful!");
+        System.out.println(Text.withdrawSuccess);
 
     }
     //API to deposit money to account
@@ -83,12 +85,12 @@ public class TransactionFirebaseService {
         //Change balance of sender and receiver
         float senderBalance = transaction.getSender().getAccountBalance() + amount;
         //Update sender and receiver's balance in database
-        System.out.println("DEPOSITING...(Please wait!)");
+        System.out.println(Text.depositWait);
         UserFirebaseService.updateUserAccountBalance(transaction.getSender().getAccountID(), senderBalance);
         //Add new transaction to database
         transactions = db.collection("Transactions");
         transactions.add(transaction);
-        System.out.println("Deposit Successful");
+        System.out.println(Text.depositSuccess);
     }
 
     /***

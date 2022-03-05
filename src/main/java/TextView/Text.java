@@ -61,13 +61,20 @@ public class Text {
                     registerWait,
                     signInWait,
                     changePassWait,
+                    transferWait,
                     transferMoney,
+                    transferSuccess,
                     receiverAccountID,
                     withdraw,
                     deposit,
                     wrongCapcha,
                     moreTime,
                     capchaFail,
+                    receiverNotExist,
+                    seflTransfer,
+                    withdrawWait,
+                    depositWait,
+                    depositSuccess,
                     note;
 
     public static void formatText(String lang) {
@@ -91,7 +98,7 @@ public class Text {
                 Capcha = "Captcha: ";
                 getCapchaText = "Nhap lai captcha: ";
                 signInSuccess = "Dang nhap thanh cong!";
-                signInFail = "Dang nhap that bai";
+                signInFail = "So tai khoan hoac mat khau sai";
                 signUpSuccess = "Dang ky thanh cong";
                 userName="Ho va Ten: ";
                 citizenID="So CCCD/CMND: ";
@@ -130,13 +137,20 @@ public class Text {
                 registerWait ="Dang dang ky tai khoan... (xin cho)";
                 signInWait = "Dang dang nhap... (xin cho)";
                 changePassWait ="Dang thay doi mat khau... (xin cho)";
+                transferWait = "Dang chuyen tien... (xin cho)";
+                transferSuccess ="Chuyen tien thanh cong";
                 transferMoney = "Chuyen tien: ";
                 receiverAccountID = "So tai khoan nguoi nhan: ";
                 withdraw ="Rut tien: ";
                 deposit = "Nap tien: ";
                 wrongCapcha = "Capcha sai";
-                moreTime = "Lan nhap nua";
+                moreTime = " Lan nhap nua";
                 capchaFail = "Nhap Capcha that bai";
+                receiverNotExist = "Nguoi nhan khong ton tai";
+                seflTransfer = "Khong the tu chuyen tien cho ban than";
+                withdrawWait = "Dang rut tien... (xin cho)";
+                depositWait ="Dang nap tien... (xin cho)";
+                depositSuccess = "Nap tien thanh cong";
                 
                 break;
                 
@@ -199,13 +213,20 @@ public class Text {
                 registerWait = "Registering..... (Please wait!) ";
                 signInWait = "Signing In...(Please wait)";
                 changePassWait = "Changing password... (Please wait)";
+                transferWait = "Transfering... (Please wait)";
+                transferSuccess = "Transfer successful";
                 transferMoney = "Transfer money: ";
                 receiverAccountID = "Receiver's account ID: ";
                 withdraw = "Withdraw: ";
                 deposit ="Deposit: ";
                 wrongCapcha = "Wrong Capcha";
-                moreTime = "More time";
+                moreTime = " More time";
                 capchaFail = "Failed to confirm Capcha";
+                receiverNotExist ="Receiver does not existed";
+                seflTransfer = "You cannot transfer to yourself!";
+                withdrawWait = "Withdrawing... (Please wait)";
+                depositWait = "Depositing... (Please wait)";
+                depositSuccess = "Deposit successful";
                 break;
         }
     }

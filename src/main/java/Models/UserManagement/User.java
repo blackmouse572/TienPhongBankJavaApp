@@ -132,7 +132,7 @@ public class User {
         System.out.println(Text.accountID + this.accountID);
         System.out.println(Text.phoneNumber + this.phoneNumber);
         System.out.println(Text.userName + this.name);
-        System.out.println(Text.accountBalance + this.accountBalance);
+        System.out.println(Text.accountBalance + this.getAccountBalance());
         System.out.println(Text.citizenID + this.citizenID);
         System.out.println(Text.email + this.emailAddress);
         System.out.println(Text.address + this.streetAddress);
