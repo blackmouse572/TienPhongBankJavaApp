@@ -100,7 +100,7 @@ public class User {
         System.out.print(Text.userName);
         name = Validation.checkInputName();
         System.out.print(Text.citizenID);
-        citizenID = Validation.checkInputID();
+        citizenID = Validation.checkInputCitizenID();
         System.out.print(Text.email);
         emailAddress = Validation.checkInputEmail();
         System.out.print(Text.address);

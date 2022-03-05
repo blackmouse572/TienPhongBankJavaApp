@@ -19,9 +19,14 @@ public class UserManager {
         try
         {   currentUser.updateInformation();
             currentUser.setPassword();
+            //do capcha
+            if (!Validation.checkCapcha()){
+                System.out.println(Text.capchaFail);
+                return false;
+            }
             UserFirebaseService.signUp(currentUser);
         } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
             return false;
         }
         return true;
@@ -29,8 +34,8 @@ public class UserManager {
 
     public boolean logIn() {
         try {
-            System.out.print(Text.phoneNumber);
-            String accountID = Validation.checkInputPhone();
+            System.out.print(Text.accountID);
+            String accountID = Validation.checkInputAccountID();
             System.out.print(Text.passWord);
             String password = Validation.checkInputPassword();
 
@@ -43,8 +48,8 @@ public class UserManager {
     }
 
     public void transferMoney() {
-        // TODO: @Duc valid to check float
-        float moneyToTransfer = 51000;
+        System.out.print(Text.amountOfMoney);
+        float moneyToTransfer = Validation.checkInputfloat();
 
         // Money to transfer must less than money in account
         // And Account must have at least 50000 in balance after transfer
@@ -53,12 +58,20 @@ public class UserManager {
         }
         // The money to transfer must greater ot equal to 30000
         else if (moneyToTransfer > 30000) {
-            System.out.print(Text.phoneNumber);
-            String receiver = Validation.checkInputPhone();
-            String action = "Transfer money";
+            System.out.print(Text.accountID);
+            String receiver = Validation.checkInputAccountID();
+            System.out.print(Text.note);
             String note = Validation.checkInputString();
+            
+            //do capcha
+            if (!Validation.checkCapcha()){
+                System.out.println(Text.capchaFail);
+                return;
+            }
+            
+            String action = "Transfer money";
             //get current time
-            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+            String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
 
             try {
                 //Check if receiver is existed, will throw exception if not
@@ -69,15 +82,17 @@ public class UserManager {
                 //Update current user account balance
                 currentUser.setAccountBalance(currentUser.getAccountBalance() - moneyToTransfer);
             } catch (InterruptedException | ExecutionException e) {
-                e.printStackTrace();
+                System.err.println(e.getMessage());
             }
+        }else{
+            System.out.println(Text.amountOfMoney30000);
         }
 
     }
 
     public void withdraw() {
-        // TODO: @Duc valid to check float
-        float moneyToWithdraw = 30000;
+        System.out.print(Text.amountOfMoney);
+        float moneyToWithdraw = Validation.checkInputfloat();
 
         // Money to transfer must less than money in account
         // And Account must have at least 50000 in balance after transfer
@@ -87,33 +102,45 @@ public class UserManager {
         }
         // The money to transfer must greater or equal to 30000
         else if (moneyToWithdraw >= 30000) {
+            
+            //do capcha
+            if (!Validation.checkCapcha()){
+                System.out.println(Text.capchaFail);
+                return;
+            }
+            
             String action = "Withdraw money";
             try {
-            // TODO: @Bin Call API to Update User Account Balance
             //Create new transaction
                 Transaction newTransaction = new Transaction(currentUser, moneyToWithdraw, action);
                 TransactionFirebaseService.withdrawTransaction(newTransaction);
                 //Update current user account balance
                 currentUser.setAccountBalance(currentUser.getAccountBalance() - moneyToWithdraw);
-                System.out.println("Withdraw successfully" + moneyToWithdraw);
-                System.out.println("Your balance is " + currentUser.getAccountBalance());
+                System.out.println(Text.withdrawSuccess );
+                System.out.println(Text.balance + currentUser.getAccountBalance());
             } catch (ExecutionException | InterruptedException e) {
-                e.printStackTrace();
+                System.err.println(e.getMessage());
             }
-            // TODO: @Bin call API to update Transaction
         }else{
-            System.out.println("Money to withdraw must greater than 30000");
+            System.out.println(Text.amountOfMoney30000);
         }
 
     }
 
     public void deposit() {
-        // TODO: @Duc valid to check float
-        float moneyToDeposit = 10000;
+        System.out.print(Text.amountOfMoney);
+        float moneyToDeposit = Validation.checkInputfloat();
 
         if (moneyToDeposit < 10000) {
             System.out.println(Text.lowAmountMoney);
         } else {
+            
+            //do capcha
+            if (!Validation.checkCapcha()){
+                System.out.println(Text.capchaFail);
+                return;
+            }
+            
             String action = "Add money to account";
 
             try {
@@ -123,9 +150,35 @@ public class UserManager {
                 //Update current user account balance
                 currentUser.setAccountBalance(currentUser.getAccountBalance() + moneyToDeposit);
             } catch (ExecutionException | InterruptedException e) {
-                e.printStackTrace();
+                System.err.println(e.getMessage());
             }
         }
+    }
+    
+    public void changePassword(){
+        System.out.print(Text.oldpass);
+        String oldpass = Validation.checkInputPassword();
+        if (oldpass.equals(currentUser.getPassword())){
+            System.out.print(Text.newpass);
+            String newpass = Validation.checkInputPassword();
+            System.err.print(Text.confirmpass);
+            String confirmpass = Validation.checkInputPassword();
+            if (confirmpass.equals(newpass)){
+                
+                //do capcha
+                if (!Validation.checkCapcha()){
+                    System.out.println(Text.capchaFail);
+                    return;
+                }
+                
+                try {
+                    UserFirebaseService.updateUserPassword(currentUser.getAccountID(), oldpass, newpass);
+                } catch (InterruptedException | ExecutionException e) {
+                    System.err.println(e.getMessage());
+                }
+                
+            }else System.out.println(Text.confirmpassWrong);
+        }else System.out.println(Text.wrongpass);
     }
 
     public void displayInfo() {
@@ -140,7 +193,7 @@ public class UserManager {
                 System.out.println(x);
             }
         } catch (ExecutionException | InterruptedException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
     }
 

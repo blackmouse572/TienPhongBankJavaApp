@@ -1,5 +1,6 @@
 package Models.UserManagement;
 
+import TextView.Text;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -52,12 +53,29 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return "Transfer Information{" +
+        switch (action){
+            case "Transfer money":
+                return time + ":\n"
+                        + Text.transferMoney + moneyAmount +"\n"
+                        + Text.receiverAccountID + receiver.getAccountID()+"\n"
+                        + Text.note + note+"\n"
+                        + Text.balance + sender.getAccountBalance();
+            case "Withdraw money":
+                return time + ":\n"
+                        + Text.withdraw + moneyAmount +"\n"
+                        + Text.balance + sender.getAccountBalance();
+            case "Add money to account":
+                return time + ":\n"
+                        + Text.deposit + moneyAmount +"\n"
+                        + Text.balance + sender.getAccountBalance();
+            default:
+                return "Transfer Information{" +
                 "action = " + action + '\'' +
                 "note = " + note + '\'' +
                 "sender = " + sender + '\'' +
                 "receiver = " + receiver + '\'' +
                 "time = " + time + '\'' +
                 '}';
+        }  
     }
 }
