@@ -31,7 +31,7 @@ public class UserFirebaseService {
             throw new IllegalStateException(Text.accountIDExisted);
         }
         //Push new user info to database
-        ApiFuture<DocumentReference> future = db.collection("Account").add(newUser);
+        db.collection("Account").document(newUser.getPhoneNumber()).set(newUser);
         
         System.out.println(Text.signUpSuccess);
         System.out.println(Text.accountID + newUser.getAccountID());
