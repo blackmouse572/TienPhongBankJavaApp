@@ -5,11 +5,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Transaction implements Comparable<Transaction>{
-    User sender, receiver;
+    User sender, receiver, curentUser;
     float moneyAmount ;
     String action;
     String note;
@@ -55,15 +53,31 @@ public class Transaction implements Comparable<Transaction>{
         return this.note;
     }
 
+    public void setCurentUser(User curentUser) {
+        this.curentUser = curentUser;
+    }
+    
+    
+
     @Override
     public String toString() {
         switch (action){
             case "Transfer money":
-                return time + ":\n"
-                        + Text.transferMoney + (int) moneyAmount +"\n"
-                        + Text.receiverAccountID + receiver.getAccountID()+"\n"
-                        + Text.note + note+"\n"
-                        + Text.balance + (int)sender.getAccountBalance();
+                if(sender.getAccountID().equals(curentUser.getAccountID())){
+                    return time + ":\n"
+                            + Text.transferMoney + (int) moneyAmount +"\n"
+                            + Text.senderAccountID + sender.getAccountID()+"\n"
+                            + Text.receiverAccountID + receiver.getAccountID()+"\n"
+                            + Text.note + note+"\n"
+                            + Text.balance + (int)sender.getAccountBalance();
+                }else{
+                    return time + ":\n"
+                            + Text.transferMoney + (int) moneyAmount +"\n"
+                            + Text.senderAccountID + sender.getAccountID()+"\n"
+                            + Text.receiverAccountID + receiver.getAccountID()+"\n"
+                            + Text.note + note+"\n"
+                            + Text.balance + (int)receiver.getAccountBalance();
+                }
             case "Withdraw money":
                 return time + ":\n"
                         + Text.withdraw + (int) moneyAmount +"\n"

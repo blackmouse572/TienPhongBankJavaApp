@@ -256,6 +256,7 @@ public class UserManager {
             history = TransactionFirebaseService.getAllTransactionsByUserId(currentUser.getAccountID());
             Collections.sort(history);
             for (Transaction x : history) {
+                x.setCurentUser(currentUser);
                 System.out.println(x);
                 System.out.println("-----------------");
             }
