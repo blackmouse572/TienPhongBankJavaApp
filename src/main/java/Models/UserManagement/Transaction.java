@@ -61,6 +61,7 @@ public class Transaction implements Comparable<Transaction>{
             case "Transfer money":
                 return time + ":\n"
                         + Text.transferMoney + (int) moneyAmount +"\n"
+                        + Text.senderAccountID + sender.getAccountID()+"\n"
                         + Text.receiverAccountID + receiver.getAccountID()+"\n"
                         + Text.note + note+"\n"
                         + Text.balance + (int)sender.getAccountBalance();
