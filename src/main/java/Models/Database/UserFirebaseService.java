@@ -24,7 +24,7 @@ public class UserFirebaseService {
      * @throws ExecutionException if something wrong with thread.
      */
     public static User signUp(User newUser) throws InterruptedException, ExecutionException {
-        System.out.println("Registering..... (Please wait!) ");
+        System.out.println(Text.registerWait);
         //check if user already exists
         newUser.setAccountID(newUser.getPhoneNumber());
         if (checkIfAccountIDExists(newUser.getAccountID())) {
@@ -46,7 +46,7 @@ public class UserFirebaseService {
      * @return User object if sign in successful, null if not.
      */
     public static User signIn(String accountID, String password) throws IllegalStateException{
-        System.out.println("Signing In...(Please wait)");
+        System.out.println(Text.signInWait);
         User user = retrieveUser(accountID);
         if (user == null) {
             throw new IllegalStateException(Text.signInFail);
@@ -137,7 +137,7 @@ public class UserFirebaseService {
      * @return true if password change successful, false if not.
      */
     public static boolean updateUserPassword(String accountID, String oldPassword, String newPassword) throws InterruptedException, ExecutionException {
-
+        System.out.println(Text.changePassWait);
         User user = retrieveUser(accountID);
         if (user != null) {
             if (user.getPassword().equals(oldPassword)) {

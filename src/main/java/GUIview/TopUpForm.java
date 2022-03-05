@@ -5,7 +5,12 @@
  */
 package GUIview;
 
+import Models.Database.TransactionFirebaseService;
+import Models.UserManagement.Transaction;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutionException;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -19,6 +24,10 @@ public class TopUpForm extends javax.swing.JPanel {
     public TopUpForm() {
         initComponents();
         createFormLanguage();
+        
+        // them 1 cai check captcha 
+        captchaTxt.setText("pikachu");
+        captchaTxt.setHorizontalAlignment( JTextField.CENTER );
     }
     
     // return default = ?
@@ -67,9 +76,9 @@ public class TopUpForm extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         descTxt = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        descTxt2 = new javax.swing.JTextField();
+        captchaTxt = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        descTxt3 = new javax.swing.JTextField();
+        recaptchaTxt = new javax.swing.JTextField();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -115,13 +124,15 @@ public class TopUpForm extends javax.swing.JPanel {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText(bundle.getString("TopUpForm.jLabel5.text")); // NOI18N
         jPanel2.add(jLabel5);
-        jPanel2.add(descTxt2);
+
+        captchaTxt.setEnabled(false);
+        jPanel2.add(captchaTxt);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText(bundle.getString("TopUpForm.jLabel6.text")); // NOI18N
         jPanel2.add(jLabel6);
-        jPanel2.add(descTxt3);
+        jPanel2.add(recaptchaTxt);
 
         add(jPanel2, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -133,6 +144,43 @@ public class TopUpForm extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         
+        // check input empty
+        if ( amountTxt.getText().trim().isEmpty() || descTxt.getText().trim().isEmpty() 
+                || recaptchaTxt.getText().trim().isEmpty() ) {
+            JOptionPane.showMessageDialog(this, "Money, description or captcha cannot be null!", "Show message", JOptionPane.ERROR_MESSAGE );
+        } 
+        // check recaptcha
+        else if ( !recaptchaTxt.getText().equals( captchaTxt.getText() ) ) {
+            JOptionPane.showMessageDialog(this, "Captcha is not matched!", "Show message", JOptionPane.ERROR_MESSAGE );
+        } else {
+            try {
+                float moneyToDeposit= Float.parseFloat(amountTxt.getText());
+                String desc=descTxt.getText();
+                
+                if ( moneyToDeposit < 10000) {
+                    JOptionPane.showMessageDialog(this, "The Amount of Money is too low. Must be greater than 10,000", "Show message", JOptionPane.ERROR_MESSAGE );
+                } else {
+                    
+                    String action = "Add money to account";
+
+                    try {
+                        //Create new transaction
+                        Transaction newTransaction = new Transaction( BankGUI.currentUser, moneyToDeposit, action);
+                        TransactionFirebaseService.depositTransaction(newTransaction);
+                        //Update current user account balance
+                        BankGUI.currentUser.setAccountBalance(BankGUI.currentUser.getAccountBalance() + moneyToDeposit);
+                        // chay duoc thi bo dong nay
+                        System.out.println("Success!");
+                    } catch (ExecutionException | InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            catch ( Exception err ) {
+                JOptionPane.showMessageDialog(this, "Money must be a number!", "Show message", JOptionPane.ERROR_MESSAGE );
+            }
+        }
+        
         // code cua ho
 //        double bal=Double.parseDouble(amountTxt.getText());
 //        String desc=descTxt.getText();
@@ -143,9 +191,8 @@ public class TopUpForm extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField amountTxt;
+    private javax.swing.JTextField captchaTxt;
     private javax.swing.JTextField descTxt;
-    private javax.swing.JTextField descTxt2;
-    private javax.swing.JTextField descTxt3;
     public static javax.swing.JButton jButton2;
     public static javax.swing.JLabel jLabel1;
     public static javax.swing.JLabel jLabel2;
@@ -154,5 +201,6 @@ public class TopUpForm extends javax.swing.JPanel {
     public static javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField recaptchaTxt;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,7 +4,16 @@
  */
 package GUIview;
 
+import Models.Database.TransactionFirebaseService;
+import Models.Database.UserFirebaseService;
+import Models.UserManagement.Transaction;
+import Models.UserManagement.User;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutionException;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -18,6 +27,10 @@ public class TransferForm extends javax.swing.JPanel {
     public TransferForm() {
         initComponents();
         createFormLanguage();
+        
+        // them 1 cai check captcha 
+        captchaTxt.setText("pikachu");
+        captchaTxt.setHorizontalAlignment( JTextField.CENTER );
     }
     
     // return default = ?
@@ -69,9 +82,9 @@ public class TransferForm extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         descTxt = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        descTxt2 = new javax.swing.JTextField();
+        captchaTxt = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        descTxt4 = new javax.swing.JTextField();
+        recaptchaTxt = new javax.swing.JTextField();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -123,13 +136,15 @@ public class TransferForm extends javax.swing.JPanel {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText(bundle.getString("TransferForm.jLabel5.text")); // NOI18N
         jPanel3.add(jLabel5);
-        jPanel3.add(descTxt2);
+
+        captchaTxt.setEnabled(false);
+        jPanel3.add(captchaTxt);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText(bundle.getString("TransferForm.jLabel7.text")); // NOI18N
         jPanel3.add(jLabel7);
-        jPanel3.add(descTxt4);
+        jPanel3.add(recaptchaTxt);
 
         add(jPanel3, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -137,11 +152,56 @@ public class TransferForm extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
 
-        // code cua ho
-        //        double bal=Double.parseDouble(amountTxt.getText());
-        //        String desc=descTxt.getText();
-        //        BankGUI.bank.doDeposit(BankGUI.curAcc.getAccNo(), bal, desc);
-        //        JOptionPane.showMessageDialog(this,"Your new balance: "+BankGUI.curAcc.getBalance());
+        // check input empty
+        if ( descTxt3.getText().trim().isEmpty() || amountTxt.getText().trim().isEmpty() 
+                || descTxt.getText().trim().isEmpty() || recaptchaTxt.getText().trim().isEmpty() ) {
+            JOptionPane.showMessageDialog(this, "Receiver, money, description or captcha cannot be null!", "Show message", JOptionPane.ERROR_MESSAGE );
+        } 
+        // check recaptcha
+        else if ( !recaptchaTxt.getText().equals( captchaTxt.getText() ) ) {
+            JOptionPane.showMessageDialog(this, "Captcha is not matched!", "Show message", JOptionPane.ERROR_MESSAGE );
+        } else {
+            try {
+                float moneyToTransfer = Float.parseFloat(amountTxt.getText());
+                
+                // Money to transfer must less than money in account
+                // And Account must have at least 50000 in balance after transfer
+                if ( BankGUI.currentUser.getAccountBalance() < moneyToTransfer + 50000 ) {
+                    JOptionPane.showMessageDialog(this, "Money in account is not enough", "Show message", JOptionPane.ERROR_MESSAGE );
+                } 
+                // If money to withdraw less than 30000
+                else if ( moneyToTransfer < 30000 ) {
+                    JOptionPane.showMessageDialog(this, "Money to transfer must greater than 30000", "Show message", JOptionPane.ERROR_MESSAGE );
+                }
+                // The money to withdraw must greater or equal to 30000
+                else {
+                    
+                    String action = "Transfer money";
+                    String note = descTxt.getText();
+                    
+                    // descTxt3: fix lai theo phone number
+                    String receiver = descTxt3.getText();
+                    
+                    //get current time
+                    String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+
+                    try {
+                        //Check if receiver is existed, will throw exception if not
+                        User receiverUser = UserFirebaseService.retrieveUser(receiver);
+                        //Then create new transaction
+                        Transaction newTransaction = new Transaction(BankGUI.currentUser, receiverUser, moneyToTransfer, action, note);
+                        TransactionFirebaseService.transferTransaction(newTransaction);
+                        //Update current user account balance
+                        BankGUI.currentUser.setAccountBalance(BankGUI.currentUser.getAccountBalance() - moneyToTransfer);
+                    } catch (InterruptedException | ExecutionException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            catch ( Exception err ) {
+                JOptionPane.showMessageDialog(this, "Money must be a number!", "Show message", JOptionPane.ERROR_MESSAGE );
+            }
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void amountTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountTxtActionPerformed
@@ -151,10 +211,9 @@ public class TransferForm extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField amountTxt;
+    private javax.swing.JTextField captchaTxt;
     private javax.swing.JTextField descTxt;
-    private javax.swing.JTextField descTxt2;
     private javax.swing.JTextField descTxt3;
-    private javax.swing.JTextField descTxt4;
     public static javax.swing.JButton jButton2;
     public static javax.swing.JLabel jLabel1;
     public static javax.swing.JLabel jLabel2;
@@ -164,5 +223,6 @@ public class TransferForm extends javax.swing.JPanel {
     public static javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JTextField recaptchaTxt;
     // End of variables declaration//GEN-END:variables
 }

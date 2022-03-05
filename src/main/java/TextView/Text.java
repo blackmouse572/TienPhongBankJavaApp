@@ -9,17 +9,18 @@ public class Text {
            menu2 = {"TIEN PHONG BANK","Account information","Deposit","Withdraw","Transfers","Transaction history","Change password","Log out"}; 
     
     public static String loginTitle,
-                    regesterTitle,
+                    registerTitle,
                     AccInFoTitle,
                     depositeTiTle,
                     withdrawTitle,
                     transferTitle,
                     transactionHistoryTitle,
+                    changePassTitle,
                     turnBack,
                     phoneNumber,
                     email = "Email: ",
                     passWord ,
-                    CapchaText ,
+                    Capcha ,
                     getCapchaText,
                     signInSuccess,
                     userName,
@@ -31,8 +32,9 @@ public class Text {
                     enterAgain,
                     anphabetOnly ,
                     numberOnly10 ,
-                    wrongFomat,
+                    wrongEmailFomat,
                     numberOnly12,
+                    numberOnly,
                     anphabetAndNumberOnly ,
                     numberInRange,
                     notEnoughMoney,
@@ -46,7 +48,27 @@ public class Text {
                     updateInfoSuccess,
                     updatePassSuccess,
                     updatePassFail,
-                    updateBalanceSuccess;
+                    updateBalanceSuccess,
+                    amountOfMoney,
+                    amountOfMoney30000,
+                    balance,
+                    withdrawSuccess,
+                    oldpass,
+                    newpass,
+                    confirmpass,
+                    confirmpassWrong,
+                    wrongpass,
+                    registerWait,
+                    signInWait,
+                    changePassWait,
+                    transferMoney,
+                    receiverAccountID,
+                    withdraw,
+                    deposit,
+                    wrongCapcha,
+                    moreTime,
+                    capchaFail,
+                    note;
 
     public static void formatText(String lang) {
         switch (lang){
@@ -56,21 +78,22 @@ public class Text {
                 String[] viMenu2= {"TIEN PHONG BANK","Thong tin tk","Nap tien","Rut tien","Chuyen tien","Lich su giao dich","Doi mat khau","Dang xuat"};
                 menu2 = viMenu2;
                 loginTitle = "----------DANG NHAP---------";
-                regesterTitle="-----------DANG KY-----------";
+                registerTitle="-----------DANG KY-----------";
                 AccInFoTitle="-------THONG TIN TAI KHOAN-------";
                 depositeTiTle = "-----------NAP TIEN----------";
                 withdrawTitle = "----------RUT TIEN----------";
                 transferTitle = "-----------CHUYEN TIEN---------";
+                changePassTitle = "-------------DOI MAT KHAU----------";
                 transactionHistoryTitle = "---------LICH SU GIAO DICH-----------";
-                turnBack = "(Nhap == de quay lai)";
-                phoneNumber = "So dien thoai: ";
+                turnBack = "(Nhan Enter de quay lai)";
+                phoneNumber = "So dien thoai : ";
                 passWord = "Mat khau: ";
-                CapchaText = "Captcha: ";
+                Capcha = "Captcha: ";
                 getCapchaText = "Nhap lai captcha: ";
                 signInSuccess = "Dang nhap thanh cong!";
                 signInFail = "Dang nhap that bai";
                 signUpSuccess = "Dang ky thanh cong";
-                userName="Chu tai khoan: ";
+                userName="Ho va Ten: ";
                 citizenID="So CCCD/CMND: ";
                 address= "Dia Chi: ";
                 accountID="So tai khoan: ";
@@ -78,10 +101,11 @@ public class Text {
                 notEmpty = "Khong duoc bo trong";
                 enterAgain = "Nhap lai: ";
                 anphabetOnly="Chi nhap chu cai";
-                numberOnly10 = "Chi nhap so(10 chu so)";
-                wrongFomat = "Sai dinh dang!!!";
+                numberOnly10 = "Phai bao gom 10 chu so, bat dau bang (03)/(05)/(07)/(08)/(09)\nVD: 0322981303";
+                wrongEmailFomat = "Sai dinh dang!!! (VD: username@gmail.com)";
                 numberOnly12="Chi nhap so(12 chu so, bat dau bang 0)";
-                anphabetAndNumberOnly = "Chi nhap chu cai va so";
+                numberOnly = "Chi nhap so";
+                anphabetAndNumberOnly = "(7-20) ky tu gom chu va so";
                 numberInRange = "Nhap so trong khoang ";
                 notEnoughMoney = "Khong du tien trong  tai khoan";
                 lowAmountMoney = "So tien qua nho, phai lon hon 10000";
@@ -93,6 +117,27 @@ public class Text {
                 updatePassSuccess = "Cap nhat mat khau thanh cong";
                 updatePassFail = "Cap nhat mat khau that bai";
                 updateBalanceSuccess = "Cap nhat so du tai khoan thanh cong";
+                amountOfMoney = "So tien: ";
+                note ="Ghi chu: ";
+                amountOfMoney30000 ="So tien phai lon hon hoac bang 30000";
+                balance = "So du: ";
+                withdrawSuccess = "Rut tien thanh cong";
+                oldpass = "Mat khau cu: ";
+                newpass = "Mat khau moi: ";
+                confirmpass ="Xac nhan mat khau: ";
+                confirmpassWrong = "Mat khau xac nhan khong dung voi mat khau moi";
+                wrongpass = "Sai mat khau";
+                registerWait ="Dang dang ky tai khoan... (xin cho)";
+                signInWait = "Dang dang nhap... (xin cho)";
+                changePassWait ="Dang thay doi mat khau... (xin cho)";
+                transferMoney = "Chuyen tien: ";
+                receiverAccountID = "So tai khoan nguoi nhan: ";
+                withdraw ="Rut tien: ";
+                deposit = "Nap tien: ";
+                wrongCapcha = "Capcha sai";
+                moreTime = "Lan nhap nua";
+                capchaFail = "Nhap Capcha that bai";
+                
                 break;
                 
             case "EN":
@@ -101,22 +146,23 @@ public class Text {
                 String[] enMenu2 = {"TIEN PHONG BANK","Account information","Deposit","Withdraw","Transfers","Transaction history","Change password","Log out"};
                 menu2 = enMenu2;
                 loginTitle = "---------LOG IN---------";
-                regesterTitle="-----------REGESTER-----------";
+                registerTitle="-----------REGISTER-----------";
                 AccInFoTitle="-------ACCOUNT INFORMATON-------";
                 depositeTiTle = "----------DEPOSITE---------";
                 withdrawTitle = "----------WITHDRAW---------";
                 transferTitle = "------------TRANSFER---------";
                 transactionHistoryTitle= "-----------TRANSACTION HISTORY---------";
-                turnBack = "(Enter == to turn back)";
+                changePassTitle = "--------------CHANGE PASSWORD-------------";
+                turnBack = "(Press Enter to turn back)";
                 phoneNumber = "Phone number: ";
                 email = "Email: ";
                 passWord = "Password: ";
-                CapchaText = "Captcha: ";
+                Capcha = "Captcha: ";
                 getCapchaText = "Enter captcha: ";
                 signInSuccess = "Sign in successful";
                 signInFail = "Password or Account ID is wrong";
                 signUpSuccess = "Sign up successful";
-                userName="Owner's name: ";
+                userName="User's full name: ";
                 citizenID="Citizen ID: ";
                 address= "Adress: ";
                 accountID="Account ID: ";
@@ -124,10 +170,11 @@ public class Text {
                 notEmpty = "Not empty";
                 enterAgain = "Enter again: ";
                 anphabetOnly = "Alphabet only";
-                numberOnly10 = "Number only(10 digits)";
-                wrongFomat="Wrong format!!!";
+                numberOnly10 = "Include 10 digit, start with (03)/(05)/(07)/(08)/(09)\nEX: 0322981303";
+                wrongEmailFomat="Wrong format!!! (EX: username@gmail.com)";
                 numberOnly12="Number only(12 digits, start with 0)";
-                anphabetAndNumberOnly = "Alphabet and number only";
+                numberOnly = "Only input number";
+                anphabetAndNumberOnly = "(7-20) character include alphabet and number only";
                 numberInRange = "Please input number in rage ";
                 notEnoughMoney = "Money in account is not enough";
                 lowAmountMoney ="The Amount of Money is too low. Must be greater than 10,000";
@@ -139,6 +186,26 @@ public class Text {
                 updatePassSuccess = "Update password successful";
                 updatePassFail = "Update password failed";
                 updateBalanceSuccess = "Update user account balance successful";
+                amountOfMoney = "Amount of money: ";
+                note = "Note: ";
+                amountOfMoney30000 ="Amount of money must be greater or equal to 30000";
+                balance ="Balance: ";
+                withdrawSuccess = "Withdraw successful";
+                oldpass ="Old Password: ";
+                newpass ="New Password: ";
+                confirmpass = "Confirm password: ";
+                confirmpassWrong = "Confirm password is not the same with new password";
+                wrongpass = "Wrong password";
+                registerWait = "Registering..... (Please wait!) ";
+                signInWait = "Signing In...(Please wait)";
+                changePassWait = "Changing password... (Please wait)";
+                transferMoney = "Transfer money: ";
+                receiverAccountID = "Receiver's account ID: ";
+                withdraw = "Withdraw: ";
+                deposit ="Deposit: ";
+                wrongCapcha = "Wrong Capcha";
+                moreTime = "More time";
+                capchaFail = "Failed to confirm Capcha";
                 break;
         }
     }

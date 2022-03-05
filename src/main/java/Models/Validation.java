@@ -37,6 +37,10 @@ public class Validation {
         }
     }
     
+    public static String checkInputAccountID(){
+        return checkInputPhone();
+    }
+    
     
     public static String checkInputEmail() {
         while(true){
@@ -47,13 +51,13 @@ public class Validation {
                 //email does not specialized case
             } else if(email.matches("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$")){
                 return email;
-            } else {System.err.println(Text.wrongFomat);
+            } else {System.err.println(Text.wrongEmailFomat);
                 System.out.print(Text.enterAgain);
                 //email always end up with .com to be valid to create and check
             }
         }
     }
-    public static String checkInputID(){
+    public static String checkInputCitizenID(){
         while (true) {
             String result = in.nextLine().trim();
             if (result.isEmpty()) {
@@ -138,4 +142,37 @@ public class Validation {
             }
         }
     }
+     
+     public static float checkInputfloat() {
+        //loop until user input correct
+        while (true) {
+            try {
+                float result = Float.parseFloat(in.nextLine());
+                return result;
+            } catch (Exception e) {
+                System.err.println(Text.numberOnly);
+                System.out.print(Text.enterAgain);
+            }
+        }
+    }
+    
+    public static int generateCapcha(){
+        return (int)(Math.random()*(9999-1000+1)+1000);
+    } 
+     
+    public static boolean checkCapcha(){
+            int cap = generateCapcha();
+            System.out.println(Text.Capcha+"\n ------");
+            System.out.println("| "+cap+" |");
+            System.out.println(" ------");
+            for(int i = 0; i <= 2; i++){
+            System.out.print(Text.Capcha);
+            int result = Integer.parseInt(in.nextLine().trim());
+            if(result == cap) return true;
+            else {
+                System.out.println(Text.wrongCapcha+"!!("+(2-i)+Text.moreTime+")");
+            }
+            }
+            return false;
+        }
 }
