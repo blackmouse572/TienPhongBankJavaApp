@@ -12,6 +12,7 @@ import com.google.firebase.cloud.FirestoreClient;
 
 import java.util.List;
 import java.util.Stack;
+import java.util.Vector;
 import java.util.concurrent.ExecutionException;
 
 public class TransactionFirebaseService {
@@ -88,6 +89,17 @@ public class TransactionFirebaseService {
         Stack<Transaction> transactions = new Stack<>();
         for (QueryDocumentSnapshot document : documents) {
             transactions.push(document.toObject(Transaction.class));
+        }
+        return transactions;
+    }
+    public static Vector<Transaction> getAllTransactionsByUserId_GUI(String userId) throws ExecutionException, InterruptedException {
+        //Get all transactions by user id
+        transactions = db.collection("Transactions");
+        ApiFuture<QuerySnapshot> future = transactions.whereEqualTo("sender.accountID", userId).get();
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+        Vector<Transaction> transactions = new Vector<>();
+        for (QueryDocumentSnapshot document : documents) {
+            transactions.add(document.toObject(Transaction.class));
         }
         return transactions;
     }
