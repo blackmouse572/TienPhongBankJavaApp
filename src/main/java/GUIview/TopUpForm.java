@@ -180,12 +180,6 @@ public class TopUpForm extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Money must be a number!", "Show message", JOptionPane.ERROR_MESSAGE );
             }
         }
-        
-        // code cua ho
-//        double bal=Double.parseDouble(amountTxt.getText());
-//        String desc=descTxt.getText();
-//        BankGUI.bank.doDeposit(BankGUI.curAcc.getAccNo(), bal, desc);
-//        JOptionPane.showMessageDialog(this,"Your new balance: "+BankGUI.curAcc.getBalance());
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
