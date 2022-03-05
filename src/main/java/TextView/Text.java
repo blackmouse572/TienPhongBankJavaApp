@@ -161,7 +161,7 @@ public class Text {
                 menu2 = enMenu2;
                 loginTitle = "---------LOG IN---------";
                 registerTitle="-----------REGISTER-----------";
-                AccInFoTitle="-------ACCOUNT INFORMATON-------";
+                AccInFoTitle="-------ACCOUNT INFORMATION-------";
                 depositeTiTle = "----------DEPOSITE---------";
                 withdrawTitle = "----------WITHDRAW---------";
                 transferTitle = "------------TRANSFER---------";
@@ -178,7 +178,7 @@ public class Text {
                 signUpSuccess = "Sign up successful";
                 userName="User's full name: ";
                 citizenID="Citizen ID: ";
-                address= "Adress: ";
+                address= "Address: ";
                 accountID="Account ID: ";
                 accountBalance="Account Balance: ";
                 notEmpty = "Not empty";
