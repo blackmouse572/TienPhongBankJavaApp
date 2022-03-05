@@ -76,6 +76,19 @@ public class UserManager {
             try {
                 //Check if receiver is existed, will throw exception if not
                 User receiverUser = UserFirebaseService.retrieveUser(receiver);
+                
+                //Check if receiver is exited ?
+                if (receiverUser == null ){
+                    System.out.println(Text.receiverNotExist);
+                    return;
+                }
+                
+                //Check if receiver is the same as sender
+                if (currentUser.getAccountID().equals(receiverUser.getAccountID())) {
+                    System.out.println(Text.seflTransfer);
+                    return;
+                }
+                
                 //Then create new transaction
                 Transaction newTransaction = new Transaction(currentUser, receiverUser, moneyToTransfer, action, note);
                 TransactionFirebaseService.transferTransaction(newTransaction);

@@ -40,16 +40,6 @@ public class TransactionFirebaseService {
         //Get current balance of sender and receiver
         float senderBalance = transaction.getSender().getAccountBalance();
         float receiverBalance = transaction.getReceiver().getAccountBalance();
-        //Check if receiver is the same as sender
-        if (SenderId.equals(ReceiverId)) {
-            System.out.println("You cannot transfer to yourself!");
-            return;
-        }
-        //Check if receiver is exited ?
-        if(UserFirebaseService.retrieveUser(ReceiverId) == null){
-            System.out.println(Text.receiverNotExist);
-            return;
-        }
 
         //Get amount of transaction
         float amount = transaction.getMoneyAmount();
