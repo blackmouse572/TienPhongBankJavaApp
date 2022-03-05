@@ -11,6 +11,18 @@ import java.util.concurrent.ExecutionException;
 import java.util.Collections;
 
 
+/**
+ *
+ * This Class Give user options to choose to their account:
+ * Transfer money,
+ * Sign up,
+ * Login,
+ * Withdraw
+ * deposit
+ * display info
+ *
+ * @author lil_ink
+ */
 public class UserManager {
     User currentUser = new User();
 
