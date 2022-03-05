@@ -6,8 +6,6 @@ import Models.Database.UserFirebaseService;
 import Models.Validation;
 import TextView.Text;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Stack;
 import java.util.concurrent.ExecutionException;
 import java.util.Collections;
@@ -42,7 +40,7 @@ public class UserManager {
 
             currentUser = UserFirebaseService.signIn(accountID, password);
         } catch (IllegalStateException e) {
-            System.err.println(e.getMessage());;
+            System.err.println(e.getMessage());
             return false;
         }
         return true;
@@ -71,8 +69,6 @@ public class UserManager {
             }
             
             String action = "Transfer money";
-            //get current time
-            String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
 
             try {
                 //Check if receiver is existed, will throw exception if not

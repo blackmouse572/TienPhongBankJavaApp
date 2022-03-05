@@ -109,9 +109,10 @@ public class User {
 
     public void setBalance(float balance) {
         this.accountBalance = balance;
-        // TODO: Have user choose to do with accountBalance
     }
-
+    
+    
+    //optional
     public boolean setPassword() {
         System.out.print(Text.passWord);
         String newPassword = Validation.checkInputPassword();
