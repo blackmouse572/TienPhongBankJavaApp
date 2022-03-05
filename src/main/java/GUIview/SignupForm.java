@@ -9,8 +9,7 @@ import Models.UserManagement.User;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import Models.Validation;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -235,7 +234,10 @@ public class SignupForm extends javax.swing.JPanel {
             BankGUI.currentUser.setCitizenID(citizenID);
             BankGUI.currentUser.setEmailAddress(emailAddress);
             BankGUI.currentUser.setStreetAddress(streetAddress);
-            BankGUI.currentUser.setPassword( new String(passTxt.getPassword()) );
+            
+            String password = new String(passTxt.getPassword());
+            // set password
+            BankGUI.currentUser.setPassword( Validation.checkInputPassword_GUI(password) );
             
             try {
                 UserFirebaseService.signUp(BankGUI.currentUser);

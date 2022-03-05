@@ -130,6 +130,24 @@ public class Validation {
             }
         }
     }
+    
+    public static String checkInputPassword_GUI( String result){
+        byte[] salt = {-1,114,-15,-119,-76,-118,-105,111,-51,53,-74,83,-4,-8,-14,82};
+        while (true) {
+            if (result.isEmpty()) {
+                System.err.println(Text.notEmpty);
+                //if password is empty, it will make the program to run again
+                System.out.print(Text.enterAgain);
+                //Password must contain more than 8 to 22 max
+            } else if(result.matches("([0-9a-zA-Z])(?=\\S+$).{7,20}$")){
+                //Password do not contain space or special letter case
+                result = getSecurePassword(result, salt);
+                return result;
+            } else {System.err.println(Text.anphabetAndNumberOnly);
+                System.out.print(Text.enterAgain);
+            }
+        }
+    }
     public static boolean checkSamePassword(String oldP, String newP) {
         if (oldP.equals(newP)) return true;
             //If new password is the same as the old password then it will fail to change to the new one

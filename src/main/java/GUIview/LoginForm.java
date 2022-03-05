@@ -6,7 +6,7 @@ package GUIview;
 
 import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
-// test xem co loi khong
+import Models.Validation;
 import Models.Database.UserFirebaseService;
 
 /**
@@ -141,7 +141,11 @@ public class LoginForm extends javax.swing.JPanel {
         }
         else {
             String accNo = jTextField1.getText();
-            String pass=new String( jPasswordField1.getPassword());
+//            String pass=new String( jPasswordField1.getPassword());
+            
+            String password = new String(jPasswordField1.getPassword());
+            // set password
+            String pass =  Validation.checkInputPassword_GUI(password);
             
             try {
                 BankGUI.currentUser = UserFirebaseService.signIn(accNo, pass);

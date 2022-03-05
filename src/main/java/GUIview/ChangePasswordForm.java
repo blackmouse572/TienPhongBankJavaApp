@@ -5,6 +5,7 @@
 package GUIview;
 
 import Models.Database.UserFirebaseService;
+import Models.Validation;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
@@ -196,8 +197,17 @@ public class ChangePasswordForm extends javax.swing.JPanel {
             }
             // update
             else {
-                String oldpass = new String (jPasswordField1.getPassword());
-                String newpass = new String (jPasswordField2.getPassword());
+//                String oldpass = new String (jPasswordField1.getPassword());
+//                String newpass = new String (jPasswordField2.getPassword());
+                
+                String oldpass1 = new String(jPasswordField1.getPassword());
+                // set password
+                String oldpass =  Validation.checkInputPassword_GUI(oldpass1);
+                
+                String newpass1 = new String(jPasswordField1.getPassword());
+                // set password
+                String newpass =  Validation.checkInputPassword_GUI(newpass1);
+                
                 try {
                     UserFirebaseService.updateUserPassword(BankGUI.currentUser.getAccountID(), oldpass, newpass);
                     JOptionPane.showMessageDialog(this, "Success!", "Show message", JOptionPane.INFORMATION_MESSAGE );
