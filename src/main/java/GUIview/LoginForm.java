@@ -142,7 +142,6 @@ public class LoginForm extends javax.swing.JPanel {
         else {
             String accNo = jTextField1.getText();
             String pass=new String( jPasswordField1.getPassword());
-            System.out.println("Success!");
             
             try {
                 BankGUI.currentUser = UserFirebaseService.signIn(accNo, pass);
@@ -151,10 +150,18 @@ public class LoginForm extends javax.swing.JPanel {
                 BankGUI.jMenuItemChangePass.setEnabled(true);
                 BankGUI.jMenuItemLogOut.setEnabled(true);
                 BankGUI.jMenuItemLogin.setEnabled(false);
+                BankGUI.jMenuItemSignUp.setEnabled(false);
+                jButton3.setEnabled(false);
+                
+                // code chay duoc thi bo
+                System.out.println("Success!");
                 
                 JOptionPane.showMessageDialog(this, "Welcome customer "+BankGUI.currentUser.getName());
             }
             catch ( Exception err) {
+                // code chay duoc thi bo
+                System.out.println("Failed");
+                
                 JOptionPane.showMessageDialog(this, "Account or password is not valid!", "Show message", JOptionPane.ERROR_MESSAGE );
             }
         }

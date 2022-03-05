@@ -25,6 +25,7 @@ public class ChangePasswordForm extends javax.swing.JPanel {
         createFormLanguage();
         if (BankGUI.currentUser != null ) {
             jTextField1.setText( BankGUI.currentUser.getAccountID() );
+            jTextField1.setEnabled(false);
         }
         
         // them 1 cai check captcha 
