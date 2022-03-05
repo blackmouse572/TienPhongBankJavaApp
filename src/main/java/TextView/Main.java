@@ -58,7 +58,7 @@ class Menu1 extends  Menu{ // user choose to log in or sign up
             case 3:
                 return;
         }
-            if (logFlag = true){
+            if (logFlag == true){
                 Menu2 menu2 = new Menu2();
                 menu2.run(userManager);
             }
