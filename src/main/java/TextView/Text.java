@@ -65,6 +65,7 @@ public class Text {
                     transferMoney,
                     transferSuccess,
                     receiverAccountID,
+                    senderAccountID,
                     withdraw,
                     deposit,
                     wrongCapcha,
@@ -140,6 +141,7 @@ public class Text {
                 transferWait = "Dang chuyen tien... (xin cho)";
                 transferSuccess ="Chuyen tien thanh cong";
                 transferMoney = "Chuyen tien: ";
+                senderAccountID = "So tai khoan nguoi gui: ";
                 receiverAccountID = "So tai khoan nguoi nhan: ";
                 withdraw ="Rut tien: ";
                 deposit = "Nap tien: ";
@@ -216,6 +218,7 @@ public class Text {
                 transferWait = "Transfering... (Please wait)";
                 transferSuccess = "Transfer successful";
                 transferMoney = "Transfer money: ";
+                senderAccountID = "Sender's account ID: ";
                 receiverAccountID = "Receiver's account ID: ";
                 withdraw = "Withdraw: ";
                 deposit ="Deposit: ";
