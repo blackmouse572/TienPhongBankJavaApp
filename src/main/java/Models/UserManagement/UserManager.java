@@ -13,12 +13,17 @@ import java.util.Collections;
 
 public class UserManager {
     User currentUser = new User();
+
+    /**
+     * This method is used for User create a new account
+     * @return true if create successful. false otherwise
+     * */
     
     public boolean signUp() {
         try
         {   currentUser.updateInformation();
             currentUser.setPassword();
-            //do capcha
+            // Do captcha
             if (!Validation.checkCapcha()){
                 System.out.println(Text.capchaFail);
                 return false;
@@ -31,6 +36,10 @@ public class UserManager {
         return true;
     }
 
+    /**
+     * This method is used for User to log in
+     * @return true if create successful. false otherwise
+     * */
     public boolean logIn() {
         try {
             System.out.print(Text.accountID);
@@ -46,6 +55,9 @@ public class UserManager {
         return true;
     }
 
+    /**
+     * This method is used for User to transfer money to other User
+     * */
     public void transferMoney() {
         System.out.print(Text.amountOfMoney);
         float moneyToTransfer = Validation.checkInputfloat();
@@ -106,6 +118,9 @@ public class UserManager {
 
     }
 
+    /**
+     * This method is used for User to withdraw money
+     * */
     public void withdraw() {
         System.out.print(Text.amountOfMoney);
         float moneyToWithdraw = Validation.checkInputfloat();
@@ -145,6 +160,9 @@ public class UserManager {
 
     }
 
+    /**
+     * This method is used for User to add money to their account
+     * */
     public void deposit() {
         System.out.print(Text.amountOfMoney);
         float moneyToDeposit = Validation.checkInputfloat();
@@ -177,7 +195,11 @@ public class UserManager {
             }
         }
     }
-    
+
+    /**
+     * This method is used for User to change their password
+     *
+     * */
     public void changePassword(){
         System.out.print(Text.oldpass);
         String oldpass = Validation.checkInputPassword();
@@ -204,10 +226,18 @@ public class UserManager {
         }else System.out.println(Text.wrongpass);
     }
 
+    /**
+     * This method is used for User to display their basic info
+     *
+     * */
     public void displayInfo() {
         currentUser.display();
     }
 
+    /**
+     * This method is used for User to display their Transaction history
+     *
+     * */
     public void displayTransactions() {
         Stack<Transaction> history ;
         try {

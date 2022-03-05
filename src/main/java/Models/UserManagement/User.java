@@ -1,5 +1,20 @@
 package Models.UserManagement;
 
+/**
+ *
+ * This Class get hold of User Basic Information:
+ * accountID (Id tai khoan)
+ * password (Mat khau)
+ * name (Ten nguoi dung)
+ * phoneNumber (So dien thaoi)
+ * accountBalance (So du tai khoan)
+ * citizenID (CMND, CCCD)
+ * email
+ * streetAddress (Dia chi thuong tru)
+ *
+ * @author lil_ink
+ */
+
 import Models.Validation;
 import TextView.Text;
 
@@ -27,7 +42,7 @@ public class User {
     public User() {
     }
 
-    ;
+    /*Getters and setters provide for API*/
 
     public void setAccountID(String accountID) {
         this.accountID = accountID;
@@ -70,8 +85,7 @@ public class User {
     }
 
     public void setPhoneNumber() {
-        // TODO validate number
-        this.phoneNumber = "";
+        this.phoneNumber = Validation.checkInputPhone();
     }
 
     public void setPhoneNumber(String phoneNumber) {
@@ -94,6 +108,30 @@ public class User {
         this.streetAddress = streetAddress;
     }
 
+    public void setBalance(float balance) {
+        this.accountBalance = balance;
+    }
+    
+    /**
+     * This method is used for used create a password when sign up
+     * */
+    public void setPassword() {
+        System.out.print(Text.passWord);
+        this.password = Validation.checkInputPassword();
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    /**
+     * This method update User's basic information:
+     * phoneNumber
+     * name
+     * citizenID
+     * email
+     * streetAddress
+     * */
     public void updateInformation() {
         System.out.print(Text.phoneNumber);
         phoneNumber = Validation.checkInputPhone();
@@ -107,28 +145,9 @@ public class User {
         streetAddress = Validation.checkInputString();
     }
 
-    public void setBalance(float balance) {
-        this.accountBalance = balance;
-    }
-    
-    
-    //optional
-    public boolean setPassword() {
-        System.out.print(Text.passWord);
-        String newPassword = Validation.checkInputPassword();
-        if (this.password != null) {
-            if (Validation.checkSamePassword(this.password, newPassword)) ;
-            return true;
-        }
-        this.password = newPassword;
-        return false;
-    }
-
-    public String getPassword() {
-        return this.password;
-    }
-
-
+    /**
+     * Display User's basic information
+     * */
     public void display() {
         System.out.println(Text.accountID + this.accountID);
         System.out.println(Text.phoneNumber + this.phoneNumber);
