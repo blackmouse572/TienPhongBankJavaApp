@@ -23,7 +23,7 @@ public class UserFirebaseService {
      * @throws InterruptedException if something wrong with thread.
      * @throws ExecutionException if something wrong with thread.
      */
-    public static User signUp(User newUser) throws InterruptedException, ExecutionException {
+    public static User signUp(User newUser) throws InterruptedException, IllegalStateException, ExecutionException {
         System.out.println(Text.registerWait);
         //check if user already exists
         newUser.setAccountID(newUser.getPhoneNumber());
@@ -32,7 +32,6 @@ public class UserFirebaseService {
         }
         //Push new user info to database
         db.collection("Account").document(newUser.getPhoneNumber()).set(newUser);
-        
         System.out.println(Text.signUpSuccess);
         System.out.println(Text.accountID + newUser.getAccountID());
         return newUser;
@@ -165,7 +164,6 @@ public class UserFirebaseService {
             if (user != null) {
                 user.setBalance(accountBalance);
                 account.document(accountID).set(user);
-                System.out.println(Text.updateBalanceSuccess);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
