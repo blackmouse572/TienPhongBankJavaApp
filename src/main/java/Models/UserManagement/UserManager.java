@@ -80,7 +80,7 @@ public class UserManager {
             System.out.println(Text.notEnoughMoney);
         }
         // The money to transfer must greater ot equal to 30000
-        else if (moneyToTransfer > 30000) {
+        else if (moneyToTransfer >= 30000 && moneyToTransfer < 2000000000) {
             System.out.print(Text.accountID);
             String receiver = Validation.checkInputAccountID();
             System.out.print(Text.note);
@@ -144,7 +144,7 @@ public class UserManager {
             System.out.println(Text.notEnoughMoney);
         }
         // The money to transfer must greater or equal to 30000
-        else if (moneyToWithdraw >= 30000) {
+        else if (moneyToWithdraw >= 30000 && moneyToWithdraw <2000000000) {
             
             //do capcha
             if (!Validation.checkCapcha()){
