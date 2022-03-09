@@ -127,7 +127,7 @@ public class Text {
                 updateBalanceSuccess = "Cap nhat so du tai khoan thanh cong";
                 amountOfMoney = "So tien: ";
                 note ="Ghi chu: ";
-                amountOfMoney30000 ="So tien phai lon hon hoac bang 30000";
+                amountOfMoney30000 ="So tien phai lon hon hoac bang 30000 va nho hon 2000000000";
                 balance = "So du: ";
                 withdrawSuccess = "Rut tien thanh cong";
                 oldpass = "Mat khau cu: ";
@@ -204,7 +204,7 @@ public class Text {
                 updateBalanceSuccess = "Update user account balance successful";
                 amountOfMoney = "Amount of money: ";
                 note = "Note: ";
-                amountOfMoney30000 ="Amount of money must be greater or equal to 30000";
+                amountOfMoney30000 ="Amount of money must be greater or equal to 30000 and less than 2000000000";
                 balance ="Balance: ";
                 withdrawSuccess = "Withdraw successful";
                 oldpass ="Old Password: ";
