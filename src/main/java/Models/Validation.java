@@ -2,6 +2,7 @@ package Models;
 import TextView.Text;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Locale;
 import java.util.Scanner;
 
 
@@ -16,7 +17,7 @@ public class Validation {
                     System.err.println(Text.notEmpty);
                     System.out.print(Text.enterAgain);
                 } else if(result.matches("[a-zA-Z ]+")){
-                    return result;
+                    return result.toUpperCase();
                     //Name must be words not a number
                 } else {System.err.println(Text.anphabetOnly);
                     System.out.print(Text.enterAgain);
