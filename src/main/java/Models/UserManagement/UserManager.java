@@ -41,7 +41,7 @@ public class UserManager {
                 return false;
             }
             UserFirebaseService.signUp(currentUser);
-        } catch (InterruptedException | ExecutionException e) {
+        } catch (Exception e) {
             System.err.println(e.getMessage());
             return false;
         }
@@ -60,7 +60,7 @@ public class UserManager {
             String password = Validation.checkInputPassword();
 
             currentUser = UserFirebaseService.signIn(accountID, password);
-        } catch (IllegalStateException e) {
+        } catch (Exception e) {
             System.err.println(e.getMessage());
             return false;
         }
@@ -121,7 +121,7 @@ public class UserManager {
                 
                 //print current user account balance
                 System.out.println(Text.balance + (int) currentUser.getAccountBalance());
-            } catch (InterruptedException | ExecutionException e) {
+            } catch (Exception e) {
                 System.err.println(e.getMessage());
             }
         }else{
@@ -163,7 +163,7 @@ public class UserManager {
                 
                 //print current user account balance
                 System.out.println(Text.balance + (int) currentUser.getAccountBalance());
-            } catch (ExecutionException | InterruptedException e) {
+            } catch (Exception e) {
                 System.err.println(e.getMessage());
             }
         }else{
@@ -202,7 +202,7 @@ public class UserManager {
                 //print current user account balance
                 System.out.println(Text.balance + (int) currentUser.getAccountBalance());
                 
-            } catch (ExecutionException | InterruptedException e) {
+            } catch (Exception e) {
                 System.err.println(e.getMessage());
             }
         }
@@ -230,7 +230,7 @@ public class UserManager {
                 
                 try {
                     UserFirebaseService.updateUserPassword(currentUser.getAccountID(), oldpass, newpass);
-                } catch (InterruptedException | ExecutionException e) {
+                } catch (Exception e) {
                     System.err.println(e.getMessage());
                 }
                 
@@ -260,7 +260,7 @@ public class UserManager {
                 System.out.println(x);
                 System.out.println("-----------------");
             }
-        } catch (ExecutionException | InterruptedException e) {
+        } catch (Exception e) {
             System.err.println(e.getMessage());
         }
     }
