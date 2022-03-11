@@ -4,7 +4,7 @@ package TextView;
 import Models.Validation;
 import java.util.ArrayList;
 
-public class  Menu {
+public abstract class  Menu {
     private int userChoice;
     private ArrayList<String> menuText = new ArrayList<>();
 
