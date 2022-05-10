@@ -26,6 +26,3 @@ Meanwhile, the compiled output files will be generated in the `bin` folder by de
 
 - Main file to run the program: `App.js`.
 
-## Main Update
-
-- 1/13/2022: Init whole project.
